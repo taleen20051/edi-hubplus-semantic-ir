@@ -1,0 +1,288 @@
+{
+  "k": 10,
+  "top_n_saved": 15,
+  "model_id": "sentence-transformers/all-mpnet-base-v2",
+  "alpha_semantic": 0.85,
+  "beta_concept_boost": 0.15,
+  "include_alt_labels_in_expansion": true,
+  "query_count": 20,
+  "macro_avg": {
+    "P@k": 0.185,
+    "R@k": 0.27777700324981247,
+    "F1@k": 0.18055523049184305
+  },
+  "per_query": {
+    "q1": {
+      "query": "women in academia mentoring",
+      "expanded_query": "women in academia mentoring Mentorship & Sponsorship mentoring sponsorship career mentoring mentorship programme",
+      "matched_concepts": [
+        "mentoring"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q2": {
+      "query": "research funding bias mitigation",
+      "expanded_query": "research funding bias mitigation Bias Mitigation Bias implicit bias unconscious bias bias awareness",
+      "matched_concepts": [
+        "Bias Mitigation",
+        "Bias"
+      ],
+      "P@k": 0.2,
+      "R@k": 0.2857142857142857,
+      "F1@k": 0.23529411764705882,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 7
+    },
+    "q3": {
+      "query": "inclusive language policy review",
+      "expanded_query": "inclusive language policy review Inclusive Language inclusive communications inclusive wording inclusive terminology gender-inclusive language Age age diversity age equality age discrimination age-inclusive ageism",
+      "matched_concepts": [
+        "Inclusive Language",
+        "Age"
+      ],
+      "P@k": 0.5,
+      "R@k": 0.2631578947368421,
+      "F1@k": 0.3448275862068966,
+      "hits@k": 5,
+      "retrieved@k": 10,
+      "relevant_total": 19
+    },
+    "q4": {
+      "query": "neurodiversity accessible workspaces",
+      "expanded_query": "neurodiversity accessible workspaces Neurodiversity neurodivergent neurodiverse staff ADHD support autism support neuroinclusion",
+      "matched_concepts": [
+        "Neurodiversity"
+      ],
+      "P@k": 0.6,
+      "R@k": 0.2608695652173913,
+      "F1@k": 0.36363636363636365,
+      "hits@k": 6,
+      "retrieved@k": 10,
+      "relevant_total": 23
+    },
+    "q5": {
+      "query": "recruitment strategies diverse leadership",
+      "expanded_query": "recruitment strategies diverse leadership Recruitment Strategies inclusive recruitment inclusive hiring equitable recruitment fair recruitment diverse recruitment bias-free recruitment Diverse Leadership",
+      "matched_concepts": [
+        "Recruitment Strategies",
+        "Diverse Leadership"
+      ],
+      "P@k": 0.6,
+      "R@k": 0.35294117647058826,
+      "F1@k": 0.4444444444444445,
+      "hits@k": 6,
+      "retrieved@k": 10,
+      "relevant_total": 17
+    },
+    "q6": {
+      "query": "mentorship programmes for women researchers",
+      "expanded_query": "mentorship programmes for women researchers Mentorship & Sponsorship mentoring sponsorship career mentoring mentorship programme",
+      "matched_concepts": [
+        "mentorship programme"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q7": {
+      "query": "sponsorship for underrepresented academics",
+      "expanded_query": "sponsorship for underrepresented academics Mentorship & Sponsorship mentoring sponsorship career mentoring mentorship programme",
+      "matched_concepts": [
+        "sponsorship"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q8": {
+      "query": "career progression promotion equity in universities",
+      "expanded_query": "career progression promotion equity in universities Career Progression promotion progression pathways progression criteria fair promotion promotion equity",
+      "matched_concepts": [
+        "Career Progression"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 10
+    },
+    "q9": {
+      "query": "retaining diverse talent academic staff retention",
+      "expanded_query": "retaining diverse talent academic staff retention Career Retention retention staff retention retaining talent attrition reduction",
+      "matched_concepts": [
+        "retention"
+      ],
+      "P@k": 0.1,
+      "R@k": 0.3333333333333333,
+      "F1@k": 0.15384615384615383,
+      "hits@k": 1,
+      "retrieved@k": 10,
+      "relevant_total": 3
+    },
+    "q10": {
+      "query": "inclusive leadership development training for managers",
+      "expanded_query": "inclusive leadership development training for managers Leadership Development inclusive leadership development leadership pipeline developing leaders leadership training Inclusive Leadership inclusive management inclusive leaders inclusive leadership behaviours Age age diversity age equality age discrimination age-inclusive ageism",
+      "matched_concepts": [
+        "Leadership Development",
+        "Inclusive Leadership",
+        "Age"
+      ],
+      "P@k": 0.2,
+      "R@k": 0.14285714285714285,
+      "F1@k": 0.16666666666666666,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 14
+    },
+    "q11": {
+      "query": "age discrimination policy workplace guidance",
+      "expanded_query": "age discrimination policy workplace guidance Age age diversity age equality age discrimination age-inclusive ageism",
+      "matched_concepts": [
+        "Age"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 1
+    },
+    "q12": {
+      "query": "disability reasonable adjustments workplace",
+      "expanded_query": "disability reasonable adjustments workplace Disability disability inclusion disabled staff disability equality reasonable adjustments workplace adjustments access needs",
+      "matched_concepts": [
+        "Disability"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q13": {
+      "query": "support for autism and ADHD staff at work",
+      "expanded_query": "support for autism and ADHD staff at work",
+      "matched_concepts": [],
+      "P@k": 0.2,
+      "R@k": 1.0,
+      "F1@k": 0.33333333333333337,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 2
+    },
+    "q14": {
+      "query": "pregnancy maternity return to work support policy",
+      "expanded_query": "pregnancy maternity return to work support policy Pregnancy And Maternity pregnancy maternity return to work after maternity pregnancy discrimination",
+      "matched_concepts": [
+        "pregnancy"
+      ],
+      "P@k": 0.3,
+      "R@k": 0.5,
+      "F1@k": 0.37499999999999994,
+      "hits@k": 3,
+      "retrieved@k": 10,
+      "relevant_total": 6
+    },
+    "q15": {
+      "query": "LGBTQ+ inclusion and sexuality inclusion workplace",
+      "expanded_query": "LGBTQ+ inclusion and sexuality inclusion workplace Sexual Orientation LGBTQ+ LGBTQIA+ sexuality inclusion Sex",
+      "matched_concepts": [
+        "LGBTQ+",
+        "Sex"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q16": {
+      "query": "transgender inclusion gender identity support workplace",
+      "expanded_query": "transgender inclusion gender identity support workplace Trans Identity trans transgender gender identity gender transition support trans inclusion",
+      "matched_concepts": [
+        "trans"
+      ],
+      "P@k": 0.1,
+      "R@k": 1.0,
+      "F1@k": 0.18181818181818182,
+      "hits@k": 1,
+      "retrieved@k": 10,
+      "relevant_total": 1
+    },
+    "q17": {
+      "query": "social mobility widening participation first generation academics",
+      "expanded_query": "social mobility widening participation first generation academics Socio-Economic Background socioeconomic background social mobility working-class background widening participation first-generation",
+      "matched_concepts": [
+        "social mobility"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q18": {
+      "query": "peer review reviewer bias equitable peer review guidance",
+      "expanded_query": "peer review reviewer bias equitable peer review guidance Peer Review peer-review review process reviewer bias fair peer review equitable peer review Bias implicit bias unconscious bias bias awareness",
+      "matched_concepts": [
+        "Peer Review",
+        "Bias"
+      ],
+      "P@k": 0.2,
+      "R@k": 0.6666666666666666,
+      "F1@k": 0.30769230769230765,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 3
+    },
+    "q19": {
+      "query": "review panel diversity committee diversity funding decisions",
+      "expanded_query": "review panel diversity committee diversity funding decisions Panel Diversity diverse panels review panel diversity committee diversity panel composition",
+      "matched_concepts": [
+        "Panel Diversity"
+      ],
+      "P@k": 0.2,
+      "R@k": 0.3333333333333333,
+      "F1@k": 0.25,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 6
+    },
+    "q20": {
+      "query": "bullying microaggressions prevention civility at work policy",
+      "expanded_query": "bullying microaggressions prevention civility at work policy Bullying And Microagression Prevention microaggressions microaggression prevention anti-bullying bullying prevention civility at work",
+      "matched_concepts": [
+        "microaggressions"
+      ],
+      "P@k": 0.5,
+      "R@k": 0.4166666666666667,
+      "F1@k": 0.45454545454545453,
+      "hits@k": 5,
+      "retrieved@k": 10,
+      "relevant_total": 12
+    }
+  },
+  "inputs": {
+    "ontology": "ontology/versions/v2_iter01/edi_ontology_v2_iter01.json",
+    "embeddings": "data/semantic/resource_embeddings_mpnet.npz",
+    "semantic_tags": "data/semantic/semantic_tags_mpnet.jsonl",
+    "queries": "data/phase7_evaluation/queries_v2_iter01_expanded.jsonl",
+    "qrels": "data/phase8_iterations/iter01/qrels/qrels_iter01.json"
+  }
+}

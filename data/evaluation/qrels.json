@@ -1,0 +1,15 @@
+{
+  "created_utc": "2026-02-21T23:54:51Z",
+  "policy": {
+    "judgement": "binary",
+    "assessor": "researcher",
+    "evidence_shown": [
+      "title",
+      "url",
+      "taxonomy tags",
+      "extracted_text snippet (first 500 chars)"
+    ],
+    "pooling": "top-15 from BM25 + top-15 from ontology-only (merged by rid)"
+  },
+  "queries": []
+}

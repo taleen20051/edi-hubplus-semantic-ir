@@ -1,0 +1,6 @@
+{
+  "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+  "resource_count": 69,
+  "max_chars": 8000,
+  "runtime_seconds": 3.015799045562744
+}

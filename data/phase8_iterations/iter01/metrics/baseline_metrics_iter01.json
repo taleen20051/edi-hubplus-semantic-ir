@@ -1,0 +1,118 @@
+{
+  "k": 10,
+  "inputs": {
+    "qrels": "data/phase8_iterations/iter01/qrels/qrels_iter01.json",
+    "keyword_bm25": "data/phase8_iterations/iter01/runs/run_bm25.jsonl",
+    "ontology_only": "data/phase8_iterations/iter01/runs/run_ontology_only.jsonl"
+  },
+  "keyword_bm25": {
+    "k": 10,
+    "macro_avg": {
+      "P@10": 0.45999999999999996,
+      "R@10": 0.308309136011384,
+      "F1@10": 0.34996346152532765
+    },
+    "per_query": {
+      "q1": {
+        "query": "women in academia mentoring",
+        "P@10": 0.0,
+        "R@10": 0.0,
+        "F1@10": 0.0,
+        "retrieved@k": 10,
+        "relevant_total": 0,
+        "hits@k": 0
+      },
+      "q2": {
+        "query": "research funding bias mitigation",
+        "P@10": 0.4,
+        "R@10": 0.5714285714285714,
+        "F1@10": 0.47058823529411764,
+        "retrieved@k": 10,
+        "relevant_total": 7,
+        "hits@k": 4
+      },
+      "q3": {
+        "query": "inclusive language policy review",
+        "P@10": 0.4,
+        "R@10": 0.21052631578947367,
+        "F1@10": 0.27586206896551724,
+        "retrieved@k": 10,
+        "relevant_total": 19,
+        "hits@k": 4
+      },
+      "q4": {
+        "query": "neurodiversity accessible workspaces",
+        "P@10": 0.8,
+        "R@10": 0.34782608695652173,
+        "F1@10": 0.48484848484848486,
+        "retrieved@k": 10,
+        "relevant_total": 23,
+        "hits@k": 8
+      },
+      "q5": {
+        "query": "recruitment strategies diverse leadership",
+        "P@10": 0.7,
+        "R@10": 0.4117647058823529,
+        "F1@10": 0.5185185185185185,
+        "retrieved@k": 10,
+        "relevant_total": 17,
+        "hits@k": 7
+      }
+    }
+  },
+  "ontology_only": {
+    "k": 10,
+    "macro_avg": {
+      "P@10": 0.75,
+      "R@10": 0.32921946810760916,
+      "F1@10": 0.4476899856210201
+    },
+    "per_query": {
+      "q1": {
+        "query": "women in academia mentoring",
+        "P@10": 0.0,
+        "R@10": 0.0,
+        "F1@10": 0.0,
+        "retrieved@k": 0,
+        "relevant_total": 0,
+        "hits@k": 0
+      },
+      "q2": {
+        "query": "research funding bias mitigation",
+        "P@10": 0.75,
+        "R@10": 0.42857142857142855,
+        "F1@10": 0.5454545454545454,
+        "retrieved@k": 4,
+        "relevant_total": 7,
+        "hits@k": 3
+      },
+      "q3": {
+        "query": "inclusive language policy review",
+        "P@10": 1.0,
+        "R@10": 0.3684210526315789,
+        "F1@10": 0.5384615384615384,
+        "retrieved@k": 7,
+        "relevant_total": 19,
+        "hits@k": 7
+      },
+      "q4": {
+        "query": "neurodiversity accessible workspaces",
+        "P@10": 1.0,
+        "R@10": 0.2608695652173913,
+        "F1@10": 0.41379310344827586,
+        "retrieved@k": 6,
+        "relevant_total": 23,
+        "hits@k": 6
+      },
+      "q5": {
+        "query": "recruitment strategies diverse leadership",
+        "P@10": 1.0,
+        "R@10": 0.5882352941176471,
+        "F1@10": 0.7407407407407407,
+        "retrieved@k": 10,
+        "relevant_total": 17,
+        "hits@k": 10
+      }
+    }
+  }
+}

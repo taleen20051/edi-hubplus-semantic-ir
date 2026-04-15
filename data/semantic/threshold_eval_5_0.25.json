@@ -1,0 +1,496 @@
+{
+  "report": {
+    "resource_count": 69,
+    "macro_avg": {
+      "precision": 0.18647342995169083,
+      "recall": 0.33212560386473433,
+      "f1": 0.22404479578392622
+    },
+    "note": "Gold labels derived from resources_unified taxonomy columns; mapped to concept_ids via ontology pref/alt labels (case-insensitive, whitespace-normalised). Also splits comma/semicolon/pipe/slash-separated multi-label strings found in some cells."
+  },
+  "per_resource": {
+    "1": {
+      "precision": 0.2,
+      "recall": 0.3333333333333333,
+      "f1": 0.25,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "5": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 2,
+      "pred_count": 5
+    },
+    "7": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 8,
+      "pred_count": 5
+    },
+    "9": {
+      "precision": 0.4,
+      "recall": 1.0,
+      "f1": 0.5714285714285715,
+      "gold_count": 2,
+      "pred_count": 5
+    },
+    "11": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 10,
+      "pred_count": 5
+    },
+    "13": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 6,
+      "pred_count": 5
+    },
+    "15": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "17": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 2,
+      "pred_count": 3
+    },
+    "18": {
+      "precision": 0.2,
+      "recall": 0.5,
+      "f1": 0.28571428571428575,
+      "gold_count": 2,
+      "pred_count": 5
+    },
+    "19": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "20": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "21": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 2,
+      "pred_count": 1
+    },
+    "22": {
+      "precision": 0.4,
+      "recall": 0.3333333333333333,
+      "f1": 0.3636363636363636,
+      "gold_count": 6,
+      "pred_count": 5
+    },
+    "23": {
+      "precision": 0.2,
+      "recall": 0.2,
+      "f1": 0.20000000000000004,
+      "gold_count": 5,
+      "pred_count": 5
+    },
+    "24": {
+      "precision": 0.4,
+      "recall": 0.6666666666666666,
+      "f1": 0.5,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "25": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 2,
+      "pred_count": 3
+    },
+    "27": {
+      "precision": 0.6,
+      "recall": 0.75,
+      "f1": 0.6666666666666665,
+      "gold_count": 4,
+      "pred_count": 5
+    },
+    "29": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 2,
+      "pred_count": 1
+    },
+    "33": {
+      "precision": 0.4,
+      "recall": 0.5,
+      "f1": 0.4444444444444445,
+      "gold_count": 4,
+      "pred_count": 5
+    },
+    "35": {
+      "precision": 0.4,
+      "recall": 0.4,
+      "f1": 0.4000000000000001,
+      "gold_count": 5,
+      "pred_count": 5
+    },
+    "36": {
+      "precision": 0.2,
+      "recall": 0.3333333333333333,
+      "f1": 0.25,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "38": {
+      "precision": 0.2,
+      "recall": 0.5,
+      "f1": 0.28571428571428575,
+      "gold_count": 2,
+      "pred_count": 5
+    },
+    "39": {
+      "precision": 0.4,
+      "recall": 0.6666666666666666,
+      "f1": 0.5,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "40": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 4,
+      "pred_count": 5
+    },
+    "42": {
+      "precision": 0.2,
+      "recall": 0.3333333333333333,
+      "f1": 0.25,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "44": {
+      "precision": 0.6,
+      "recall": 0.3,
+      "f1": 0.4,
+      "gold_count": 10,
+      "pred_count": 5
+    },
+    "46": {
+      "precision": 0.2,
+      "recall": 1.0,
+      "f1": 0.33333333333333337,
+      "gold_count": 1,
+      "pred_count": 5
+    },
+    "47": {
+      "precision": 0.4,
+      "recall": 0.6666666666666666,
+      "f1": 0.5,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "48": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 2,
+      "pred_count": 5
+    },
+    "52": {
+      "precision": 0.2,
+      "recall": 0.2,
+      "f1": 0.20000000000000004,
+      "gold_count": 5,
+      "pred_count": 5
+    },
+    "54": {
+      "precision": 0.4,
+      "recall": 0.3333333333333333,
+      "f1": 0.3636363636363636,
+      "gold_count": 6,
+      "pred_count": 5
+    },
+    "56": {
+      "precision": 0.2,
+      "recall": 0.3333333333333333,
+      "f1": 0.25,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "57": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 6,
+      "pred_count": 5
+    },
+    "58": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "59": {
+      "precision": 0.2,
+      "recall": 0.2,
+      "f1": 0.20000000000000004,
+      "gold_count": 5,
+      "pred_count": 5
+    },
+    "62": {
+      "precision": 0.2,
+      "recall": 0.1,
+      "f1": 0.13333333333333333,
+      "gold_count": 10,
+      "pred_count": 5
+    },
+    "63": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 4,
+      "pred_count": 5
+    },
+    "64": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 1,
+      "pred_count": 5
+    },
+    "65": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 4,
+      "pred_count": 5
+    },
+    "67": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 1,
+      "pred_count": 4
+    },
+    "70": {
+      "precision": 0.4,
+      "recall": 1.0,
+      "f1": 0.5714285714285715,
+      "gold_count": 2,
+      "pred_count": 5
+    },
+    "71": {
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8,
+      "gold_count": 2,
+      "pred_count": 3
+    },
+    "72": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 5,
+      "pred_count": 5
+    },
+    "73": {
+      "precision": 0.2,
+      "recall": 0.5,
+      "f1": 0.28571428571428575,
+      "gold_count": 2,
+      "pred_count": 5
+    },
+    "76": {
+      "precision": 0.2,
+      "recall": 0.25,
+      "f1": 0.22222222222222224,
+      "gold_count": 4,
+      "pred_count": 5
+    },
+    "79": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 8,
+      "pred_count": 5
+    },
+    "80": {
+      "precision": 0.2,
+      "recall": 0.25,
+      "f1": 0.22222222222222224,
+      "gold_count": 4,
+      "pred_count": 5
+    },
+    "81": {
+      "precision": 0.2,
+      "recall": 0.25,
+      "f1": 0.22222222222222224,
+      "gold_count": 4,
+      "pred_count": 5
+    },
+    "82": {
+      "precision": 0.2,
+      "recall": 0.3333333333333333,
+      "f1": 0.25,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "83": {
+      "precision": 0.4,
+      "recall": 0.6666666666666666,
+      "f1": 0.5,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "84": {
+      "precision": 0.4,
+      "recall": 1.0,
+      "f1": 0.5714285714285715,
+      "gold_count": 2,
+      "pred_count": 5
+    },
+    "85": {
+      "precision": 0.2,
+      "recall": 0.3333333333333333,
+      "f1": 0.25,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "86": {
+      "precision": 0.2,
+      "recall": 0.25,
+      "f1": 0.22222222222222224,
+      "gold_count": 4,
+      "pred_count": 5
+    },
+    "87": {
+      "precision": 0.2,
+      "recall": 0.3333333333333333,
+      "f1": 0.25,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "89": {
+      "precision": 0.2,
+      "recall": 1.0,
+      "f1": 0.33333333333333337,
+      "gold_count": 1,
+      "pred_count": 5
+    },
+    "91": {
+      "precision": 0.2,
+      "recall": 1.0,
+      "f1": 0.33333333333333337,
+      "gold_count": 1,
+      "pred_count": 5
+    },
+    "92": {
+      "precision": 0.2,
+      "recall": 0.16666666666666666,
+      "f1": 0.1818181818181818,
+      "gold_count": 6,
+      "pred_count": 5
+    },
+    "94": {
+      "precision": 0.2,
+      "recall": 0.3333333333333333,
+      "f1": 0.25,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "95": {
+      "precision": 0.2,
+      "recall": 1.0,
+      "f1": 0.33333333333333337,
+      "gold_count": 1,
+      "pred_count": 5
+    },
+    "96": {
+      "precision": 0.4,
+      "recall": 1.0,
+      "f1": 0.5714285714285715,
+      "gold_count": 2,
+      "pred_count": 5
+    },
+    "97": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "98": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 7,
+      "pred_count": 5
+    },
+    "99": {
+      "precision": 0.6,
+      "recall": 1.0,
+      "f1": 0.7499999999999999,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "100": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 13,
+      "pred_count": 5
+    },
+    "101": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 8,
+      "pred_count": 5
+    },
+    "102": {
+      "precision": 0.2,
+      "recall": 0.1,
+      "f1": 0.13333333333333333,
+      "gold_count": 10,
+      "pred_count": 5
+    },
+    "103": {
+      "precision": 0.2,
+      "recall": 0.5,
+      "f1": 0.28571428571428575,
+      "gold_count": 2,
+      "pred_count": 5
+    },
+    "104": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_count": 3,
+      "pred_count": 5
+    },
+    "105": {
+      "precision": 0.4,
+      "recall": 1.0,
+      "f1": 0.5714285714285715,
+      "gold_count": 2,
+      "pred_count": 5
+    }
+  }
+}

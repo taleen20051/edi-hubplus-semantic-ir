@@ -1,0 +1,13 @@
+{
+  "created_utc": "2026-02-15T13:43:28Z",
+  "n_concepts_total": 71,
+  "n_categories": 4,
+  "concepts_per_category": {
+    "individual_characteristics": 16,
+    "career_pathway": 16,
+    "research_funding_process": 13,
+    "organisational_culture": 26
+  },
+  "has_normalisation_log": true,
+  "n_concepts_with_alt_labels": 11
+}

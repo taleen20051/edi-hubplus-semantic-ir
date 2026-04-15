@@ -1,0 +1,652 @@
+{
+  "ontology_id": "edi-hubplus-taxonomy-v3-iter05-structured",
+  "version": "v3_iter05_structured",
+  "created_utc": "2026-03-07T21:45:34.618578Z",
+  "description": "Structured SKOS concept scheme for EDI Hub+ retrieval. This iteration introduces explicit category/subcategory hierarchy, preferred labels, alternative labels, and hidden search labels.",
+  "scheme": {
+    "id": "edi-hubplus-taxonomy-v3-iter05-structured",
+    "uri": "https://example.org/edi-hubplus/v3_iter05_structured/scheme",
+    "title": "EDI Hub+ Structured Taxonomy Ontology (v3_iter05_structured)",
+    "description": "Structured SKOS concept scheme for EDI Hub+ retrieval. This iteration introduces explicit category/subcategory hierarchy, preferred labels, alternative labels, and hidden search labels.",
+    "version": "v3_iter05_structured",
+    "created_utc": "2026-03-07T21:45:34.618578Z"
+  },
+  "categories": [
+    {
+      "id": "cat__individual_characteristics",
+      "pref_label": "Individual Characteristics",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "cat__career_pathway",
+      "pref_label": "Career Pathway",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "cat__research_funding_process",
+      "pref_label": "Research Funding Process",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "cat__organisational_culture",
+      "pref_label": "Organisational Culture",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "subcat__individual_characteristics__age_and_life_stage",
+      "pref_label": "Age and Life Stage",
+      "category_id": "cat__individual_characteristics",
+      "broader_id": "cat__individual_characteristics",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__individual_characteristics__disability_and_adjustments",
+      "pref_label": "Disability and Adjustments",
+      "category_id": "cat__individual_characteristics",
+      "broader_id": "cat__individual_characteristics",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__individual_characteristics__neurodiversity",
+      "pref_label": "Neurodiversity",
+      "category_id": "cat__individual_characteristics",
+      "broader_id": "cat__individual_characteristics",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__individual_characteristics__pregnancy_maternity_and_parental_leave",
+      "pref_label": "Pregnancy, Maternity and Parental Leave",
+      "category_id": "cat__individual_characteristics",
+      "broader_id": "cat__individual_characteristics",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__individual_characteristics__religion_and_belief",
+      "pref_label": "Religion and Belief",
+      "category_id": "cat__individual_characteristics",
+      "broader_id": "cat__individual_characteristics",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__individual_characteristics__sexual_orientation_and_gender_identity",
+      "pref_label": "Sexual Orientation and Gender Identity",
+      "category_id": "cat__individual_characteristics",
+      "broader_id": "cat__individual_characteristics",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__individual_characteristics__socio_economic_background",
+      "pref_label": "Socio-economic Background",
+      "category_id": "cat__individual_characteristics",
+      "broader_id": "cat__individual_characteristics",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__individual_characteristics__race_and_ethnicity",
+      "pref_label": "Race and Ethnicity",
+      "category_id": "cat__individual_characteristics",
+      "broader_id": "cat__individual_characteristics",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__career_pathway__progression_and_promotion",
+      "pref_label": "Progression and Promotion",
+      "category_id": "cat__career_pathway",
+      "broader_id": "cat__career_pathway",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__career_pathway__retention",
+      "pref_label": "Retention",
+      "category_id": "cat__career_pathway",
+      "broader_id": "cat__career_pathway",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__career_pathway__mentorship_and_sponsorship",
+      "pref_label": "Mentorship and Sponsorship",
+      "category_id": "cat__career_pathway",
+      "broader_id": "cat__career_pathway",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__career_pathway__leadership_development",
+      "pref_label": "Leadership Development",
+      "category_id": "cat__career_pathway",
+      "broader_id": "cat__career_pathway",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__career_pathway__recruitment",
+      "pref_label": "Recruitment",
+      "category_id": "cat__career_pathway",
+      "broader_id": "cat__career_pathway",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__research_funding_process__bias_mitigation",
+      "pref_label": "Bias Mitigation",
+      "category_id": "cat__research_funding_process",
+      "broader_id": "cat__research_funding_process",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__research_funding_process__peer_review",
+      "pref_label": "Peer Review",
+      "category_id": "cat__research_funding_process",
+      "broader_id": "cat__research_funding_process",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__research_funding_process__panel_diversity",
+      "pref_label": "Panel Diversity",
+      "category_id": "cat__research_funding_process",
+      "broader_id": "cat__research_funding_process",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__research_funding_process__application_support",
+      "pref_label": "Application Support",
+      "category_id": "cat__research_funding_process",
+      "broader_id": "cat__research_funding_process",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__research_funding_process__transparency_and_accessibility",
+      "pref_label": "Transparency and Accessibility",
+      "category_id": "cat__research_funding_process",
+      "broader_id": "cat__research_funding_process",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__organisational_culture__respect_bullying_and_microaggressions",
+      "pref_label": "Respect, Bullying and Microaggressions",
+      "category_id": "cat__organisational_culture",
+      "broader_id": "cat__organisational_culture",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__organisational_culture__inclusive_language",
+      "pref_label": "Inclusive Language",
+      "category_id": "cat__organisational_culture",
+      "broader_id": "cat__organisational_culture",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__organisational_culture__work_life_balance_and_flexibility",
+      "pref_label": "Work-Life Balance and Flexibility",
+      "category_id": "cat__organisational_culture",
+      "broader_id": "cat__organisational_culture",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__organisational_culture__policy_review_and_reform",
+      "pref_label": "Policy Review and Reform",
+      "category_id": "cat__organisational_culture",
+      "broader_id": "cat__organisational_culture",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__organisational_culture__data_collection_and_monitoring",
+      "pref_label": "Data Collection and Monitoring",
+      "category_id": "cat__organisational_culture",
+      "broader_id": "cat__organisational_culture",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "subcat__organisational_culture__inclusive_leadership",
+      "pref_label": "Inclusive Leadership",
+      "category_id": "cat__organisational_culture",
+      "broader_id": "cat__organisational_culture",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "concept__individual_characteristics__age",
+      "pref_label": "Age",
+      "alt_labels": [
+        "Age discrimination at work",
+        "Age-inclusive workplace",
+        "Age equality",
+        "Age diversity",
+        "Ageism",
+        "Older workers inclusion"
+      ],
+      "hidden_labels": [
+        "older worker support"
+      ],
+      "category_id": "cat__individual_characteristics",
+      "subcategory_id": "subcat__individual_characteristics__age_and_life_stage",
+      "broader_id": "subcat__individual_characteristics__age_and_life_stage",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__individual_characteristics__disability",
+      "pref_label": "Disability",
+      "alt_labels": [
+        "Reasonable adjustments",
+        "Reasonable adjustments at work",
+        "Workplace adjustments",
+        "Adjustments for disabled staff",
+        "Access needs",
+        "Accessibility needs"
+      ],
+      "hidden_labels": [
+        "reasonable workplace adjustments"
+      ],
+      "category_id": "cat__individual_characteristics",
+      "subcategory_id": "subcat__individual_characteristics__disability_and_adjustments",
+      "broader_id": "subcat__individual_characteristics__disability_and_adjustments",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__individual_characteristics__temporary_impairment",
+      "pref_label": "Temporary Impairment",
+      "alt_labels": [
+        "Temporary impairment adjustments"
+      ],
+      "hidden_labels": [
+        "short-term impairment",
+        "temporary condition support"
+      ],
+      "category_id": "cat__individual_characteristics",
+      "subcategory_id": "subcat__individual_characteristics__disability_and_adjustments",
+      "broader_id": "subcat__individual_characteristics__disability_and_adjustments",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__individual_characteristics__neurodiversity",
+      "pref_label": "Neurodiversity",
+      "alt_labels": [
+        "Neurodivergent",
+        "Support for autistic staff",
+        "Support for ADHD staff",
+        "Neurodiversity workplace adjustments",
+        "Neuroinclusion at work"
+      ],
+      "hidden_labels": [
+        "autism support at work",
+        "adhd support at work"
+      ],
+      "category_id": "cat__individual_characteristics",
+      "subcategory_id": "subcat__individual_characteristics__neurodiversity",
+      "broader_id": "subcat__individual_characteristics__neurodiversity",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__individual_characteristics__pregnancy_and_maternity",
+      "pref_label": "Pregnancy and Maternity",
+      "alt_labels": [
+        "Return to work after maternity",
+        "Pregnancy discrimination",
+        "Maternity leave policy",
+        "Parental leave policy"
+      ],
+      "hidden_labels": [
+        "maternity return to work",
+        "parental leave support"
+      ],
+      "category_id": "cat__individual_characteristics",
+      "subcategory_id": "subcat__individual_characteristics__pregnancy_maternity_and_parental_leave",
+      "broader_id": "subcat__individual_characteristics__pregnancy_maternity_and_parental_leave",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__individual_characteristics__religion_or_belief",
+      "pref_label": "Religion or Belief",
+      "alt_labels": [
+        "Religious accommodation at work"
+      ],
+      "hidden_labels": [
+        "faith accommodation",
+        "belief accommodation workplace"
+      ],
+      "category_id": "cat__individual_characteristics",
+      "subcategory_id": "subcat__individual_characteristics__religion_and_belief",
+      "broader_id": "subcat__individual_characteristics__religion_and_belief",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__individual_characteristics__sexual_orientation",
+      "pref_label": "Sexual Orientation",
+      "alt_labels": [
+        "LGBTQ+",
+        "LGBTQIA+",
+        "Sexual orientation inclusion"
+      ],
+      "hidden_labels": [
+        "lgbtq",
+        "lgbt+",
+        "queer inclusion"
+      ],
+      "category_id": "cat__individual_characteristics",
+      "subcategory_id": "subcat__individual_characteristics__sexual_orientation_and_gender_identity",
+      "broader_id": "subcat__individual_characteristics__sexual_orientation_and_gender_identity",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__individual_characteristics__trans_identity",
+      "pref_label": "Trans Identity",
+      "alt_labels": [
+        "Gender identity",
+        "Gender reassignment support",
+        "Transgender inclusion"
+      ],
+      "hidden_labels": [
+        "trans inclusion",
+        "gender transition support"
+      ],
+      "category_id": "cat__individual_characteristics",
+      "subcategory_id": "subcat__individual_characteristics__sexual_orientation_and_gender_identity",
+      "broader_id": "subcat__individual_characteristics__sexual_orientation_and_gender_identity",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__individual_characteristics__socio_economic_background",
+      "pref_label": "Socio-Economic Background",
+      "alt_labels": [
+        "Socioeconomic background",
+        "Widening participation",
+        "First generation academics",
+        "Social mobility",
+        "Working-class background"
+      ],
+      "hidden_labels": [
+        "first-gen academics"
+      ],
+      "category_id": "cat__individual_characteristics",
+      "subcategory_id": "subcat__individual_characteristics__socio_economic_background",
+      "broader_id": "subcat__individual_characteristics__socio_economic_background",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__individual_characteristics__race",
+      "pref_label": "Race",
+      "alt_labels": [
+        "Race and ethnicity",
+        "Racial equality"
+      ],
+      "hidden_labels": [
+        "ethnic equality"
+      ],
+      "category_id": "cat__individual_characteristics",
+      "subcategory_id": "subcat__individual_characteristics__race_and_ethnicity",
+      "broader_id": "subcat__individual_characteristics__race_and_ethnicity",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__career_pathway__career_progression",
+      "pref_label": "Career Progression",
+      "alt_labels": [
+        "Promotion equity",
+        "Equitable promotion criteria",
+        "Transparent promotion criteria",
+        "Career progression in universities"
+      ],
+      "hidden_labels": [
+        "promotion fairness"
+      ],
+      "category_id": "cat__career_pathway",
+      "subcategory_id": "subcat__career_pathway__progression_and_promotion",
+      "broader_id": "subcat__career_pathway__progression_and_promotion",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__career_pathway__career_retention",
+      "pref_label": "Career Retention",
+      "alt_labels": [
+        "Staff retention",
+        "Academic staff retention",
+        "Retaining diverse talent",
+        "Attrition reduction",
+        "Retention strategy"
+      ],
+      "hidden_labels": [
+        "retention strategies"
+      ],
+      "category_id": "cat__career_pathway",
+      "subcategory_id": "subcat__career_pathway__retention",
+      "broader_id": "subcat__career_pathway__retention",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__career_pathway__mentorship_and_sponsorship",
+      "pref_label": "Mentorship and Sponsorship",
+      "alt_labels": [
+        "Mentorship programmes",
+        "Career sponsorship schemes",
+        "Sponsorship programmes"
+      ],
+      "hidden_labels": [
+        "mentoring programmes",
+        "academic sponsorship"
+      ],
+      "category_id": "cat__career_pathway",
+      "subcategory_id": "subcat__career_pathway__mentorship_and_sponsorship",
+      "broader_id": "subcat__career_pathway__mentorship_and_sponsorship",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__career_pathway__leadership_development",
+      "pref_label": "Leadership Development",
+      "alt_labels": [
+        "Inclusive leadership development",
+        "Leadership pipeline development",
+        "Leadership development programme"
+      ],
+      "hidden_labels": [
+        "leadership training",
+        "future leaders pipeline"
+      ],
+      "category_id": "cat__career_pathway",
+      "subcategory_id": "subcat__career_pathway__leadership_development",
+      "broader_id": "subcat__career_pathway__leadership_development",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__career_pathway__recruitment_strategies",
+      "pref_label": "Recruitment Strategies",
+      "alt_labels": [
+        "Inclusive recruitment",
+        "Inclusive hiring practices",
+        "Bias-free hiring process"
+      ],
+      "hidden_labels": [
+        "fair recruitment",
+        "inclusive hiring"
+      ],
+      "category_id": "cat__career_pathway",
+      "subcategory_id": "subcat__career_pathway__recruitment",
+      "broader_id": "subcat__career_pathway__recruitment",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__research_funding_process__bias_mitigation",
+      "pref_label": "Bias Mitigation",
+      "alt_labels": [
+        "Bias reduction strategies",
+        "Bias mitigation in funding",
+        "Grant application bias reduction"
+      ],
+      "hidden_labels": [
+        "reduce bias in funding"
+      ],
+      "category_id": "cat__research_funding_process",
+      "subcategory_id": "subcat__research_funding_process__bias_mitigation",
+      "broader_id": "subcat__research_funding_process__bias_mitigation",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__research_funding_process__peer_review",
+      "pref_label": "Peer Review",
+      "alt_labels": [
+        "Peer review bias",
+        "Reviewer bias",
+        "Equitable peer review"
+      ],
+      "hidden_labels": [
+        "inclusive peer review",
+        "fair peer review"
+      ],
+      "category_id": "cat__research_funding_process",
+      "subcategory_id": "subcat__research_funding_process__peer_review",
+      "broader_id": "subcat__research_funding_process__peer_review",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__research_funding_process__panel_diversity",
+      "pref_label": "Panel Diversity",
+      "alt_labels": [
+        "Review panel diversity",
+        "Diverse funding panels"
+      ],
+      "hidden_labels": [
+        "committee diversity"
+      ],
+      "category_id": "cat__research_funding_process",
+      "subcategory_id": "subcat__research_funding_process__panel_diversity",
+      "broader_id": "subcat__research_funding_process__panel_diversity",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__research_funding_process__application_support",
+      "pref_label": "Application Support",
+      "alt_labels": [
+        "Grant writing guidance",
+        "Proposal writing support"
+      ],
+      "hidden_labels": [
+        "funding application support"
+      ],
+      "category_id": "cat__research_funding_process",
+      "subcategory_id": "subcat__research_funding_process__application_support",
+      "broader_id": "subcat__research_funding_process__application_support",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__research_funding_process__transparency_and_accessibility_of_process",
+      "pref_label": "Transparency and Accessibility of Process",
+      "alt_labels": [
+        "Transparent funding allocation processes",
+        "Accessible funding process"
+      ],
+      "hidden_labels": [
+        "transparent funding process"
+      ],
+      "category_id": "cat__research_funding_process",
+      "subcategory_id": "subcat__research_funding_process__transparency_and_accessibility",
+      "broader_id": "subcat__research_funding_process__transparency_and_accessibility",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__organisational_culture__bullying_and_microaggression_prevention",
+      "pref_label": "Bullying and Microaggression Prevention",
+      "alt_labels": [
+        "Microaggressions",
+        "Microaggressions at work",
+        "Bullying prevention",
+        "Civility at work"
+      ],
+      "hidden_labels": [
+        "anti-bullying policy"
+      ],
+      "category_id": "cat__organisational_culture",
+      "subcategory_id": "subcat__organisational_culture__respect_bullying_and_microaggressions",
+      "broader_id": "subcat__organisational_culture__respect_bullying_and_microaggressions",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__organisational_culture__inclusive_language",
+      "pref_label": "Inclusive Language",
+      "alt_labels": [
+        "Inclusive language policy",
+        "Inclusive terminology",
+        "Gender-inclusive language"
+      ],
+      "hidden_labels": [
+        "inclusive wording"
+      ],
+      "category_id": "cat__organisational_culture",
+      "subcategory_id": "subcat__organisational_culture__inclusive_language",
+      "broader_id": "subcat__organisational_culture__inclusive_language",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__organisational_culture__work_life_balance",
+      "pref_label": "Work-Life Balance",
+      "alt_labels": [
+        "Work life balance academic staff support",
+        "Flexible working policy",
+        "Hybrid working policy"
+      ],
+      "hidden_labels": [
+        "family friendly policies"
+      ],
+      "category_id": "cat__organisational_culture",
+      "subcategory_id": "subcat__organisational_culture__work_life_balance_and_flexibility",
+      "broader_id": "subcat__organisational_culture__work_life_balance_and_flexibility",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__organisational_culture__policy_review_and_reform",
+      "pref_label": "Policy Review and Reform",
+      "alt_labels": [
+        "Inclusive policy reform",
+        "Institutional change",
+        "Strategy and policy review"
+      ],
+      "hidden_labels": [
+        "policy reform"
+      ],
+      "category_id": "cat__organisational_culture",
+      "subcategory_id": "subcat__organisational_culture__policy_review_and_reform",
+      "broader_id": "subcat__organisational_culture__policy_review_and_reform",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__organisational_culture__data_collection_and_monitoring",
+      "pref_label": "Data Collection and Monitoring",
+      "alt_labels": [
+        "Data monitoring diversity metrics",
+        "Workforce diversity metrics",
+        "EDI metrics monitoring"
+      ],
+      "hidden_labels": [
+        "diversity data monitoring"
+      ],
+      "category_id": "cat__organisational_culture",
+      "subcategory_id": "subcat__organisational_culture__data_collection_and_monitoring",
+      "broader_id": "subcat__organisational_culture__data_collection_and_monitoring",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    },
+    {
+      "id": "concept__organisational_culture__inclusive_leadership",
+      "pref_label": "Inclusive Leadership",
+      "alt_labels": [
+        "Inclusive management",
+        "Inclusive leadership behaviours"
+      ],
+      "hidden_labels": [
+        "inclusive management training"
+      ],
+      "category_id": "cat__organisational_culture",
+      "subcategory_id": "subcat__organisational_culture__inclusive_leadership",
+      "broader_id": "subcat__organisational_culture__inclusive_leadership",
+      "scheme_id": "edi-hubplus-taxonomy-v3-iter05-structured"
+    }
+  ],
+  "provenance": {
+    "base_source": "v2_iter04 ontology terms",
+    "design_policy": {
+      "model": "SKOS-inspired structured concept scheme",
+      "preferred_labels": true,
+      "alternative_labels": true,
+      "hidden_labels": true,
+      "explicit_hierarchy": true,
+      "leaf_concepts_used_for_retrieval": true
+    }
+  }
+}

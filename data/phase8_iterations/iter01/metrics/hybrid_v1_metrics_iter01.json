@@ -1,0 +1,271 @@
+{
+  "k": 10,
+  "top_n_saved": 15,
+  "model_id": "sentence-transformers/all-mpnet-base-v2",
+  "alpha_semantic": 0.85,
+  "beta_concept_boost": 0.15,
+  "include_alt_labels_in_expansion": true,
+  "query_count": 20,
+  "macro_avg": {
+    "P@k": 0.195,
+    "R@k": 0.291326510009038,
+    "F1@k": 0.18898679348222958
+  },
+  "per_query": {
+    "q1": {
+      "query": "women in academia mentoring",
+      "expanded_query": "women in academia mentoring",
+      "matched_concepts": [],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q2": {
+      "query": "research funding bias mitigation",
+      "expanded_query": "research funding bias mitigation Bias Mitigation Bias",
+      "matched_concepts": [
+        "Bias Mitigation",
+        "Bias"
+      ],
+      "P@k": 0.3,
+      "R@k": 0.42857142857142855,
+      "F1@k": 0.3529411764705882,
+      "hits@k": 3,
+      "retrieved@k": 10,
+      "relevant_total": 7
+    },
+    "q3": {
+      "query": "inclusive language policy review",
+      "expanded_query": "inclusive language policy review Inclusive Language Age",
+      "matched_concepts": [
+        "Inclusive Language",
+        "Age"
+      ],
+      "P@k": 0.5,
+      "R@k": 0.2631578947368421,
+      "F1@k": 0.3448275862068966,
+      "hits@k": 5,
+      "retrieved@k": 10,
+      "relevant_total": 19
+    },
+    "q4": {
+      "query": "neurodiversity accessible workspaces",
+      "expanded_query": "neurodiversity accessible workspaces Neurodiversity",
+      "matched_concepts": [
+        "Neurodiversity"
+      ],
+      "P@k": 0.8,
+      "R@k": 0.34782608695652173,
+      "F1@k": 0.48484848484848486,
+      "hits@k": 8,
+      "retrieved@k": 10,
+      "relevant_total": 23
+    },
+    "q5": {
+      "query": "recruitment strategies diverse leadership",
+      "expanded_query": "recruitment strategies diverse leadership Recruitment Strategies Diverse Leadership",
+      "matched_concepts": [
+        "Recruitment Strategies",
+        "Diverse Leadership"
+      ],
+      "P@k": 0.5,
+      "R@k": 0.29411764705882354,
+      "F1@k": 0.37037037037037035,
+      "hits@k": 5,
+      "retrieved@k": 10,
+      "relevant_total": 17
+    },
+    "q6": {
+      "query": "mentorship programmes for women researchers",
+      "expanded_query": "mentorship programmes for women researchers",
+      "matched_concepts": [],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q7": {
+      "query": "sponsorship for underrepresented academics",
+      "expanded_query": "sponsorship for underrepresented academics",
+      "matched_concepts": [],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q8": {
+      "query": "career progression promotion equity in universities",
+      "expanded_query": "career progression promotion equity in universities Career Progression",
+      "matched_concepts": [
+        "Career Progression"
+      ],
+      "P@k": 0.1,
+      "R@k": 0.1,
+      "F1@k": 0.10000000000000002,
+      "hits@k": 1,
+      "retrieved@k": 10,
+      "relevant_total": 10
+    },
+    "q9": {
+      "query": "retaining diverse talent academic staff retention",
+      "expanded_query": "retaining diverse talent academic staff retention",
+      "matched_concepts": [],
+      "P@k": 0.2,
+      "R@k": 0.6666666666666666,
+      "F1@k": 0.30769230769230765,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 3
+    },
+    "q10": {
+      "query": "inclusive leadership development training for managers",
+      "expanded_query": "inclusive leadership development training for managers Leadership Development Inclusive Leadership Age",
+      "matched_concepts": [
+        "Leadership Development",
+        "Inclusive Leadership",
+        "Age"
+      ],
+      "P@k": 0.2,
+      "R@k": 0.14285714285714285,
+      "F1@k": 0.16666666666666666,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 14
+    },
+    "q11": {
+      "query": "age discrimination policy workplace guidance",
+      "expanded_query": "age discrimination policy workplace guidance Age",
+      "matched_concepts": [
+        "Age"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 1
+    },
+    "q12": {
+      "query": "disability reasonable adjustments workplace",
+      "expanded_query": "disability reasonable adjustments workplace Disability",
+      "matched_concepts": [
+        "Disability"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q13": {
+      "query": "support for autism and ADHD staff at work",
+      "expanded_query": "support for autism and ADHD staff at work",
+      "matched_concepts": [],
+      "P@k": 0.2,
+      "R@k": 1.0,
+      "F1@k": 0.33333333333333337,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 2
+    },
+    "q14": {
+      "query": "pregnancy maternity return to work support policy",
+      "expanded_query": "pregnancy maternity return to work support policy",
+      "matched_concepts": [],
+      "P@k": 0.1,
+      "R@k": 0.16666666666666666,
+      "F1@k": 0.125,
+      "hits@k": 1,
+      "retrieved@k": 10,
+      "relevant_total": 6
+    },
+    "q15": {
+      "query": "LGBTQ+ inclusion and sexuality inclusion workplace",
+      "expanded_query": "LGBTQ+ inclusion and sexuality inclusion workplace Sex",
+      "matched_concepts": [
+        "Sex"
+      ],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q16": {
+      "query": "transgender inclusion gender identity support workplace",
+      "expanded_query": "transgender inclusion gender identity support workplace",
+      "matched_concepts": [],
+      "P@k": 0.1,
+      "R@k": 1.0,
+      "F1@k": 0.18181818181818182,
+      "hits@k": 1,
+      "retrieved@k": 10,
+      "relevant_total": 1
+    },
+    "q17": {
+      "query": "social mobility widening participation first generation academics",
+      "expanded_query": "social mobility widening participation first generation academics",
+      "matched_concepts": [],
+      "P@k": 0.0,
+      "R@k": 0.0,
+      "F1@k": 0.0,
+      "hits@k": 0,
+      "retrieved@k": 10,
+      "relevant_total": 0
+    },
+    "q18": {
+      "query": "peer review reviewer bias equitable peer review guidance",
+      "expanded_query": "peer review reviewer bias equitable peer review guidance Peer Review Bias",
+      "matched_concepts": [
+        "Peer Review",
+        "Bias"
+      ],
+      "P@k": 0.2,
+      "R@k": 0.6666666666666666,
+      "F1@k": 0.30769230769230765,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 3
+    },
+    "q19": {
+      "query": "review panel diversity committee diversity funding decisions",
+      "expanded_query": "review panel diversity committee diversity funding decisions Panel Diversity",
+      "matched_concepts": [
+        "Panel Diversity"
+      ],
+      "P@k": 0.2,
+      "R@k": 0.3333333333333333,
+      "F1@k": 0.25,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 6
+    },
+    "q20": {
+      "query": "bullying microaggressions prevention civility at work policy",
+      "expanded_query": "bullying microaggressions prevention civility at work policy",
+      "matched_concepts": [],
+      "P@k": 0.5,
+      "R@k": 0.4166666666666667,
+      "F1@k": 0.45454545454545453,
+      "hits@k": 5,
+      "retrieved@k": 10,
+      "relevant_total": 12
+    }
+  },
+  "inputs": {
+    "ontology": "ontology/edi_ontology_v1.json",
+    "embeddings": "data/semantic/resource_embeddings_mpnet.npz",
+    "semantic_tags": "data/semantic/semantic_tags_mpnet.jsonl",
+    "queries": "data/phase7_evaluation/queries_v2_iter01_expanded.jsonl",
+    "qrels": "data/phase8_iterations/iter01/qrels/qrels_iter01.json"
+  }
+}

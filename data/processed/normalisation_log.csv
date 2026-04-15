@@ -1,0 +1,128 @@
+resource_id,column,stage,original,cleaned,reason
+5,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+5,Organisational Culture,split,"Accessible & Inclusive Workspaces, Diverse Representation",Accessible & Inclusive Workspaces | Diverse Representation,Split comma-separated multi-select cell into individual tag tokens.
+7,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+7,Career Pathway,split,"Recruitment Strategies, Career Progression",Recruitment Strategies | Career Progression,Split comma-separated multi-select cell into individual tag tokens.
+7,Organisational Culture,split,"Harassment, Bullying and Microagression Prevention, Accessible & Inclusive Workspaces, Diverse Representation, Inclusive Language",Harassment | Bullying and Microagression Prevention | Accessible & Inclusive Workspaces | Diverse Representation | Inclusive Language,Split comma-separated multi-select cell into individual tag tokens.
+7,Organisational Culture,canonicalise,Bullying and Microagression Prevention,Bullying And Microagression Prevention,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+8,Individual Characteristics,split,"Sex, Race, Age, Nationality, Abilties, Socio-Economic Background",Sex | Race | Age | Nationality | Abilties | Socio-Economic Background,Split comma-separated multi-select cell into individual tag tokens.
+11,Individual Characteristics,split,"Age, Disability, Trans Identity, Pregnancy and Maternity, Race, Religion or Belief, Sex, Sexual Orientation",Age | Disability | Trans Identity | Pregnancy and Maternity | Race | Religion or Belief | Sex | Sexual Orientation,Split comma-separated multi-select cell into individual tag tokens.
+11,Individual Characteristics,canonicalise,Pregnancy and Maternity,Pregnancy And Maternity,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+11,Individual Characteristics,canonicalise,Religion or Belief,Religion Or Belief,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+11,Research Funding Process,split,"Addressing Structural Inequality, Transparency and Accessiblity of Process",Addressing Structural Inequality | Transparency and Accessiblity of Process,Split comma-separated multi-select cell into individual tag tokens.
+11,Research Funding Process,canonicalise,Transparency and Accessiblity of Process,Transparency And Accessiblity Of Process,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+13,Career Pathway,split,"Retention Strategies, Professional Development, Diverse Leadership, Recruitment Strategies",Retention Strategies | Professional Development | Diverse Leadership | Recruitment Strategies,Split comma-separated multi-select cell into individual tag tokens.
+15,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+15,Organisational Culture,split,"Harassment, Bullying and Microagression Prevention, Diverse Representation",Harassment | Bullying and Microagression Prevention | Diverse Representation,Split comma-separated multi-select cell into individual tag tokens.
+15,Organisational Culture,canonicalise,Bullying and Microagression Prevention,Bullying And Microagression Prevention,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+17,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+18,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+18,Organisational Culture,split,"Policy Review & Reform, Accessible & Inclusive Workspaces",Policy Review & Reform | Accessible & Inclusive Workspaces,Split comma-separated multi-select cell into individual tag tokens.
+19,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+20,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+20,Career Pathway,split,"Leadership Development, Career Progression, Mentorship & Sponsorship",Leadership Development | Career Progression | Mentorship & Sponsorship,Split comma-separated multi-select cell into individual tag tokens.
+22,Individual Characteristics,split,"Sexual Orientation, Trans Identity",Sexual Orientation | Trans Identity,Split comma-separated multi-select cell into individual tag tokens.
+22,Organisational Culture,split,"Inclusive language, Allyship, Cultural Competency, Diverse Representation ",Inclusive language | Allyship | Cultural Competency | Diverse Representation,Split comma-separated multi-select cell into individual tag tokens.
+22,Organisational Culture,canonicalise,Inclusive language,Inclusive Language,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+23,Individual Characteristics,split,"Sexual Orientation, Trans Identity",Sexual Orientation | Trans Identity,Split comma-separated multi-select cell into individual tag tokens.
+23,Organisational Culture,split,"Policy Review & Reform,  Cultural Competency, Belonging Initiatives,",Policy Review & Reform | Cultural Competency | Belonging Initiatives,Split comma-separated multi-select cell into individual tag tokens.
+24,Individual Characteristics,split,"Trans Identity, Sexual Orientation",Trans Identity | Sexual Orientation,Split comma-separated multi-select cell into individual tag tokens.
+27,Individual Characteristics,split,"Disability, Neurodiversity",Disability | Neurodiversity,Split comma-separated multi-select cell into individual tag tokens.
+27,Organisational Culture,split,"Awareness Training, Accessible & Inclusive Workspaces, ",Awareness Training | Accessible & Inclusive Workspaces,Split comma-separated multi-select cell into individual tag tokens.
+29,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+29,Career Pathway,split,"Recruitment Strategies, Diverse Leadership",Recruitment Strategies | Diverse Leadership,Split comma-separated multi-select cell into individual tag tokens.
+33,Individual Characteristics,split,"Disability, Neurodiversity, Temporary Impairment, ",Disability | Neurodiversity | Temporary Impairment,Split comma-separated multi-select cell into individual tag tokens.
+35,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+35,Career Pathway,split,"Recruitment Strategies, Pipeline Development, Professional Development",Recruitment Strategies | Pipeline Development | Professional Development,Split comma-separated multi-select cell into individual tag tokens.
+35,Organisational Culture,split,"Management structures, Monitoring and evaluation",Management structures | Monitoring and evaluation,Split comma-separated multi-select cell into individual tag tokens.
+35,Organisational Culture,canonicalise,Management structures,Management Structures,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+35,Organisational Culture,canonicalise,Monitoring and evaluation,Monitoring And Evaluation,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+36,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+36,Organisational Culture,split,"Belonging Initiatives, Diverse Representation, Cultural Competency",Belonging Initiatives | Diverse Representation | Cultural Competency,Split comma-separated multi-select cell into individual tag tokens.
+38,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+39,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+39,Career Pathway,split,"Recruitment Strategies, Barrier Removal ",Recruitment Strategies | Barrier Removal,Split comma-separated multi-select cell into individual tag tokens.
+40,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+40,Organisational Culture,split,"Accessible & Inclusive Workspaces, Diverse Representation,  Harassment, Bullying and Microagression Prevention",Accessible & Inclusive Workspaces | Diverse Representation | Harassment | Bullying and Microagression Prevention,Split comma-separated multi-select cell into individual tag tokens.
+40,Organisational Culture,canonicalise,Bullying and Microagression Prevention,Bullying And Microagression Prevention,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+41,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+42,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+42,Organisational Culture,split,"Belonging Initiatives, Diverse Representation, Cultural Competency",Belonging Initiatives | Diverse Representation | Cultural Competency,Split comma-separated multi-select cell into individual tag tokens.
+44,Individual Characteristics,split,"Race, Sex",Race | Sex,Split comma-separated multi-select cell into individual tag tokens.
+44,Career Pathway,split,"Professional Development, Career Progression, Career Retention, Visibility & Recognition, Diverse Leadership",Professional Development | Career Progression | Career Retention | Visibility & Recognition | Diverse Leadership,Split comma-separated multi-select cell into individual tag tokens.
+44,Organisational Culture,split,"Belonging Initiatives, Cultural Competency, Systemic Change",Belonging Initiatives | Cultural Competency | Systemic Change,Split comma-separated multi-select cell into individual tag tokens.
+47,Organisational Culture,split," Belonging Initiatives,  Employee Resource Groups ",Belonging Initiatives | Employee Resource Groups,Split comma-separated multi-select cell into individual tag tokens.
+52,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+52,Career Pathway,split,"Recruitment Strategies, Career Progression, Retention Strategies, Diverse Leadership",Recruitment Strategies | Career Progression | Retention Strategies | Diverse Leadership,Split comma-separated multi-select cell into individual tag tokens.
+54,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+54,Organisational Culture,split,"Diverse Representation, Policy Review & Reform, Data Collection & Monitoring, Accessible & Inclusive Workspaces, Inclusive Leadership",Diverse Representation | Policy Review & Reform | Data Collection & Monitoring | Accessible & Inclusive Workspaces | Inclusive Leadership,Split comma-separated multi-select cell into individual tag tokens.
+55,Individual Characteristics,split,"Sex, Race, Disability, Neurodiversity, Socio-Economic Background, Religion or Belief",Sex | Race | Disability | Neurodiversity | Socio-Economic Background | Religion or Belief,Split comma-separated multi-select cell into individual tag tokens.
+55,Individual Characteristics,canonicalise,Religion or Belief,Religion Or Belief,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+55,Career Pathway,split,"Recruitment Strategies, Visibility & Recognition, Career Progression, Mentorship & Sponsorship",Recruitment Strategies | Visibility & Recognition | Career Progression | Mentorship & Sponsorship,Split comma-separated multi-select cell into individual tag tokens.
+55,Research Funding Process,split,"Application Processes, Advertising Approach",Application Processes | Advertising Approach,Split comma-separated multi-select cell into individual tag tokens.
+55,Organisational Culture,split,"Cultural Competency, Inclusive Language, Accessible & Inclusive Workspaces, Inclusive Leadership, Harassment, Bullying and Microagression Prevention, Bias, Work-Life Balance",Cultural Competency | Inclusive Language | Accessible & Inclusive Workspaces | Inclusive Leadership | Harassment | Bullying and Microagression Prevention | Bias | Work-Life Balance,Split comma-separated multi-select cell into individual tag tokens.
+55,Organisational Culture,canonicalise,Bullying and Microagression Prevention,Bullying And Microagression Prevention,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+56,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+56,Organisational Culture,split,"Inclusive Workplaces, Disseminating good practice, Barrier Removal",Inclusive Workplaces | Disseminating good practice | Barrier Removal,Split comma-separated multi-select cell into individual tag tokens.
+56,Organisational Culture,canonicalise,Disseminating good practice,Disseminating Good Practice,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+57,Individual Characteristics,split,"Sex, Race, Trans Identity, Sexual Orientation",Sex | Race | Trans Identity | Sexual Orientation,Split comma-separated multi-select cell into individual tag tokens.
+58,Organisational Culture,split," Diverse Representation, Policy Review & Reform ",Diverse Representation | Policy Review & Reform,Split comma-separated multi-select cell into individual tag tokens.
+59,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+59,Organisational Culture,split,"Accessible & Inclusive Workspaces, Harassment, Bullying and Microagression Prevention, Belonging Initiatives, Policy Review & Reform",Accessible & Inclusive Workspaces | Harassment | Bullying and Microagression Prevention | Belonging Initiatives | Policy Review & Reform,Split comma-separated multi-select cell into individual tag tokens.
+59,Organisational Culture,canonicalise,Bullying and Microagression Prevention,Bullying And Microagression Prevention,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+62,Individual Characteristics,split,"Sex, Sex, Trans Identity, Sexual Orientation",Sex | Sex | Trans Identity | Sexual Orientation,Split comma-separated multi-select cell into individual tag tokens.
+62,Individual Characteristics,dedupe,Sex,,Removed duplicate tag within the same cell (case-insensitive).
+62,Career Pathway,split,"Recruitment Strategies, Career Progression,  Leadership Development, Retention Strategies, Visibility & Recognition",Recruitment Strategies | Career Progression | Leadership Development | Retention Strategies | Visibility & Recognition,Split comma-separated multi-select cell into individual tag tokens.
+63,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+63,Career Pathway,split,"Barrier Removal, Recruitment Strategies, Mentorship & Sponsorship",Barrier Removal | Recruitment Strategies | Mentorship & Sponsorship,Split comma-separated multi-select cell into individual tag tokens.
+64,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+65,Career Pathway,split,"Recruitment Strategies, Diverse Leadership",Recruitment Strategies | Diverse Leadership,Split comma-separated multi-select cell into individual tag tokens.
+65,Organisational Culture,split," Cultural Competency,  Systemic Change",Cultural Competency | Systemic Change,Split comma-separated multi-select cell into individual tag tokens.
+67,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+70,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+70,Organisational Culture,split,"Harassment, Bullying and Microagression Prevention",Harassment | Bullying and Microagression Prevention,Split comma-separated multi-select cell into individual tag tokens.
+70,Organisational Culture,canonicalise,Bullying and Microagression Prevention,Bullying And Microagression Prevention,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+71,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+71,Organisational Culture,split,"Harassment, Bullying and Microagression Prevention",Harassment | Bullying and Microagression Prevention,Split comma-separated multi-select cell into individual tag tokens.
+71,Organisational Culture,canonicalise,Bullying and Microagression Prevention,Bullying And Microagression Prevention,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+72,Career Pathway,split,"Pipeline Development, Diverse Leadership",Pipeline Development | Diverse Leadership,Split comma-separated multi-select cell into individual tag tokens.
+73,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+73,Organisational Culture,split," Belonging Initiatives, Allyship & Advocacy",Belonging Initiatives | Allyship & Advocacy,Split comma-separated multi-select cell into individual tag tokens.
+76,Career Pathway,split," Barrier Removal,  Equitable Opportunities, Development Opportunities",Barrier Removal | Equitable Opportunities | Development Opportunities,Split comma-separated multi-select cell into individual tag tokens.
+79,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+79,Career Pathway,split," Career Progression, Recruitment Strategies, Mentorship & Sponsorship, Diverse Leadership",Career Progression | Recruitment Strategies | Mentorship & Sponsorship | Diverse Leadership,Split comma-separated multi-select cell into individual tag tokens.
+79,Organisational Culture,split,"Diverse Representation, Policy Review & Reform, Employee Resource Groups, Cultural Competency",Diverse Representation | Policy Review & Reform | Employee Resource Groups | Cultural Competency,Split comma-separated multi-select cell into individual tag tokens.
+80,Research Funding Process,split," Application Support, Securing Funding",Application Support | Securing Funding,Split comma-separated multi-select cell into individual tag tokens.
+81,Research Funding Process,split," Application Support, Securing Funding",Application Support | Securing Funding,Split comma-separated multi-select cell into individual tag tokens.
+82,Career Pathway,split," Mentorship & Sponsorship, Career Progression",Mentorship & Sponsorship | Career Progression,Split comma-separated multi-select cell into individual tag tokens.
+83,Career Pathway,split," Leadership Development,  Mentorship & Sponsorship",Leadership Development | Mentorship & Sponsorship,Split comma-separated multi-select cell into individual tag tokens.
+85,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+85,Career Pathway,split," Mentorship & Sponsorship, Diverse Leadership",Mentorship & Sponsorship | Diverse Leadership,Split comma-separated multi-select cell into individual tag tokens.
+86,Career Pathway,split,"Barrier Removal, Professional Development, Network Development",Barrier Removal | Professional Development | Network Development,Split comma-separated multi-select cell into individual tag tokens.
+87,Organisational Culture,split,"Research Design, Systemic Change",Research Design | Systemic Change,Split comma-separated multi-select cell into individual tag tokens.
+89,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+91,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+92,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+92,Career Pathway,split,"Recruitment Strategies, Professional Development,  Barrier Removal",Recruitment Strategies | Professional Development | Barrier Removal,Split comma-separated multi-select cell into individual tag tokens.
+92,Organisational Culture,split,"Research Design, Systemic Change, Diverse Representation",Research Design | Systemic Change | Diverse Representation,Split comma-separated multi-select cell into individual tag tokens.
+94,Organisational Culture,split,"Research Design, Policy Review & Reform",Research Design | Policy Review & Reform,Split comma-separated multi-select cell into individual tag tokens.
+95,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+98,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+98,Organisational Culture,split,"Diverse Representation, Work-Life Balance, Policy Review & Reform, Systemic change,Accessible & Inclusive Workspaces, Adaptive research enviroments, Systemic Change",Diverse Representation | Work-Life Balance | Policy Review & Reform | Systemic change | Accessible & Inclusive Workspaces | Adaptive research enviroments | Systemic Change,Split comma-separated multi-select cell into individual tag tokens.
+98,Organisational Culture,canonicalise,Systemic change,Systemic Change,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+98,Organisational Culture,canonicalise,Adaptive research enviroments,Adaptive Research Enviroments,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+98,Organisational Culture,dedupe,Systemic Change,,Removed duplicate tag within the same cell (case-insensitive).
+99,Organisational Culture,split,"Harassment, Bullying and Microagression Prevention",Harassment | Bullying and Microagression Prevention,Split comma-separated multi-select cell into individual tag tokens.
+99,Organisational Culture,canonicalise,Bullying and Microagression Prevention,Bullying And Microagression Prevention,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+100,Individual Characteristics,split,"Sex, Caring Responsiblities, Race, Career Stage, Disability",Sex | Caring Responsiblities | Race | Career Stage | Disability,Split comma-separated multi-select cell into individual tag tokens.
+100,Research Funding Process,split,"Panel Diversity, Bias Mitigation, Resource Allocation, Application Processes",Panel Diversity | Bias Mitigation | Resource Allocation | Application Processes,Split comma-separated multi-select cell into individual tag tokens.
+100,Organisational Culture,split,"Anti-discrimination measures, Accessible & Inclusive Workspaces, Diverse Representation",Anti-discrimination measures | Accessible & Inclusive Workspaces | Diverse Representation,Split comma-separated multi-select cell into individual tag tokens.
+100,Organisational Culture,canonicalise,Anti-discrimination measures,Anti-discrimination Measures,Standardised casing to Title Case while preserving acronyms/symbol tokens.
+101,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+101,Research Funding Process,split,"Bias Mitigation, Panel Diversity, Application Support, Peer Review, Eligiblity Criteria, Addressing Structural Inequality, Advertising Approach, Application Processes",Bias Mitigation | Panel Diversity | Application Support | Peer Review | Eligiblity Criteria | Addressing Structural Inequality | Advertising Approach | Application Processes,Split comma-separated multi-select cell into individual tag tokens.
+102,Individual Characteristics,split,"Sex, Race, Sexual Orientation, Trans Identity, Caring Responsiblities, Disability",Sex | Race | Sexual Orientation | Trans Identity | Caring Responsiblities | Disability,Split comma-separated multi-select cell into individual tag tokens.
+102,Research Funding Process,split,"Bias Mitigation, Eligiblity Criteria, Bias Mitigation, Eligiblity Criteria, Peer Review, Application Processes",Bias Mitigation | Eligiblity Criteria | Bias Mitigation | Eligiblity Criteria | Peer Review | Application Processes,Split comma-separated multi-select cell into individual tag tokens.
+102,Research Funding Process,dedupe,Bias Mitigation,,Removed duplicate tag within the same cell (case-insensitive).
+102,Research Funding Process,dedupe,Eligiblity Criteria,,Removed duplicate tag within the same cell (case-insensitive).
+104,Individual Characteristics,placeholder_remove,Not Specified,,"Removed placeholder tag (e.g., Not Specified / NA / empty)."
+104,Career Pathway,split,"Mentorship & Sponsorship, Equitable Opportunities, Networking & Collaboration",Mentorship & Sponsorship | Equitable Opportunities | Networking & Collaboration,Split comma-separated multi-select cell into individual tag tokens.

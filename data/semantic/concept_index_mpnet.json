@@ -1,0 +1,653 @@
+{
+  "model_name": "mpnet",
+  "model_id": "sentence-transformers/all-mpnet-base-v2",
+  "created_unix": 1771164826,
+  "counts": {
+    "concepts": 71,
+    "surface_forms": 71
+  },
+  "surface_meta": [
+    {
+      "concept_id": "individual_characteristics__abilties",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Abilties"
+    },
+    {
+      "concept_id": "individual_characteristics__age",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Age"
+    },
+    {
+      "concept_id": "individual_characteristics__career_stage",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Career Stage"
+    },
+    {
+      "concept_id": "individual_characteristics__caring_responsiblities",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Caring Responsiblities"
+    },
+    {
+      "concept_id": "individual_characteristics__disability",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Disability"
+    },
+    {
+      "concept_id": "individual_characteristics__job_roles",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Job Roles"
+    },
+    {
+      "concept_id": "individual_characteristics__nationality",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Nationality"
+    },
+    {
+      "concept_id": "individual_characteristics__neurodiversity",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Neurodiversity"
+    },
+    {
+      "concept_id": "individual_characteristics__pregnancy_and_maternity",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Pregnancy And Maternity"
+    },
+    {
+      "concept_id": "individual_characteristics__race",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Race"
+    },
+    {
+      "concept_id": "individual_characteristics__religion_or_belief",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Religion Or Belief"
+    },
+    {
+      "concept_id": "individual_characteristics__sex",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Sex"
+    },
+    {
+      "concept_id": "individual_characteristics__sexual_orientation",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Sexual Orientation"
+    },
+    {
+      "concept_id": "individual_characteristics__socio_economic_background",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Socio-Economic Background"
+    },
+    {
+      "concept_id": "individual_characteristics__temporary_impairment",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Temporary Impairment"
+    },
+    {
+      "concept_id": "individual_characteristics__trans_identity",
+      "category_id": "individual_characteristics",
+      "label_type": "pref",
+      "label": "Trans Identity"
+    },
+    {
+      "concept_id": "career_pathway__barrier_removal",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Barrier Removal"
+    },
+    {
+      "concept_id": "career_pathway__career_pathway",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Career Pathway"
+    },
+    {
+      "concept_id": "career_pathway__career_progression",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Career Progression"
+    },
+    {
+      "concept_id": "career_pathway__career_retention",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Career Retention"
+    },
+    {
+      "concept_id": "career_pathway__development_opportunities",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Development Opportunities"
+    },
+    {
+      "concept_id": "career_pathway__diverse_leadership",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Diverse Leadership"
+    },
+    {
+      "concept_id": "career_pathway__equitable_opportunities",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Equitable Opportunities"
+    },
+    {
+      "concept_id": "career_pathway__leadership_development",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Leadership Development"
+    },
+    {
+      "concept_id": "career_pathway__mentorship_sponsorship",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Mentorship & Sponsorship"
+    },
+    {
+      "concept_id": "career_pathway__network_development",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Network Development"
+    },
+    {
+      "concept_id": "career_pathway__networking_collaboration",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Networking & Collaboration"
+    },
+    {
+      "concept_id": "career_pathway__pipeline_development",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Pipeline Development"
+    },
+    {
+      "concept_id": "career_pathway__professional_development",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Professional Development"
+    },
+    {
+      "concept_id": "career_pathway__recruitment_strategies",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Recruitment Strategies"
+    },
+    {
+      "concept_id": "career_pathway__retention_strategies",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Retention Strategies"
+    },
+    {
+      "concept_id": "career_pathway__visibility_recognition",
+      "category_id": "career_pathway",
+      "label_type": "pref",
+      "label": "Visibility & Recognition"
+    },
+    {
+      "concept_id": "research_funding_process__addressing_structural_inequality",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Addressing Structural Inequality"
+    },
+    {
+      "concept_id": "research_funding_process__advertising_approach",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Advertising Approach"
+    },
+    {
+      "concept_id": "research_funding_process__application_processes",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Application Processes"
+    },
+    {
+      "concept_id": "research_funding_process__application_support",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Application Support"
+    },
+    {
+      "concept_id": "research_funding_process__bias_mitigation",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Bias Mitigation"
+    },
+    {
+      "concept_id": "research_funding_process__eligiblity_criteria",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Eligiblity Criteria"
+    },
+    {
+      "concept_id": "research_funding_process__panel_diversity",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Panel Diversity"
+    },
+    {
+      "concept_id": "research_funding_process__peer_review",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Peer Review"
+    },
+    {
+      "concept_id": "research_funding_process__research_funding_process",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Research Funding Process"
+    },
+    {
+      "concept_id": "research_funding_process__resource_allocation",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Resource Allocation"
+    },
+    {
+      "concept_id": "research_funding_process__securing_funding",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Securing Funding"
+    },
+    {
+      "concept_id": "research_funding_process__targeted_grants",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Targeted Grants"
+    },
+    {
+      "concept_id": "research_funding_process__transparency_and_accessiblity_of_process",
+      "category_id": "research_funding_process",
+      "label_type": "pref",
+      "label": "Transparency And Accessiblity Of Process"
+    },
+    {
+      "concept_id": "organisational_culture__accessible_inclusive_workspaces",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Accessible & Inclusive Workspaces"
+    },
+    {
+      "concept_id": "organisational_culture__adaptive_research_enviroments",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Adaptive Research Enviroments"
+    },
+    {
+      "concept_id": "organisational_culture__allyship",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Allyship"
+    },
+    {
+      "concept_id": "organisational_culture__allyship_advocacy",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Allyship & Advocacy"
+    },
+    {
+      "concept_id": "organisational_culture__anti_discrimination_measures",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Anti-discrimination Measures"
+    },
+    {
+      "concept_id": "organisational_culture__awareness_training",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Awareness Training"
+    },
+    {
+      "concept_id": "organisational_culture__barrier_removal",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Barrier Removal"
+    },
+    {
+      "concept_id": "organisational_culture__belonging_initiatives",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Belonging Initiatives"
+    },
+    {
+      "concept_id": "organisational_culture__bias",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Bias"
+    },
+    {
+      "concept_id": "organisational_culture__bullying_and_microagression_prevention",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Bullying And Microagression Prevention"
+    },
+    {
+      "concept_id": "organisational_culture__cultural_competency",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Cultural Competency"
+    },
+    {
+      "concept_id": "organisational_culture__data_collection_monitoring",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Data Collection & Monitoring"
+    },
+    {
+      "concept_id": "organisational_culture__disseminating_good_practice",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Disseminating Good Practice"
+    },
+    {
+      "concept_id": "organisational_culture__diverse_representation",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Diverse Representation"
+    },
+    {
+      "concept_id": "organisational_culture__employee_resource_groups",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Employee Resource Groups"
+    },
+    {
+      "concept_id": "organisational_culture__harassment",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Harassment"
+    },
+    {
+      "concept_id": "organisational_culture__inclusive_language",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Inclusive Language"
+    },
+    {
+      "concept_id": "organisational_culture__inclusive_leadership",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Inclusive Leadership"
+    },
+    {
+      "concept_id": "organisational_culture__inclusive_workplaces",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Inclusive Workplaces"
+    },
+    {
+      "concept_id": "organisational_culture__management_structures",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Management Structures"
+    },
+    {
+      "concept_id": "organisational_culture__monitoring_and_evaluation",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Monitoring And Evaluation"
+    },
+    {
+      "concept_id": "organisational_culture__organisational_culture",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Organisational Culture"
+    },
+    {
+      "concept_id": "organisational_culture__policy_review_reform",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Policy Review & Reform"
+    },
+    {
+      "concept_id": "organisational_culture__research_design",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Research Design"
+    },
+    {
+      "concept_id": "organisational_culture__systemic_change",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Systemic Change"
+    },
+    {
+      "concept_id": "organisational_culture__work_life_balance",
+      "category_id": "organisational_culture",
+      "label_type": "pref",
+      "label": "Work-Life Balance"
+    }
+  ],
+  "concept_to_surface_idxs": {
+    "individual_characteristics__abilties": [
+      0
+    ],
+    "individual_characteristics__age": [
+      1
+    ],
+    "individual_characteristics__career_stage": [
+      2
+    ],
+    "individual_characteristics__caring_responsiblities": [
+      3
+    ],
+    "individual_characteristics__disability": [
+      4
+    ],
+    "individual_characteristics__job_roles": [
+      5
+    ],
+    "individual_characteristics__nationality": [
+      6
+    ],
+    "individual_characteristics__neurodiversity": [
+      7
+    ],
+    "individual_characteristics__pregnancy_and_maternity": [
+      8
+    ],
+    "individual_characteristics__race": [
+      9
+    ],
+    "individual_characteristics__religion_or_belief": [
+      10
+    ],
+    "individual_characteristics__sex": [
+      11
+    ],
+    "individual_characteristics__sexual_orientation": [
+      12
+    ],
+    "individual_characteristics__socio_economic_background": [
+      13
+    ],
+    "individual_characteristics__temporary_impairment": [
+      14
+    ],
+    "individual_characteristics__trans_identity": [
+      15
+    ],
+    "career_pathway__barrier_removal": [
+      16
+    ],
+    "career_pathway__career_pathway": [
+      17
+    ],
+    "career_pathway__career_progression": [
+      18
+    ],
+    "career_pathway__career_retention": [
+      19
+    ],
+    "career_pathway__development_opportunities": [
+      20
+    ],
+    "career_pathway__diverse_leadership": [
+      21
+    ],
+    "career_pathway__equitable_opportunities": [
+      22
+    ],
+    "career_pathway__leadership_development": [
+      23
+    ],
+    "career_pathway__mentorship_sponsorship": [
+      24
+    ],
+    "career_pathway__network_development": [
+      25
+    ],
+    "career_pathway__networking_collaboration": [
+      26
+    ],
+    "career_pathway__pipeline_development": [
+      27
+    ],
+    "career_pathway__professional_development": [
+      28
+    ],
+    "career_pathway__recruitment_strategies": [
+      29
+    ],
+    "career_pathway__retention_strategies": [
+      30
+    ],
+    "career_pathway__visibility_recognition": [
+      31
+    ],
+    "research_funding_process__addressing_structural_inequality": [
+      32
+    ],
+    "research_funding_process__advertising_approach": [
+      33
+    ],
+    "research_funding_process__application_processes": [
+      34
+    ],
+    "research_funding_process__application_support": [
+      35
+    ],
+    "research_funding_process__bias_mitigation": [
+      36
+    ],
+    "research_funding_process__eligiblity_criteria": [
+      37
+    ],
+    "research_funding_process__panel_diversity": [
+      38
+    ],
+    "research_funding_process__peer_review": [
+      39
+    ],
+    "research_funding_process__research_funding_process": [
+      40
+    ],
+    "research_funding_process__resource_allocation": [
+      41
+    ],
+    "research_funding_process__securing_funding": [
+      42
+    ],
+    "research_funding_process__targeted_grants": [
+      43
+    ],
+    "research_funding_process__transparency_and_accessiblity_of_process": [
+      44
+    ],
+    "organisational_culture__accessible_inclusive_workspaces": [
+      45
+    ],
+    "organisational_culture__adaptive_research_enviroments": [
+      46
+    ],
+    "organisational_culture__allyship": [
+      47
+    ],
+    "organisational_culture__allyship_advocacy": [
+      48
+    ],
+    "organisational_culture__anti_discrimination_measures": [
+      49
+    ],
+    "organisational_culture__awareness_training": [
+      50
+    ],
+    "organisational_culture__barrier_removal": [
+      51
+    ],
+    "organisational_culture__belonging_initiatives": [
+      52
+    ],
+    "organisational_culture__bias": [
+      53
+    ],
+    "organisational_culture__bullying_and_microagression_prevention": [
+      54
+    ],
+    "organisational_culture__cultural_competency": [
+      55
+    ],
+    "organisational_culture__data_collection_monitoring": [
+      56
+    ],
+    "organisational_culture__disseminating_good_practice": [
+      57
+    ],
+    "organisational_culture__diverse_representation": [
+      58
+    ],
+    "organisational_culture__employee_resource_groups": [
+      59
+    ],
+    "organisational_culture__harassment": [
+      60
+    ],
+    "organisational_culture__inclusive_language": [
+      61
+    ],
+    "organisational_culture__inclusive_leadership": [
+      62
+    ],
+    "organisational_culture__inclusive_workplaces": [
+      63
+    ],
+    "organisational_culture__management_structures": [
+      64
+    ],
+    "organisational_culture__monitoring_and_evaluation": [
+      65
+    ],
+    "organisational_culture__organisational_culture": [
+      66
+    ],
+    "organisational_culture__policy_review_reform": [
+      67
+    ],
+    "organisational_culture__research_design": [
+      68
+    ],
+    "organisational_culture__systemic_change": [
+      69
+    ],
+    "organisational_culture__work_life_balance": [
+      70
+    ]
+  },
+  "runtime_seconds": 3.506603956222534
+}

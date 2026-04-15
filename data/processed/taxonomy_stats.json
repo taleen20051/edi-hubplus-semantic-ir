@@ -1,0 +1,42 @@
+{
+  "created_utc": "2026-02-08T15:28:24Z",
+  "input": "data/processed/taxonomy_raw.csv",
+  "output_clean_csv": "data/processed/taxonomy_clean.csv",
+  "output_log_csv": "data/processed/normalisation_log.csv",
+  "n_resources": 74,
+  "taxonomy_columns": [
+    "Individual Characteristics",
+    "Career Pathway",
+    "Research Funding Process",
+    "Organisational Culture"
+  ],
+  "unique_tags_per_category": {
+    "Individual Characteristics": 16,
+    "Career Pathway": 16,
+    "Research Funding Process": 13,
+    "Organisational Culture": 26
+  },
+  "log_rows": 127,
+  "log_stage_counts": {
+    "split": 70,
+    "placeholder_remove": 34,
+    "canonicalise": 19,
+    "dedupe": 4
+  },
+  "policy_notes": {
+    "placeholders_removed": [
+      "",
+      "n/a",
+      "na",
+      "none",
+      "not specified"
+    ],
+    "typo_fixes_whitelist": {
+      "microagression": "microaggression",
+      "accessiblity": "accessibility",
+      "eligiblity": "eligibility"
+    },
+    "dedupe_scope": "within-cell only (case-insensitive)",
+    "no_semantic_enrichment": true
+  }
+}

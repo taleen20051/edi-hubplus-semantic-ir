@@ -1,0 +1,840 @@
+{
+  "k": 20,
+  "inputs": {
+    "qrels": "data/phase8_iterations/iter04/qrels/qrels_iter04.json",
+    "keyword_bm25": "data/phase8_iterations/iter04/runs_final/v2_iter04/edi_ontology_v2_iter04/v2_iter04/keyword_bm25.jsonl",
+    "ontology_tag": "data/phase8_iterations/iter04/runs_final/v2_iter04/edi_ontology_v2_iter04/v2_iter04/ontology_only.jsonl",
+    "ontology_text": "data/phase8_iterations/iter04/runs_final/v2_iter04/edi_ontology_v2_iter04/v2_iter04/ontology_text.jsonl"
+  },
+  "keyword_bm25": {
+    "k": 20,
+    "macro_avg": {
+      "P@20": 0.20833333333333334,
+      "R@20": 0.7396968635939224,
+      "F1@20": 0.2880134366485104,
+      "MAP@20": 0.3815840455357334,
+      "nDCG@20": 0.553451537787712,
+      "num_queries_used": 24
+    },
+    "per_query": {
+      "q2": {
+        "query": "research funding bias mitigation",
+        "P@20": 0.35,
+        "R@20": 1.0,
+        "F1@20": 0.5185185185185185,
+        "AP@20": 0.6620181405895692,
+        "nDCG@20": 0.8745464507762174,
+        "retrieved@k": 20,
+        "relevant_total": 7,
+        "hits@k": 7
+      },
+      "q3": {
+        "query": "inclusive language policy review",
+        "P@20": 0.45,
+        "R@20": 0.75,
+        "F1@20": 0.5625000000000001,
+        "AP@20": 0.44243877037994683,
+        "nDCG@20": 0.698184490093214,
+        "retrieved@k": 20,
+        "relevant_total": 12,
+        "hits@k": 9
+      },
+      "q4": {
+        "query": "neurodiversity accessible workspaces",
+        "P@20": 0.6,
+        "R@20": 0.7058823529411765,
+        "F1@20": 0.6486486486486486,
+        "AP@20": 0.5395808055842658,
+        "nDCG@20": 0.6747006654547925,
+        "retrieved@k": 20,
+        "relevant_total": 17,
+        "hits@k": 12
+      },
+      "q5": {
+        "query": "recruitment strategies diverse leadership",
+        "P@20": 0.55,
+        "R@20": 0.6470588235294118,
+        "F1@20": 0.5945945945945946,
+        "AP@20": 0.508567765224112,
+        "nDCG@20": 0.7090387533106584,
+        "retrieved@k": 20,
+        "relevant_total": 17,
+        "hits@k": 11
+      },
+      "q8": {
+        "query": "career progression promotion equity in universities",
+        "P@20": 0.2,
+        "R@20": 0.4,
+        "F1@20": 0.26666666666666666,
+        "AP@20": 0.2261904761904762,
+        "nDCG@20": 0.44772124549603315,
+        "retrieved@k": 20,
+        "relevant_total": 10,
+        "hits@k": 4
+      },
+      "q9": {
+        "query": "retaining diverse talent academic staff retention",
+        "P@20": 0.1,
+        "R@20": 1.0,
+        "F1@20": 0.18181818181818182,
+        "AP@20": 0.19642857142857142,
+        "nDCG@20": 0.39780880120575696,
+        "retrieved@k": 20,
+        "relevant_total": 2,
+        "hits@k": 2
+      },
+      "q10": {
+        "query": "inclusive leadership development training for managers",
+        "P@20": 0.3,
+        "R@20": 0.6,
+        "F1@20": 0.4,
+        "AP@20": 0.49704545454545457,
+        "nDCG@20": 0.6849674785038196,
+        "retrieved@k": 20,
+        "relevant_total": 10,
+        "hits@k": 6
+      },
+      "q11": {
+        "query": "age discrimination policy workplace guidance",
+        "P@20": 0.05,
+        "R@20": 1.0,
+        "F1@20": 0.09523809523809523,
+        "AP@20": 0.06666666666666667,
+        "nDCG@20": 0.25,
+        "retrieved@k": 20,
+        "relevant_total": 1,
+        "hits@k": 1
+      },
+      "q13": {
+        "query": "support for autism and ADHD staff at work",
+        "P@20": 0.05,
+        "R@20": 1.0,
+        "F1@20": 0.09523809523809523,
+        "AP@20": 1.0,
+        "nDCG@20": 1.0,
+        "retrieved@k": 20,
+        "relevant_total": 1,
+        "hits@k": 1
+      },
+      "q14": {
+        "query": "pregnancy maternity return to work support policy",
+        "P@20": 0.15,
+        "R@20": 1.0,
+        "F1@20": 0.2608695652173913,
+        "AP@20": 0.44152046783625726,
+        "nDCG@20": 0.639302147078277,
+        "retrieved@k": 20,
+        "relevant_total": 3,
+        "hits@k": 3
+      },
+      "q16": {
+        "query": "transgender inclusion gender identity support workplace",
+        "P@20": 0.05,
+        "R@20": 1.0,
+        "F1@20": 0.09523809523809523,
+        "AP@20": 0.1111111111111111,
+        "nDCG@20": 0.3010299956639812,
+        "retrieved@k": 20,
+        "relevant_total": 1,
+        "hits@k": 1
+      },
+      "q18": {
+        "query": "peer review reviewer bias equitable peer review guidance",
+        "P@20": 0.15,
+        "R@20": 1.0,
+        "F1@20": 0.2608695652173913,
+        "AP@20": 1.0,
+        "nDCG@20": 1.0,
+        "retrieved@k": 20,
+        "relevant_total": 3,
+        "hits@k": 3
+      },
+      "q19": {
+        "query": "review panel diversity committee diversity funding decisions",
+        "P@20": 0.25,
+        "R@20": 0.8333333333333334,
+        "F1@20": 0.3846153846153846,
+        "AP@20": 0.36296296296296293,
+        "nDCG@20": 0.5920214955970855,
+        "retrieved@k": 20,
+        "relevant_total": 6,
+        "hits@k": 5
+      },
+      "q20": {
+        "query": "bullying microaggressions prevention civility at work policy",
+        "P@20": 0.3,
+        "R@20": 0.6,
+        "F1@20": 0.4,
+        "AP@20": 0.20345928924876294,
+        "nDCG@20": 0.44142450429728725,
+        "retrieved@k": 20,
+        "relevant_total": 10,
+        "hits@k": 6
+      },
+      "q22": {
+        "query": "religion belief accommodation workplace policy",
+        "P@20": 0.1,
+        "R@20": 1.0,
+        "F1@20": 0.18181818181818182,
+        "AP@20": 0.34090909090909094,
+        "nDCG@20": 0.5578858913022597,
+        "retrieved@k": 20,
+        "relevant_total": 2,
+        "hits@k": 2
+      },
+      "q23": {
+        "query": "temporary impairment support workplace adjustments",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 20,
+        "relevant_total": 1,
+        "hits@k": 0
+      },
+      "q25": {
+        "query": "leadership pipeline development underrepresented groups",
+        "P@20": 0.35,
+        "R@20": 0.5,
+        "F1@20": 0.4117647058823529,
+        "AP@20": 0.33509199134199136,
+        "nDCG@20": 0.5570750755153593,
+        "retrieved@k": 20,
+        "relevant_total": 14,
+        "hits@k": 7
+      },
+      "q26": {
+        "query": "career sponsorship schemes women academics",
+        "P@20": 0.15,
+        "R@20": 0.42857142857142855,
+        "F1@20": 0.2222222222222222,
+        "AP@20": 0.21038961038961038,
+        "nDCG@20": 0.4310082263399512,
+        "retrieved@k": 20,
+        "relevant_total": 7,
+        "hits@k": 3
+      },
+      "q27": {
+        "query": "grant application bias reduction strategies",
+        "P@20": 0.25,
+        "R@20": 0.8333333333333334,
+        "F1@20": 0.3846153846153846,
+        "AP@20": 0.5401709401709401,
+        "nDCG@20": 0.7657148593970111,
+        "retrieved@k": 20,
+        "relevant_total": 6,
+        "hits@k": 5
+      },
+      "q28": {
+        "query": "transparent funding allocation processes",
+        "P@20": 0.1,
+        "R@20": 1.0,
+        "F1@20": 0.18181818181818182,
+        "AP@20": 0.3333333333333333,
+        "nDCG@20": 0.5525485729997712,
+        "retrieved@k": 20,
+        "relevant_total": 2,
+        "hits@k": 2
+      },
+      "q29": {
+        "query": "inclusive peer review training guidance",
+        "P@20": 0.15,
+        "R@20": 1.0,
+        "F1@20": 0.2608695652173913,
+        "AP@20": 0.7000000000000001,
+        "nDCG@20": 0.8529278650606567,
+        "retrieved@k": 20,
+        "relevant_total": 3,
+        "hits@k": 3
+      },
+      "q30": {
+        "query": "inclusive policy reform institutional change",
+        "P@20": 0.25,
+        "R@20": 0.45454545454545453,
+        "F1@20": 0.3225806451612903,
+        "AP@20": 0.11870307351590775,
+        "nDCG@20": 0.31113763720048343,
+        "retrieved@k": 20,
+        "relevant_total": 11,
+        "hits@k": 5
+      },
+      "q31": {
+        "query": "work life balance academic staff support",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 20,
+        "relevant_total": 2,
+        "hits@k": 0
+      },
+      "q32": {
+        "query": "data monitoring diversity metrics workplace",
+        "P@20": 0.1,
+        "R@20": 1.0,
+        "F1@20": 0.18181818181818182,
+        "AP@20": 0.3214285714285714,
+        "nDCG@20": 0.5437927516124715,
+        "retrieved@k": 20,
+        "relevant_total": 2,
+        "hits@k": 2
+      }
+    }
+  },
+  "ontology_tag": {
+    "k": 20,
+    "macro_avg": {
+      "P@20": 0.6795634920634921,
+      "R@20": 0.581203314659197,
+      "F1@20": 0.5744443280006613,
+      "MAP@20": 0.530882075052243,
+      "nDCG@20": 0.6025716944558192,
+      "num_queries_used": 24
+    },
+    "per_query": {
+      "q2": {
+        "query": "research funding bias mitigation",
+        "P@20": 0.75,
+        "R@20": 0.42857142857142855,
+        "F1@20": 0.5454545454545454,
+        "AP@20": 0.2738095238095238,
+        "nDCG@20": 0.4292486164007478,
+        "retrieved@k": 4,
+        "relevant_total": 7,
+        "hits@k": 3
+      },
+      "q3": {
+        "query": "inclusive language policy review",
+        "P@20": 1.0,
+        "R@20": 0.5833333333333334,
+        "F1@20": 0.7368421052631579,
+        "AP@20": 0.5833333333333334,
+        "nDCG@20": 0.714350099615581,
+        "retrieved@k": 7,
+        "relevant_total": 12,
+        "hits@k": 7
+      },
+      "q4": {
+        "query": "neurodiversity accessible workspaces",
+        "P@20": 1.0,
+        "R@20": 0.35294117647058826,
+        "F1@20": 0.5217391304347826,
+        "AP@20": 0.35294117647058826,
+        "nDCG@20": 0.520763430001022,
+        "retrieved@k": 6,
+        "relevant_total": 17,
+        "hits@k": 6
+      },
+      "q5": {
+        "query": "recruitment strategies diverse leadership",
+        "P@20": 1.0,
+        "R@20": 0.9411764705882353,
+        "F1@20": 0.9696969696969697,
+        "AP@20": 0.9411764705882353,
+        "nDCG@20": 0.9622093273318528,
+        "retrieved@k": 16,
+        "relevant_total": 17,
+        "hits@k": 16
+      },
+      "q8": {
+        "query": "career progression promotion equity in universities",
+        "P@20": 1.0,
+        "R@20": 1.0,
+        "F1@20": 1.0,
+        "AP@20": 1.0,
+        "nDCG@20": 1.0,
+        "retrieved@k": 10,
+        "relevant_total": 10,
+        "hits@k": 10
+      },
+      "q9": {
+        "query": "retaining diverse talent academic staff retention",
+        "P@20": 1.0,
+        "R@20": 0.5,
+        "F1@20": 0.6666666666666666,
+        "AP@20": 0.5,
+        "nDCG@20": 0.6131471927654584,
+        "retrieved@k": 1,
+        "relevant_total": 2,
+        "hits@k": 1
+      },
+      "q10": {
+        "query": "inclusive leadership development training for managers",
+        "P@20": 1.0,
+        "R@20": 0.7,
+        "F1@20": 0.8235294117647058,
+        "AP@20": 0.7,
+        "nDCG@20": 0.800693766409882,
+        "retrieved@k": 7,
+        "relevant_total": 10,
+        "hits@k": 7
+      },
+      "q11": {
+        "query": "age discrimination policy workplace guidance",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 2,
+        "relevant_total": 1,
+        "hits@k": 0
+      },
+      "q13": {
+        "query": "support for autism and ADHD staff at work",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 0,
+        "relevant_total": 1,
+        "hits@k": 0
+      },
+      "q14": {
+        "query": "pregnancy maternity return to work support policy",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 0,
+        "relevant_total": 3,
+        "hits@k": 0
+      },
+      "q16": {
+        "query": "transgender inclusion gender identity support workplace",
+        "P@20": 0.14285714285714285,
+        "R@20": 1.0,
+        "F1@20": 0.25,
+        "AP@20": 0.3333333333333333,
+        "nDCG@20": 0.5,
+        "retrieved@k": 7,
+        "relevant_total": 1,
+        "hits@k": 1
+      },
+      "q18": {
+        "query": "peer review reviewer bias equitable peer review guidance",
+        "P@20": 0.6666666666666666,
+        "R@20": 0.6666666666666666,
+        "F1@20": 0.6666666666666666,
+        "AP@20": 0.38888888888888884,
+        "nDCG@20": 0.5307212739772434,
+        "retrieved@k": 3,
+        "relevant_total": 3,
+        "hits@k": 2
+      },
+      "q19": {
+        "query": "review panel diversity committee diversity funding decisions",
+        "P@20": 1.0,
+        "R@20": 0.5,
+        "F1@20": 0.6666666666666666,
+        "AP@20": 0.5,
+        "nDCG@20": 0.644824486427155,
+        "retrieved@k": 3,
+        "relevant_total": 6,
+        "hits@k": 3
+      },
+      "q20": {
+        "query": "bullying microaggressions prevention civility at work policy",
+        "P@20": 1.0,
+        "R@20": 0.8,
+        "F1@20": 0.888888888888889,
+        "AP@20": 0.8,
+        "nDCG@20": 0.8701249883466593,
+        "retrieved@k": 8,
+        "relevant_total": 10,
+        "hits@k": 8
+      },
+      "q22": {
+        "query": "religion belief accommodation workplace policy",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 0,
+        "relevant_total": 2,
+        "hits@k": 0
+      },
+      "q23": {
+        "query": "temporary impairment support workplace adjustments",
+        "P@20": 0.08333333333333333,
+        "R@20": 1.0,
+        "F1@20": 0.15384615384615385,
+        "AP@20": 1.0,
+        "nDCG@20": 1.0,
+        "retrieved@k": 12,
+        "relevant_total": 1,
+        "hits@k": 1
+      },
+      "q25": {
+        "query": "leadership pipeline development underrepresented groups",
+        "P@20": 1.0,
+        "R@20": 0.7857142857142857,
+        "F1@20": 0.88,
+        "AP@20": 0.7857142857142857,
+        "nDCG@20": 0.8594195700295991,
+        "retrieved@k": 11,
+        "relevant_total": 14,
+        "hits@k": 11
+      },
+      "q26": {
+        "query": "career sponsorship schemes women academics",
+        "P@20": 0.6666666666666666,
+        "R@20": 0.8571428571428571,
+        "F1@20": 0.75,
+        "AP@20": 0.748639455782313,
+        "nDCG@20": 0.8625618335428545,
+        "retrieved@k": 9,
+        "relevant_total": 7,
+        "hits@k": 6
+      },
+      "q27": {
+        "query": "grant application bias reduction strategies",
+        "P@20": 1.0,
+        "R@20": 0.6666666666666666,
+        "F1@20": 0.8,
+        "AP@20": 0.6666666666666666,
+        "nDCG@20": 0.7751482523375255,
+        "retrieved@k": 4,
+        "relevant_total": 6,
+        "hits@k": 4
+      },
+      "q28": {
+        "query": "transparent funding allocation processes",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 1,
+        "relevant_total": 2,
+        "hits@k": 0
+      },
+      "q29": {
+        "query": "inclusive peer review training guidance",
+        "P@20": 1.0,
+        "R@20": 0.6666666666666666,
+        "F1@20": 0.8,
+        "AP@20": 0.6666666666666666,
+        "nDCG@20": 0.7653606369886217,
+        "retrieved@k": 2,
+        "relevant_total": 3,
+        "hits@k": 2
+      },
+      "q30": {
+        "query": "inclusive policy reform institutional change",
+        "P@20": 1.0,
+        "R@20": 1.0,
+        "F1@20": 1.0,
+        "AP@20": 1.0,
+        "nDCG@20": 1.0,
+        "retrieved@k": 11,
+        "relevant_total": 11,
+        "hits@k": 11
+      },
+      "q31": {
+        "query": "work life balance academic staff support",
+        "P@20": 1.0,
+        "R@20": 1.0,
+        "F1@20": 1.0,
+        "AP@20": 1.0,
+        "nDCG@20": 1.0,
+        "retrieved@k": 2,
+        "relevant_total": 2,
+        "hits@k": 2
+      },
+      "q32": {
+        "query": "data monitoring diversity metrics workplace",
+        "P@20": 1.0,
+        "R@20": 0.5,
+        "F1@20": 0.6666666666666666,
+        "AP@20": 0.5,
+        "nDCG@20": 0.6131471927654584,
+        "retrieved@k": 1,
+        "relevant_total": 2,
+        "hits@k": 1
+      }
+    }
+  },
+  "ontology_text": {
+    "k": 20,
+    "macro_avg": {
+      "P@20": 0.18741126434624888,
+      "R@20": 0.4594272557507852,
+      "F1@20": 0.24558354022658183,
+      "MAP@20": 0.2624260638724716,
+      "nDCG@20": 0.3998287825648148,
+      "num_queries_used": 24
+    },
+    "per_query": {
+      "q2": {
+        "query": "research funding bias mitigation",
+        "P@20": 0.2727272727272727,
+        "R@20": 0.42857142857142855,
+        "F1@20": 0.33333333333333326,
+        "AP@20": 0.26785714285714285,
+        "nDCG@20": 0.47997295436377346,
+        "retrieved@k": 11,
+        "relevant_total": 7,
+        "hits@k": 3
+      },
+      "q3": {
+        "query": "inclusive language policy review",
+        "P@20": 0.4,
+        "R@20": 0.6666666666666666,
+        "F1@20": 0.5,
+        "AP@20": 0.4898109243697479,
+        "nDCG@20": 0.6878105058871083,
+        "retrieved@k": 20,
+        "relevant_total": 12,
+        "hits@k": 8
+      },
+      "q4": {
+        "query": "neurodiversity accessible workspaces",
+        "P@20": 0.5,
+        "R@20": 0.5882352941176471,
+        "F1@20": 0.5405405405405405,
+        "AP@20": 0.414661943208656,
+        "nDCG@20": 0.6361793882646736,
+        "retrieved@k": 20,
+        "relevant_total": 17,
+        "hits@k": 10
+      },
+      "q5": {
+        "query": "recruitment strategies diverse leadership",
+        "P@20": 0.5,
+        "R@20": 0.5882352941176471,
+        "F1@20": 0.5405405405405405,
+        "AP@20": 0.3488508223802342,
+        "nDCG@20": 0.5410824303809667,
+        "retrieved@k": 20,
+        "relevant_total": 17,
+        "hits@k": 10
+      },
+      "q8": {
+        "query": "career progression promotion equity in universities",
+        "P@20": 0.15789473684210525,
+        "R@20": 0.3,
+        "F1@20": 0.20689655172413793,
+        "AP@20": 0.2,
+        "nDCG@20": 0.3932783996463063,
+        "retrieved@k": 19,
+        "relevant_total": 10,
+        "hits@k": 3
+      },
+      "q9": {
+        "query": "retaining diverse talent academic staff retention",
+        "P@20": 0.11764705882352941,
+        "R@20": 1.0,
+        "F1@20": 0.21052631578947367,
+        "AP@20": 0.29166666666666663,
+        "nDCG@20": 0.5,
+        "retrieved@k": 17,
+        "relevant_total": 2,
+        "hits@k": 2
+      },
+      "q10": {
+        "query": "inclusive leadership development training for managers",
+        "P@20": 0.3,
+        "R@20": 0.6,
+        "F1@20": 0.4,
+        "AP@20": 0.37368697478991597,
+        "nDCG@20": 0.6173427205375326,
+        "retrieved@k": 20,
+        "relevant_total": 10,
+        "hits@k": 6
+      },
+      "q11": {
+        "query": "age discrimination policy workplace guidance",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 15,
+        "relevant_total": 1,
+        "hits@k": 0
+      },
+      "q13": {
+        "query": "support for autism and ADHD staff at work",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 0,
+        "relevant_total": 1,
+        "hits@k": 0
+      },
+      "q14": {
+        "query": "pregnancy maternity return to work support policy",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 0,
+        "relevant_total": 3,
+        "hits@k": 0
+      },
+      "q16": {
+        "query": "transgender inclusion gender identity support workplace",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 20,
+        "relevant_total": 1,
+        "hits@k": 0
+      },
+      "q18": {
+        "query": "peer review reviewer bias equitable peer review guidance",
+        "P@20": 0.2,
+        "R@20": 1.0,
+        "F1@20": 0.33333333333333337,
+        "AP@20": 0.7222222222222222,
+        "nDCG@20": 0.8710785440003369,
+        "retrieved@k": 15,
+        "relevant_total": 3,
+        "hits@k": 3
+      },
+      "q19": {
+        "query": "review panel diversity committee diversity funding decisions",
+        "P@20": 0.25,
+        "R@20": 0.8333333333333334,
+        "F1@20": 0.3846153846153846,
+        "AP@20": 0.2392998613586849,
+        "nDCG@20": 0.4755983041453323,
+        "retrieved@k": 20,
+        "relevant_total": 6,
+        "hits@k": 5
+      },
+      "q20": {
+        "query": "bullying microaggressions prevention civility at work policy",
+        "P@20": 0.2,
+        "R@20": 0.4,
+        "F1@20": 0.26666666666666666,
+        "AP@20": 0.07203302373581011,
+        "nDCG@20": 0.24158065067222192,
+        "retrieved@k": 20,
+        "relevant_total": 10,
+        "hits@k": 4
+      },
+      "q22": {
+        "query": "religion belief accommodation workplace policy",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 0,
+        "relevant_total": 2,
+        "hits@k": 0
+      },
+      "q23": {
+        "query": "temporary impairment support workplace adjustments",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 20,
+        "relevant_total": 1,
+        "hits@k": 0
+      },
+      "q25": {
+        "query": "leadership pipeline development underrepresented groups",
+        "P@20": 0.3,
+        "R@20": 0.42857142857142855,
+        "F1@20": 0.3529411764705882,
+        "AP@20": 0.233078231292517,
+        "nDCG@20": 0.4266801881596872,
+        "retrieved@k": 20,
+        "relevant_total": 14,
+        "hits@k": 6
+      },
+      "q26": {
+        "query": "career sponsorship schemes women academics",
+        "P@20": 0.3333333333333333,
+        "R@20": 0.5714285714285714,
+        "F1@20": 0.4210526315789474,
+        "AP@20": 0.3952380952380952,
+        "nDCG@20": 0.6053650088957859,
+        "retrieved@k": 12,
+        "relevant_total": 7,
+        "hits@k": 4
+      },
+      "q27": {
+        "query": "grant application bias reduction strategies",
+        "P@20": 0.36363636363636365,
+        "R@20": 0.6666666666666666,
+        "F1@20": 0.4705882352941177,
+        "AP@20": 0.5416666666666666,
+        "nDCG@20": 0.7193074786775862,
+        "retrieved@k": 11,
+        "relevant_total": 6,
+        "hits@k": 4
+      },
+      "q28": {
+        "query": "transparent funding allocation processes",
+        "P@20": 0.1,
+        "R@20": 1.0,
+        "F1@20": 0.18181818181818182,
+        "AP@20": 0.5909090909090909,
+        "nDCG@20": 0.7841802768331765,
+        "retrieved@k": 20,
+        "relevant_total": 2,
+        "hits@k": 2
+      },
+      "q29": {
+        "query": "inclusive peer review training guidance",
+        "P@20": 0.2,
+        "R@20": 1.0,
+        "F1@20": 0.33333333333333337,
+        "AP@20": 0.7777777777777778,
+        "nDCG@20": 0.9066276098484507,
+        "retrieved@k": 15,
+        "relevant_total": 3,
+        "hits@k": 3
+      },
+      "q30": {
+        "query": "inclusive policy reform institutional change",
+        "P@20": 0.25,
+        "R@20": 0.45454545454545453,
+        "F1@20": 0.3225806451612903,
+        "AP@20": 0.2561327561327561,
+        "nDCG@20": 0.49139888442445245,
+        "retrieved@k": 20,
+        "relevant_total": 11,
+        "hits@k": 5
+      },
+      "q31": {
+        "query": "work life balance academic staff support",
+        "P@20": 0.0,
+        "R@20": 0.0,
+        "F1@20": 0.0,
+        "AP@20": 0.0,
+        "nDCG@20": 0.0,
+        "retrieved@k": 17,
+        "relevant_total": 2,
+        "hits@k": 0
+      },
+      "q32": {
+        "query": "data monitoring diversity metrics workplace",
+        "P@20": 0.05263157894736842,
+        "R@20": 0.5,
+        "F1@20": 0.09523809523809525,
+        "AP@20": 0.08333333333333333,
+        "nDCG@20": 0.21840743681816419,
+        "retrieved@k": 19,
+        "relevant_total": 2,
+        "hits@k": 1
+      }
+    }
+  }
+}

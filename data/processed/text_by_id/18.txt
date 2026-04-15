@@ -1,0 +1,9 @@
+ID: 18
+Title: Diversity Statements, Policy, Advice
+URL: https://www.lms.ac.uk/women/diversity-statements-policy-advice
+Detected type: html
+Extraction method: trafilatura
+Text length: 487
+----------------------------------------
+
+A list of documents published by the LMS Committee for Women and Diversity in Mathematics can be found below. A full list of LMS policy responses and other formal reports can be found here. LMS Advice on Creating a Positive Environment at Events LMS Council Statement on Women in Mathematics LMS Council Statement on Diversity in Mathematics LMS Advice on Diversity, Conferences and Seminars LMS Good Practice advice and support LMS Women in Mathematics Committee EU Referendum Statement

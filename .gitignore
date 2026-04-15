@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+
+# OS files
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build / cache
+.pytest_cache/
+.mypy_cache/
+
+# Environment files
+.env
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Large generated files if needed
+*.npz
+
+# Optional logs
+*.log

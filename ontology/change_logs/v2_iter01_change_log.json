@@ -1,0 +1,250 @@
+{
+  "timestamp_utc": "2026-02-21T23:30:18.101418Z",
+  "base_ontology_id": "edi-hubplus-taxonomy",
+  "base_version": "v1",
+  "patch_version": "v2_iter01",
+  "iteration_id": "v2_iter01",
+  "changes_applied": {
+    "add_alt_labels": [
+      {
+        "concept_id": "individual_characteristics__age",
+        "added": [
+          "age diversity",
+          "age equality",
+          "age discrimination",
+          "age-inclusive",
+          "ageism"
+        ]
+      },
+      {
+        "concept_id": "individual_characteristics__disability",
+        "added": [
+          "disability inclusion",
+          "disabled staff",
+          "disability equality",
+          "reasonable adjustments",
+          "workplace adjustments",
+          "access needs"
+        ]
+      },
+      {
+        "concept_id": "individual_characteristics__neurodiversity",
+        "added": [
+          "neurodivergent",
+          "neurodiverse staff",
+          "ADHD support",
+          "autism support",
+          "neuroinclusion"
+        ]
+      },
+      {
+        "concept_id": "individual_characteristics__pregnancy_and_maternity",
+        "added": [
+          "pregnancy",
+          "maternity",
+          "return to work after maternity",
+          "pregnancy discrimination"
+        ]
+      },
+      {
+        "concept_id": "individual_characteristics__sexual_orientation",
+        "added": [
+          "LGBTQ+",
+          "LGBTQIA+",
+          "sexuality inclusion"
+        ]
+      },
+      {
+        "concept_id": "individual_characteristics__trans_identity",
+        "added": [
+          "trans",
+          "transgender",
+          "gender identity",
+          "gender transition support",
+          "trans inclusion"
+        ]
+      },
+      {
+        "concept_id": "individual_characteristics__socio_economic_background",
+        "added": [
+          "socioeconomic background",
+          "social mobility",
+          "working-class background",
+          "widening participation",
+          "first-generation"
+        ]
+      },
+      {
+        "concept_id": "career_pathway__recruitment_strategies",
+        "added": [
+          "inclusive recruitment",
+          "inclusive hiring",
+          "equitable recruitment",
+          "fair recruitment",
+          "diverse recruitment",
+          "bias-free recruitment"
+        ]
+      },
+      {
+        "concept_id": "career_pathway__mentorship_sponsorship",
+        "added": [
+          "mentoring",
+          "sponsorship",
+          "career mentoring",
+          "mentorship programme"
+        ]
+      },
+      {
+        "concept_id": "career_pathway__career_progression",
+        "added": [
+          "promotion",
+          "progression pathways",
+          "progression criteria",
+          "fair promotion",
+          "promotion equity"
+        ]
+      },
+      {
+        "concept_id": "career_pathway__career_retention",
+        "added": [
+          "retention",
+          "staff retention",
+          "retaining talent",
+          "attrition reduction"
+        ]
+      },
+      {
+        "concept_id": "career_pathway__leadership_development",
+        "added": [
+          "inclusive leadership development",
+          "leadership pipeline",
+          "developing leaders",
+          "leadership training"
+        ]
+      },
+      {
+        "concept_id": "research_funding_process__peer_review",
+        "added": [
+          "peer-review",
+          "review process",
+          "reviewer bias",
+          "fair peer review",
+          "equitable peer review"
+        ]
+      },
+      {
+        "concept_id": "research_funding_process__panel_diversity",
+        "added": [
+          "diverse panels",
+          "review panel diversity",
+          "committee diversity",
+          "panel composition"
+        ]
+      },
+      {
+        "concept_id": "research_funding_process__eligiblity_criteria",
+        "added": [
+          "eligibility criteria",
+          "eligibility requirements",
+          "eligibility rules",
+          "inclusive eligibility"
+        ]
+      },
+      {
+        "concept_id": "research_funding_process__application_support",
+        "added": [
+          "grant writing support",
+          "application guidance",
+          "proposal support",
+          "funding application support"
+        ]
+      },
+      {
+        "concept_id": "research_funding_process__transparency_and_accessiblity_of_process",
+        "added": [
+          "transparent funding process",
+          "accessibility of funding process",
+          "accessible funding process",
+          "process transparency"
+        ]
+      },
+      {
+        "concept_id": "organisational_culture__inclusive_language",
+        "added": [
+          "inclusive communications",
+          "inclusive wording",
+          "inclusive terminology",
+          "gender-inclusive language"
+        ]
+      },
+      {
+        "concept_id": "organisational_culture__bullying_and_microagression_prevention",
+        "added": [
+          "microaggressions",
+          "microaggression prevention",
+          "anti-bullying",
+          "bullying prevention",
+          "civility at work"
+        ]
+      },
+      {
+        "concept_id": "organisational_culture__harassment",
+        "added": [
+          "sexual harassment",
+          "workplace harassment",
+          "harassment prevention",
+          "anti-harassment"
+        ]
+      },
+      {
+        "concept_id": "organisational_culture__bias",
+        "added": [
+          "implicit bias",
+          "unconscious bias",
+          "bias awareness"
+        ]
+      },
+      {
+        "concept_id": "organisational_culture__awareness_training",
+        "added": [
+          "EDI training",
+          "DEI training",
+          "equality diversity inclusion training",
+          "bias training",
+          "inclusion training"
+        ]
+      },
+      {
+        "concept_id": "organisational_culture__employee_resource_groups",
+        "added": [
+          "ERGs",
+          "staff networks",
+          "employee networks",
+          "affinity groups"
+        ]
+      },
+      {
+        "concept_id": "organisational_culture__inclusive_leadership",
+        "added": [
+          "inclusive management",
+          "inclusive leaders",
+          "inclusive leadership behaviours"
+        ]
+      },
+      {
+        "concept_id": "organisational_culture__work_life_balance",
+        "added": [
+          "flexible working",
+          "flexible work",
+          "hybrid working",
+          "family friendly policies"
+        ]
+      }
+    ],
+    "remove_alt_labels": [],
+    "set_broader": [],
+    "add_new_concepts": []
+  },
+  "warnings": [],
+  "notes": "This log records exactly what was changed to construct v2 from v1."
+}

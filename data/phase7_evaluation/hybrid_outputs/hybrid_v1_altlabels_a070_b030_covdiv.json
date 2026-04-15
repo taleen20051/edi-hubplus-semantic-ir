@@ -1,0 +1,74 @@
+{
+  "k": 10,
+  "query_count": 5,
+  "macro_avg": {
+    "coverage@k": 0.85,
+    "diversity_entropy@k": 0.7587270220339882
+  },
+  "per_query": {
+    "q1": {
+      "query": "women in academia mentoring",
+      "coverage@k": 0.75,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.4,
+        "career_pathway": 0.35,
+        "research_funding_process": 0.0,
+        "organisational_culture": 0.25
+      },
+      "diversity_entropy@k": 0.7794359242226802
+    },
+    "q2": {
+      "query": "research funding bias mitigation",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.32,
+        "career_pathway": 0.24,
+        "research_funding_process": 0.16,
+        "organisational_culture": 0.28
+      },
+      "diversity_entropy@k": 0.9787029057127591
+    },
+    "q3": {
+      "query": "inclusive language policy review",
+      "coverage@k": 0.75,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.06666666666666667,
+        "career_pathway": 0.26666666666666666,
+        "research_funding_process": 0.0,
+        "organisational_culture": 0.6666666666666666
+      },
+      "diversity_entropy@k": 0.5794692661751386
+    },
+    "q4": {
+      "query": "neurodiversity accessible workspaces",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.38095238095238093,
+        "career_pathway": 0.14285714285714285,
+        "research_funding_process": 0.047619047619047616,
+        "organisational_culture": 0.42857142857142855
+      },
+      "diversity_entropy@k": 0.8322488896002306
+    },
+    "q5": {
+      "query": "recruitment strategies diverse leadership",
+      "coverage@k": 0.75,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.0625,
+        "career_pathway": 0.375,
+        "research_funding_process": 0.0,
+        "organisational_culture": 0.5625
+      },
+      "diversity_entropy@k": 0.6237781244591328
+    }
+  },
+  "notes": {
+    "coverage": "coverage@k = (#unique themes present in top-k)/4 using manual spreadsheet tags.",
+    "diversity": "diversity_entropy@k is normalised entropy over the theme distribution in top-k (0=single theme, 1=balanced).",
+    "theme_assignment": "a resource may contribute to multiple themes if it has tags in multiple taxonomy columns."
+  },
+  "inputs": {
+    "results": "data/phase7_evaluation/hybrid_outputs/hybrid_v1_altlabels_a070_b030_results.jsonl",
+    "resources": "data/processed/resources_unified.jsonl"
+  }
+}

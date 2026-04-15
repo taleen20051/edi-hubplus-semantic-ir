@@ -1,0 +1,226 @@
+{
+  "iteration": "v2_iter04",
+  "created_utc": "2026-02-23T23:54:33.737677Z",
+  "input_ontology": "data/processed/edi_ontology_v1.json",
+  "output_ontology": "ontology/versions/v2_iter04/edi_ontology_v2_iter04.json",
+  "policy": {
+    "precision_leaning": true,
+    "single_word_blocklist": [
+      "approach",
+      "diversity",
+      "guidance",
+      "inclusion",
+      "policy",
+      "process",
+      "review",
+      "scheme",
+      "schemes",
+      "staff",
+      "strategies",
+      "strategy",
+      "support",
+      "training",
+      "university",
+      "workplace"
+    ],
+    "single_word_allowlist": [
+      "ageism",
+      "lgbtq+",
+      "lgbtqia+",
+      "microaggressions",
+      "neurodivergent",
+      "transgender"
+    ],
+    "no_pref_label_renames": true,
+    "no_new_concepts": true
+  },
+  "stats_before": {
+    "n_concepts_total": 71,
+    "n_concepts_with_alt_labels": 11,
+    "n_alt_labels_total": 11
+  },
+  "stats_after": {
+    "n_concepts_total": 71,
+    "n_concepts_with_alt_labels": 33,
+    "n_alt_labels_total": 129
+  },
+  "delta": {
+    "concepts_changed": 27,
+    "alt_labels_added_total": 118
+  },
+  "added_alt_labels_by_concept": {
+    "individual_characteristics__age": [
+      "age discrimination at work",
+      "age-inclusive workplace",
+      "age equality",
+      "age diversity",
+      "ageism",
+      "older workers inclusion"
+    ],
+    "individual_characteristics__disability": [
+      "reasonable adjustments",
+      "reasonable adjustments at work",
+      "workplace adjustments",
+      "adjustments for disabled staff",
+      "access needs",
+      "accessibility needs"
+    ],
+    "individual_characteristics__neurodiversity": [
+      "neurodivergent",
+      "support for autistic staff",
+      "support for ADHD staff",
+      "neurodiversity workplace adjustments",
+      "neuroinclusion at work"
+    ],
+    "individual_characteristics__pregnancy_and_maternity": [
+      "return to work after maternity",
+      "return-to-work support after maternity",
+      "pregnancy discrimination",
+      "pregnancy discrimination at work",
+      "maternity leave policy",
+      "parental leave policy"
+    ],
+    "individual_characteristics__religion_or_belief": [
+      "religion and belief",
+      "religious accommodation at work",
+      "faith accommodation in workplace"
+    ],
+    "individual_characteristics__sexual_orientation": [
+      "LGBTQ+",
+      "LGBTQIA+",
+      "LGBTQ+ inclusion",
+      "sexual orientation inclusion",
+      "queer inclusion at work"
+    ],
+    "individual_characteristics__trans_identity": [
+      "gender identity",
+      "gender transition support",
+      "support during gender transition",
+      "trans inclusion at work",
+      "gender reassignment support",
+      "transgender inclusion"
+    ],
+    "individual_characteristics__socio_economic_background": [
+      "socioeconomic background",
+      "socio-economic disadvantage",
+      "widening participation",
+      "first generation academics",
+      "social mobility",
+      "working-class background"
+    ],
+    "individual_characteristics__temporary_impairment": [
+      "temporary impairment adjustments",
+      "short-term condition workplace adjustments"
+    ],
+    "individual_characteristics__race": [
+      "race and ethnicity",
+      "ethnic minority inclusion",
+      "racial equality"
+    ],
+    "career_pathway__mentorship_sponsorship": [
+      "mentorship programmes",
+      "mentoring programmes",
+      "career mentoring",
+      "career sponsorship schemes",
+      "sponsorship programmes"
+    ],
+    "career_pathway__career_progression": [
+      "promotion equity",
+      "fair promotion processes",
+      "equitable promotion criteria",
+      "transparent promotion criteria",
+      "career progression in universities"
+    ],
+    "career_pathway__career_retention": [
+      "staff retention",
+      "academic staff retention",
+      "retaining diverse talent",
+      "attrition reduction",
+      "retention strategy"
+    ],
+    "career_pathway__leadership_development": [
+      "inclusive leadership development",
+      "leadership pipeline development",
+      "leadership development programme",
+      "inclusive leadership training"
+    ],
+    "career_pathway__recruitment_strategies": [
+      "inclusive recruitment",
+      "inclusive hiring practices",
+      "bias-free hiring process",
+      "fair recruitment process",
+      "diverse recruitment"
+    ],
+    "research_funding_process__bias_mitigation": [
+      "bias reduction strategies",
+      "bias mitigation in funding",
+      "grant application bias reduction"
+    ],
+    "research_funding_process__peer_review": [
+      "peer review bias",
+      "reviewer bias",
+      "equitable peer review",
+      "fair peer review",
+      "inclusive peer review training"
+    ],
+    "research_funding_process__panel_diversity": [
+      "review panel diversity",
+      "committee diversity",
+      "diverse funding panels",
+      "panel composition"
+    ],
+    "research_funding_process__application_support": [
+      "grant writing guidance",
+      "grant application guidance",
+      "proposal writing support",
+      "funding application guidance"
+    ],
+    "research_funding_process__transparency_and_accessiblity_of_process": [
+      "transparent funding allocation processes",
+      "transparency of funding process",
+      "transparent funding process",
+      "accessible funding process"
+    ],
+    "organisational_culture__inclusive_language": [
+      "inclusive language policy",
+      "inclusive communications guidance",
+      "inclusive wording",
+      "inclusive terminology",
+      "gender-inclusive language"
+    ],
+    "organisational_culture__work_life_balance": [
+      "work life balance academic staff support",
+      "flexible working policy",
+      "hybrid working policy",
+      "family friendly policies"
+    ],
+    "organisational_culture__bullying_and_microagression_prevention": [
+      "microaggressions",
+      "microaggressions at work",
+      "bullying prevention",
+      "anti-bullying policy",
+      "civility at work"
+    ],
+    "organisational_culture__bias": [
+      "implicit bias",
+      "unconscious bias",
+      "bias awareness"
+    ],
+    "organisational_culture__data_collection_monitoring": [
+      "data monitoring diversity metrics",
+      "workforce diversity metrics",
+      "EDI metrics monitoring"
+    ],
+    "organisational_culture__policy_review_reform": [
+      "inclusive policy reform",
+      "institutional change",
+      "strategy and policy review"
+    ],
+    "organisational_culture__inclusive_leadership": [
+      "inclusive management",
+      "inclusive leadership behaviours",
+      "inclusive management training"
+    ]
+  },
+  "rejected_labels_by_concept": {}
+}

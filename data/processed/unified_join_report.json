@@ -1,0 +1,17 @@
+{
+  "taxonomy_rows": 74,
+  "text_rows": 69,
+  "unified_rows_inner_join": 69,
+  "missing_text_ids": [
+    "8",
+    "32",
+    "41",
+    "53",
+    "55"
+  ],
+  "extra_text_ids": [],
+  "notes": {
+    "join_policy": "INNER JOIN on ID: only resources with BOTH cleaned taxonomy labels and extracted text are included.",
+    "expected_behavior": "Some Included/validated resources may fail extraction; these appear in missing_text_ids."
+  }
+}

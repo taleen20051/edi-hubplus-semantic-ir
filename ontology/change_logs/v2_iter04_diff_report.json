@@ -1,0 +1,413 @@
+{
+  "input": {
+    "v1": "data/processed/edi_ontology_v1.json",
+    "v2": "ontology/versions/v2_iter04/edi_ontology_v2_iter04.json"
+  },
+  "stats_v1": {
+    "version": "v1",
+    "n_concepts": 71,
+    "n_concepts_with_alt_labels": 11,
+    "n_alt_labels_total": 11
+  },
+  "stats_v2": {
+    "version": "v2_iter04",
+    "n_concepts": 71,
+    "n_concepts_with_alt_labels": 33,
+    "n_alt_labels_total": 129
+  },
+  "delta": {
+    "alt_labels_added_total": 118,
+    "alt_labels_removed_total": 0,
+    "concepts_changed": 27
+  },
+  "changes": [
+    {
+      "concept_id": "career_pathway__career_progression",
+      "category_id": "career_pathway",
+      "pref_label_v1": "Career Progression",
+      "pref_label_v2": "Career Progression",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "career progression in universities",
+        "equitable promotion criteria",
+        "fair promotion processes",
+        "promotion equity",
+        "transparent promotion criteria"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "career_pathway__career_retention",
+      "category_id": "career_pathway",
+      "pref_label_v1": "Career Retention",
+      "pref_label_v2": "Career Retention",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "academic staff retention",
+        "attrition reduction",
+        "retaining diverse talent",
+        "retention strategy",
+        "staff retention"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "career_pathway__leadership_development",
+      "category_id": "career_pathway",
+      "pref_label_v1": "Leadership Development",
+      "pref_label_v2": "Leadership Development",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "inclusive leadership development",
+        "inclusive leadership training",
+        "leadership development programme",
+        "leadership pipeline development"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "career_pathway__mentorship_sponsorship",
+      "category_id": "career_pathway",
+      "pref_label_v1": "Mentorship & Sponsorship",
+      "pref_label_v2": "Mentorship & Sponsorship",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "career mentoring",
+        "career sponsorship schemes",
+        "mentoring programmes",
+        "mentorship programmes",
+        "sponsorship programmes"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "career_pathway__recruitment_strategies",
+      "category_id": "career_pathway",
+      "pref_label_v1": "Recruitment Strategies",
+      "pref_label_v2": "Recruitment Strategies",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "bias-free hiring process",
+        "diverse recruitment",
+        "fair recruitment process",
+        "inclusive hiring practices",
+        "inclusive recruitment"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "individual_characteristics__age",
+      "category_id": "individual_characteristics",
+      "pref_label_v1": "Age",
+      "pref_label_v2": "Age",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "age discrimination at work",
+        "age diversity",
+        "age equality",
+        "age-inclusive workplace",
+        "ageism",
+        "older workers inclusion"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "individual_characteristics__disability",
+      "category_id": "individual_characteristics",
+      "pref_label_v1": "Disability",
+      "pref_label_v2": "Disability",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "access needs",
+        "accessibility needs",
+        "adjustments for disabled staff",
+        "reasonable adjustments",
+        "reasonable adjustments at work",
+        "workplace adjustments"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "individual_characteristics__neurodiversity",
+      "category_id": "individual_characteristics",
+      "pref_label_v1": "Neurodiversity",
+      "pref_label_v2": "Neurodiversity",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "neurodivergent",
+        "neurodiversity workplace adjustments",
+        "neuroinclusion at work",
+        "support for ADHD staff",
+        "support for autistic staff"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "individual_characteristics__pregnancy_and_maternity",
+      "category_id": "individual_characteristics",
+      "pref_label_v1": "Pregnancy And Maternity",
+      "pref_label_v2": "Pregnancy And Maternity",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "maternity leave policy",
+        "parental leave policy",
+        "pregnancy discrimination",
+        "pregnancy discrimination at work",
+        "return to work after maternity",
+        "return-to-work support after maternity"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "individual_characteristics__race",
+      "category_id": "individual_characteristics",
+      "pref_label_v1": "Race",
+      "pref_label_v2": "Race",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "ethnic minority inclusion",
+        "race and ethnicity",
+        "racial equality"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "individual_characteristics__religion_or_belief",
+      "category_id": "individual_characteristics",
+      "pref_label_v1": "Religion Or Belief",
+      "pref_label_v2": "Religion Or Belief",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "faith accommodation in workplace",
+        "religion and belief",
+        "religious accommodation at work"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "individual_characteristics__sexual_orientation",
+      "category_id": "individual_characteristics",
+      "pref_label_v1": "Sexual Orientation",
+      "pref_label_v2": "Sexual Orientation",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "LGBTQ+",
+        "LGBTQ+ inclusion",
+        "LGBTQIA+",
+        "queer inclusion at work",
+        "sexual orientation inclusion"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "individual_characteristics__socio_economic_background",
+      "category_id": "individual_characteristics",
+      "pref_label_v1": "Socio-Economic Background",
+      "pref_label_v2": "Socio-Economic Background",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "first generation academics",
+        "social mobility",
+        "socio-economic disadvantage",
+        "socioeconomic background",
+        "widening participation",
+        "working-class background"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "individual_characteristics__temporary_impairment",
+      "category_id": "individual_characteristics",
+      "pref_label_v1": "Temporary Impairment",
+      "pref_label_v2": "Temporary Impairment",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "short-term condition workplace adjustments",
+        "temporary impairment adjustments"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "individual_characteristics__trans_identity",
+      "category_id": "individual_characteristics",
+      "pref_label_v1": "Trans Identity",
+      "pref_label_v2": "Trans Identity",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "gender identity",
+        "gender reassignment support",
+        "gender transition support",
+        "support during gender transition",
+        "trans inclusion at work",
+        "transgender inclusion"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "organisational_culture__bias",
+      "category_id": "organisational_culture",
+      "pref_label_v1": "Bias",
+      "pref_label_v2": "Bias",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "bias awareness",
+        "implicit bias",
+        "unconscious bias"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "organisational_culture__bullying_and_microagression_prevention",
+      "category_id": "organisational_culture",
+      "pref_label_v1": "Bullying And Microagression Prevention",
+      "pref_label_v2": "Bullying And Microagression Prevention",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "anti-bullying policy",
+        "bullying prevention",
+        "civility at work",
+        "microaggressions",
+        "microaggressions at work"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "organisational_culture__data_collection_monitoring",
+      "category_id": "organisational_culture",
+      "pref_label_v1": "Data Collection & Monitoring",
+      "pref_label_v2": "Data Collection & Monitoring",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "data monitoring diversity metrics",
+        "EDI metrics monitoring",
+        "workforce diversity metrics"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "organisational_culture__inclusive_language",
+      "category_id": "organisational_culture",
+      "pref_label_v1": "Inclusive Language",
+      "pref_label_v2": "Inclusive Language",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "gender-inclusive language",
+        "inclusive communications guidance",
+        "inclusive language policy",
+        "inclusive terminology",
+        "inclusive wording"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "organisational_culture__inclusive_leadership",
+      "category_id": "organisational_culture",
+      "pref_label_v1": "Inclusive Leadership",
+      "pref_label_v2": "Inclusive Leadership",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "inclusive leadership behaviours",
+        "inclusive management",
+        "inclusive management training"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "organisational_culture__policy_review_reform",
+      "category_id": "organisational_culture",
+      "pref_label_v1": "Policy Review & Reform",
+      "pref_label_v2": "Policy Review & Reform",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "inclusive policy reform",
+        "institutional change",
+        "strategy and policy review"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "organisational_culture__work_life_balance",
+      "category_id": "organisational_culture",
+      "pref_label_v1": "Work-Life Balance",
+      "pref_label_v2": "Work-Life Balance",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "family friendly policies",
+        "flexible working policy",
+        "hybrid working policy",
+        "work life balance academic staff support"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "research_funding_process__application_support",
+      "category_id": "research_funding_process",
+      "pref_label_v1": "Application Support",
+      "pref_label_v2": "Application Support",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "funding application guidance",
+        "grant application guidance",
+        "grant writing guidance",
+        "proposal writing support"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "research_funding_process__bias_mitigation",
+      "category_id": "research_funding_process",
+      "pref_label_v1": "Bias Mitigation",
+      "pref_label_v2": "Bias Mitigation",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "bias mitigation in funding",
+        "bias reduction strategies",
+        "grant application bias reduction"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "research_funding_process__panel_diversity",
+      "category_id": "research_funding_process",
+      "pref_label_v1": "Panel Diversity",
+      "pref_label_v2": "Panel Diversity",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "committee diversity",
+        "diverse funding panels",
+        "panel composition",
+        "review panel diversity"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "research_funding_process__peer_review",
+      "category_id": "research_funding_process",
+      "pref_label_v1": "Peer Review",
+      "pref_label_v2": "Peer Review",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "equitable peer review",
+        "fair peer review",
+        "inclusive peer review training",
+        "peer review bias",
+        "reviewer bias"
+      ],
+      "alt_labels_removed": []
+    },
+    {
+      "concept_id": "research_funding_process__transparency_and_accessiblity_of_process",
+      "category_id": "research_funding_process",
+      "pref_label_v1": "Transparency And Accessiblity Of Process",
+      "pref_label_v2": "Transparency And Accessiblity Of Process",
+      "pref_label_changed": false,
+      "alt_labels_added": [
+        "accessible funding process",
+        "transparency of funding process",
+        "transparent funding allocation processes",
+        "transparent funding process"
+      ],
+      "alt_labels_removed": []
+    }
+  ]
+}

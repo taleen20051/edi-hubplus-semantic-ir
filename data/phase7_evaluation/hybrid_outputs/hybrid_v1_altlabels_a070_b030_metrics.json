@@ -1,0 +1,89 @@
+{
+  "k": 10,
+  "top_n_saved": 50,
+  "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+  "alpha_semantic": 0.7,
+  "beta_concept_boost": 0.3,
+  "include_alt_labels_in_expansion": true,
+  "query_count": 5,
+  "macro_avg": {
+    "P@k": 0.27999999999999997,
+    "R@k": 0.67,
+    "F1@k": 0.3823809523809524
+  },
+  "per_query": {
+    "q1": {
+      "query": "women in academia mentoring",
+      "expanded_query": "women in academia mentoring",
+      "matched_concepts": [],
+      "P@k": 0.3,
+      "R@k": 0.75,
+      "F1@k": 0.4285714285714285,
+      "hits@k": 3,
+      "retrieved@k": 10,
+      "relevant_total": 4
+    },
+    "q2": {
+      "query": "research funding bias mitigation",
+      "expanded_query": "research funding bias mitigation Bias Mitigation Bias",
+      "matched_concepts": [
+        "Bias Mitigation",
+        "Bias"
+      ],
+      "P@k": 0.3,
+      "R@k": 0.6,
+      "F1@k": 0.4,
+      "hits@k": 3,
+      "retrieved@k": 10,
+      "relevant_total": 5
+    },
+    "q3": {
+      "query": "inclusive language policy review",
+      "expanded_query": "inclusive language policy review Inclusive Language Age",
+      "matched_concepts": [
+        "Inclusive Language",
+        "Age"
+      ],
+      "P@k": 0.2,
+      "R@k": 1.0,
+      "F1@k": 0.33333333333333337,
+      "hits@k": 2,
+      "retrieved@k": 10,
+      "relevant_total": 2
+    },
+    "q4": {
+      "query": "neurodiversity accessible workspaces",
+      "expanded_query": "neurodiversity accessible workspaces Neurodiversity",
+      "matched_concepts": [
+        "Neurodiversity"
+      ],
+      "P@k": 0.3,
+      "R@k": 0.5,
+      "F1@k": 0.37499999999999994,
+      "hits@k": 3,
+      "retrieved@k": 10,
+      "relevant_total": 6
+    },
+    "q5": {
+      "query": "recruitment strategies diverse leadership",
+      "expanded_query": "recruitment strategies diverse leadership Recruitment Strategies Diverse Leadership",
+      "matched_concepts": [
+        "Recruitment Strategies",
+        "Diverse Leadership"
+      ],
+      "P@k": 0.3,
+      "R@k": 0.5,
+      "F1@k": 0.37499999999999994,
+      "hits@k": 3,
+      "retrieved@k": 10,
+      "relevant_total": 6
+    }
+  },
+  "inputs": {
+    "ontology": "ontology/edi_ontology_v1.json",
+    "embeddings": "data/semantic/resource_embeddings_minilm.npz",
+    "semantic_tags": "data/semantic/semantic_tags_minilm.jsonl",
+    "queries": "data/phase7_evaluation/queries.jsonl",
+    "qrels": "data/phase7_evaluation/qrels.json"
+  }
+}

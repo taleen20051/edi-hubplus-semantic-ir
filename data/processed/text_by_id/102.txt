@@ -1,0 +1,9 @@
+ID: 102
+Title: EDICA - Evidence Review: Peer Review Bias in The Funding Process: Main Themes and Interventions
+URL: https://researchportal.hw.ac.uk/en/publications/evidence-review-peer-review-bias-in-the-funding-process-main-them/
+Detected type: html
+Extraction method: trafilatura
+Text length: 513
+----------------------------------------
+
+| Original language | English | |---|---| | Publisher | Heriot-Watt University | | Commissioning body | UKRI | | Number of pages | 39 | | DOIs | | | Publication status | Published - 2 Apr 2024 | Keywords - Equity - diversity - inclusion - peer review - bias - Funding Research output: Book/Report › Commissioned report | Original language | English | |---|---| | Publisher | Heriot-Watt University | | Commissioning body | UKRI | | Number of pages | 39 | | DOIs | | | Publication status | Published - 2 Apr 2024 |

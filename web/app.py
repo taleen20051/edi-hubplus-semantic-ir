@@ -250,14 +250,16 @@ def format_matched_tags(concept_matches: List[dict], max_tags: int = 12) -> str:
 # Cached loaders
 
 # Streamlit interface caching is utilised to ensure accurate and fast response from system.
-@st.cache_data
+# 1. Decorator for load_ontology_concepts
+@st.cache_data(show_spinner=False)
 # Detect and load the final ontology JSON file and index terms by concept ID from specified path.
 def load_ontology_concepts(ontology_path: str) -> Dict[str, dict]:
     ont = read_json_file(Path(ontology_path))
     return {c["id"]: c for c in ont.get("concepts", [])}
 
 
-@st.cache_data
+# 2. Decorator for load_resources
+@st.cache_data(show_spinner=False)
 # Load the final merged dataset and terms by resource ID from path.
 def load_resources() -> Dict[str, dict]:
     rows = read_jsonl_file(JOINED_RESOURCES_PATH)
@@ -269,13 +271,15 @@ def load_resources() -> Dict[str, dict]:
     return out
 
 
-@st.cache_data
+# 3. Decorator for load_resource_blobs
+@st.cache_data(show_spinner=False)
 # Preload search blobs for efficiency in retrieval for all resources computed in the dataset..
 def load_resource_blobs(resources_by_id: Dict[str, dict]) -> Dict[str, str]:
     return {rid: build_search_blob(r) for rid, r in resources_by_id.items()}
 
 
-@st.cache_data
+# 4. Decorator for load_embeddings
+@st.cache_data(show_spinner=False)
 # Load the precomputed embeddings for all resources with their associated resouce IDs.
 def load_embeddings() -> Tuple[np.ndarray, List[str]]:
     z = np.load(EMBED_PATH, allow_pickle=True)
@@ -284,12 +288,19 @@ def load_embeddings() -> Tuple[np.ndarray, List[str]]:
     return emb, ids
 
 
-@st.cache_resource
+# 5. Decorator for load_embed_model
+@st.cache_resource(show_spinner=False)
 # Load the sentence-transformer embedding model to ensure it is only loaded once and shared across all retrieval calls for efficiency.
 # Store the model in Streamlit's dataset cache.
 def load_embed_model() -> Any:
     from sentence_transformers import SentenceTransformer
     return SentenceTransformer(EMBED_MODEL_ID)
+
+# 6. Add warm_up_search_stack helper after load_embed_model
+
+def warm_up_search_stack() -> None:
+    """Preload the semantic search model once so manual search feels immediate."""
+    load_embed_model()
 
 
 # Ontology helper functions
@@ -682,12 +693,16 @@ def apply_browse_sort(
 # The interface introduces two complementary workflows: broad semantic search and controlled ontology browsing.
 st.set_page_config(page_title="EDI Hub+ Resources", layout="wide")
 
+# 7. App startup: replace block with warm_up_search_stack call after variables
 concepts_v2 = load_ontology_concepts(str(ONTOLOGY_FINAL_PATH))
 resources_by_id = load_resources()
 resource_blobs = load_resource_blobs(resources_by_id)
 resource_embeddings, resource_ids = load_embeddings()
 category_to_labels = get_category_to_labels(concepts_v2)
 semantic_cutoff = SIMILARITY_THRESHOLD
+
+# Preload the embedding model once at app startup so the first search does not feel delayed.
+warm_up_search_stack()
 
 # Session stability used to keep search query interface consistent across user interactions and mode switches.
 if "active_search_query" not in st.session_state:
@@ -739,7 +754,6 @@ if ui_mode == "Search":
         st.rerun()
     elif search_submitted:
         st.session_state["active_search_query"] = manual_input.strip()
-        st.rerun()
 
     ongoing_query = st.session_state["active_search_query"]
 
@@ -883,7 +897,7 @@ else:
     # Enable enhanced explanation features in browse mode.
     if effective_browse_query:
         matched_tags_str = format_matched_tags(concept_matches)
-        st.markdown(f"**Browse semantic query:** `{effective_browse_query}`")
+        st.markdown(f"**Browse semantic query:** {effective_browse_query}")
         st.caption(
             "In Browse mode, the selected label is used to rank resources based on the different retrieval similarity methods. "
             "It is not used as an explicit tag-only restriction."

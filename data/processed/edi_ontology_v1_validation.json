@@ -1,0 +1,25 @@
+{
+  "validated_utc": "2026-04-22T09:03:06Z",
+  "inputs": {
+    "ontology": "ontology/edi_ontology_v1.json",
+    "stats": "data/processed/edi_ontology_v1_stats.json"
+  },
+  "passed": true,
+  "n_concepts_seen": 71,
+  "actual_counts_per_category": {
+    "individual_characteristics": 16,
+    "career_pathway": 16,
+    "research_funding_process": 13,
+    "organisational_culture": 26
+  },
+  "checks": {
+    "duplicate_ids": true,
+    "allowed_category_ids": true,
+    "pref_label_non_empty": true,
+    "no_placeholder_labels": true,
+    "alt_labels_exclude_pref_label": true,
+    "counts_match_stats": true
+  },
+  "errors": [],
+  "warnings": []
+}

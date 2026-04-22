@@ -1,6 +1,6 @@
 {
   "model_id": "sentence-transformers/all-mpnet-base-v2",
-  "resource_count": 69,
+  "resource_count": 64,
   "max_chars": 8000,
-  "runtime_seconds": 13.828369855880737
+  "runtime_seconds": 10.118845224380493
 }

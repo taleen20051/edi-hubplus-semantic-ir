@@ -83,7 +83,6 @@ def get_resource_themes(resource: dict) -> List[str]:
     return themes
 
 
-
 # Coverage and diversity metrics
 # Detect how many different themes are present in the top-k results, relative to the total number of themes in the dataset.
 def coverage_at_k(rids: List[str], resources_by_id: Dict[str, dict], k: int) -> float:

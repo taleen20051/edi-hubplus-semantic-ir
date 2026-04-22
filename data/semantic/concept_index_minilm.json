@@ -1,7 +1,7 @@
 {
   "model_name": "minilm",
   "model_id": "sentence-transformers/all-MiniLM-L6-v2",
-  "created_unix": 1771164819,
+  "created_unix": 1776848791,
   "counts": {
     "concepts": 71,
     "surface_forms": 71
@@ -649,5 +649,5 @@
       70
     ]
   },
-  "runtime_seconds": 3.7236690521240234
+  "runtime_seconds": 7.604103326797485
 }

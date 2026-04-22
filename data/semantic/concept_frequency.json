@@ -1,66 +1,66 @@
 [
   [
     "organisational_culture__inclusive_workplaces",
-    46
+    41
   ],
   [
     "organisational_culture__inclusive_leadership",
-    34
-  ],
-  [
-    "organisational_culture__belonging_initiatives",
-    25
-  ],
-  [
-    "organisational_culture__accessible_inclusive_workspaces",
-    23
+    32
   ],
   [
     "organisational_culture__inclusive_language",
     22
   ],
   [
+    "organisational_culture__belonging_initiatives",
+    21
+  ],
+  [
+    "organisational_culture__accessible_inclusive_workspaces",
+    20
+  ],
+  [
     "career_pathway__diverse_leadership",
-    19
+    18
   ],
   [
     "organisational_culture__anti_discrimination_measures",
-    16
+    15
   ],
   [
     "career_pathway__equitable_opportunities",
     13
   ],
   [
-    "organisational_culture__research_design",
-    13
-  ],
-  [
-    "organisational_culture__adaptive_research_enviroments",
-    12
-  ],
-  [
-    "individual_characteristics__disability",
+    "career_pathway__development_opportunities",
     11
   ],
   [
-    "career_pathway__development_opportunities",
+    "organisational_culture__research_design",
+    11
+  ],
+  [
+    "individual_characteristics__disability",
+    10
+  ],
+  [
+    "organisational_culture__adaptive_research_enviroments",
     10
   ],
   [
     "organisational_culture__employee_resource_groups",
-    10
+    9
   ],
   [
     "research_funding_process__research_funding_process",
-    10
+    9
   ],
   [
     "career_pathway__mentorship_sponsorship",
-    10
+    9
   ],
   [
-    "career_pathway__networking_collaboration",
+    "career_pathway__career_progression",
     8
   ],
   [
@@ -68,15 +68,15 @@
     8
   ],
   [
-    "organisational_culture__cultural_competency",
+    "organisational_culture__allyship_advocacy",
     7
   ],
   [
-    "organisational_culture__allyship_advocacy",
-    6
+    "career_pathway__networking_collaboration",
+    7
   ],
   [
-    "career_pathway__career_progression",
+    "career_pathway__recruitment_strategies",
     6
   ],
   [
@@ -88,15 +88,7 @@
     5
   ],
   [
-    "career_pathway__recruitment_strategies",
-    5
-  ],
-  [
-    "organisational_culture__harassment",
-    5
-  ],
-  [
-    "organisational_culture__bullying_and_microagression_prevention",
+    "organisational_culture__cultural_competency",
     5
   ],
   [
@@ -124,20 +116,16 @@
     3
   ],
   [
-    "organisational_culture__diverse_representation",
+    "organisational_culture__harassment",
     3
   ],
   [
-    "organisational_culture__allyship",
+    "career_pathway__leadership_development",
     3
   ],
   [
     "career_pathway__network_development",
     3
-  ],
-  [
-    "organisational_culture__awareness_training",
-    2
   ],
   [
     "research_funding_process__panel_diversity",
@@ -148,16 +136,24 @@
     2
   ],
   [
+    "organisational_culture__bias",
+    2
+  ],
+  [
+    "organisational_culture__diverse_representation",
+    2
+  ],
+  [
+    "organisational_culture__bullying_and_microagression_prevention",
+    2
+  ],
+  [
     "organisational_culture__policy_review_reform",
     2
   ],
   [
-    "career_pathway__leadership_development",
+    "organisational_culture__allyship",
     2
-  ],
-  [
-    "individual_characteristics__caring_responsiblities",
-    1
   ],
   [
     "organisational_culture__monitoring_and_evaluation",
@@ -168,15 +164,19 @@
     1
   ],
   [
-    "career_pathway__professional_development",
-    1
-  ],
-  [
     "career_pathway__retention_strategies",
     1
   ],
   [
-    "organisational_culture__bias",
+    "career_pathway__professional_development",
+    1
+  ],
+  [
+    "organisational_culture__awareness_training",
+    1
+  ],
+  [
+    "individual_characteristics__job_roles",
     1
   ],
   [

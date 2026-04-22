@@ -3,35 +3,35 @@
     {
       "model": "minilm",
       "model_id": "sentence-transformers/all-MiniLM-L6-v2",
-      "runtime_seconds_total": 6.797580003738403,
+      "runtime_seconds_total": 11.985080003738403,
       "outputs": {
-        "concept_index": "/Users/baselabubaker/Desktop/Individual Project/edi-hubplus-semantic-ir/data/semantic/concept_index_minilm.json",
-        "concept_surface_embeddings": "/Users/baselabubaker/Desktop/Individual Project/edi-hubplus-semantic-ir/data/semantic/concept_surface_embeddings_minilm.npz",
-        "resource_embeddings": "/Users/baselabubaker/Desktop/Individual Project/edi-hubplus-semantic-ir/data/semantic/resource_embeddings_minilm.npz",
-        "semantic_tags": "/Users/baselabubaker/Desktop/Individual Project/edi-hubplus-semantic-ir/data/semantic/semantic_tags_minilm.jsonl",
-        "eval": "/Users/baselabubaker/Desktop/Individual Project/edi-hubplus-semantic-ir/data/semantic/semantic_tagging_eval_minilm.json"
+        "concept_index": "/Users/baselabubaker/Proj diss/edi-hubplus-semantic-ir/data/semantic/concept_index_minilm.json",
+        "concept_surface_embeddings": "/Users/baselabubaker/Proj diss/edi-hubplus-semantic-ir/data/semantic/concept_surface_embeddings_minilm.npz",
+        "resource_embeddings": "/Users/baselabubaker/Proj diss/edi-hubplus-semantic-ir/data/semantic/resource_embeddings_minilm.npz",
+        "semantic_tags": "/Users/baselabubaker/Proj diss/edi-hubplus-semantic-ir/data/semantic/semantic_tags_minilm.jsonl",
+        "eval": "/Users/baselabubaker/Proj diss/edi-hubplus-semantic-ir/data/semantic/semantic_tagging_eval_minilm.json"
       },
       "eval_macro_avg": {
-        "precision": 0.19865424430641823,
-        "recall": 0.3814460901417423,
-        "f1": 0.24222383896296942
+        "precision": 0.20386904761904762,
+        "recall": 0.36437156593406594,
+        "f1": 0.23818130654068154
       }
     },
     {
       "model": "mpnet",
       "model_id": "sentence-transformers/all-mpnet-base-v2",
-      "runtime_seconds_total": 17.463964223861694,
+      "runtime_seconds_total": 16.231183767318726,
       "outputs": {
-        "concept_index": "/Users/baselabubaker/Desktop/Individual Project/edi-hubplus-semantic-ir/data/semantic/concept_index_mpnet.json",
-        "concept_surface_embeddings": "/Users/baselabubaker/Desktop/Individual Project/edi-hubplus-semantic-ir/data/semantic/concept_surface_embeddings_mpnet.npz",
-        "resource_embeddings": "/Users/baselabubaker/Desktop/Individual Project/edi-hubplus-semantic-ir/data/semantic/resource_embeddings_mpnet.npz",
-        "semantic_tags": "/Users/baselabubaker/Desktop/Individual Project/edi-hubplus-semantic-ir/data/semantic/semantic_tags_mpnet.jsonl",
-        "eval": "/Users/baselabubaker/Desktop/Individual Project/edi-hubplus-semantic-ir/data/semantic/semantic_tagging_eval_mpnet.json"
+        "concept_index": "/Users/baselabubaker/Proj diss/edi-hubplus-semantic-ir/data/semantic/concept_index_mpnet.json",
+        "concept_surface_embeddings": "/Users/baselabubaker/Proj diss/edi-hubplus-semantic-ir/data/semantic/concept_surface_embeddings_mpnet.npz",
+        "resource_embeddings": "/Users/baselabubaker/Proj diss/edi-hubplus-semantic-ir/data/semantic/resource_embeddings_mpnet.npz",
+        "semantic_tags": "/Users/baselabubaker/Proj diss/edi-hubplus-semantic-ir/data/semantic/semantic_tags_mpnet.jsonl",
+        "eval": "/Users/baselabubaker/Proj diss/edi-hubplus-semantic-ir/data/semantic/semantic_tagging_eval_mpnet.json"
       },
       "eval_macro_avg": {
-        "precision": 0.18376466528640442,
-        "recall": 0.45164967882359186,
-        "f1": 0.24480890663755114
+        "precision": 0.19601934523809525,
+        "recall": 0.4499556433150183,
+        "f1": 0.25236015261290995
       }
     }
   ]

@@ -12,40 +12,47 @@ import pandas as pd
 import requests
 from tqdm import tqdm
 
-# PDF extraction
-import fitz  # PyMuPDF
+# PDF extraction imports (PyMuPDF and pdfminer)
+import fitz
 from pdfminer.high_level import extract_text as pdfminer_extract_text
 
-# HTML extraction
+# HTML extraction imports (trafilatura and BeautifulSoup)
 import trafilatura
 from bs4 import BeautifulSoup
 
 
-# =========================
-# CONFIG
-# =========================
+# Final Input file including resources already validated for extraction
 IN_VALIDATED = Path("data/processed/resources_validated_for_extraction.csv")
 
-CACHE_DIR = Path("data/cache")  # downloaded files stored here for reproducibility
-OUT_JSONL = Path("data/processed/resources_text.jsonl")
-OUT_MANIFEST = Path("data/processed/extraction_manifest.csv")
-TXT_DIR = Path("data/processed/text_by_id")  # human-readable per-resource exports
+# Local cache used to store downloaded files (html and pdf) for reproducibility
+CACHE_DIR = Path("data/cache")
 
-MIN_TEXT_CHARS = 400  # <-- your choice
+# Main output file including extracted text records in JSONL format
+OUT_JSONL = Path("data/processed/resources_text.jsonl")
+
+# CSV manifest file summarising download and extraction results
+OUT_MANIFEST = Path("data/processed/extraction_manifest.csv")
+
+# Folder for fully text-based exports used for manual review of extraction quality
+TXT_DIR = Path("data/processed/text_by_id")
+
+# Minimum text length used to detect links that have insufficient content for review
+MIN_TEXT_CHARS = 400
 TIMEOUT_SECONDS = 25
 MAX_RETRIES = 2
 SLEEP_BETWEEN_RETRIES_SECONDS = 1.0
 
+# Column names expected in the validated resource file
 ID_COL = "ID"
 TITLE_COL = "Title"
-URL_COL = "final_url"  # manifest provides final_url; if empty we'll fallback to Link
+URL_COL = "final_url"
 FALLBACK_URL_COL = "Link"
-TYPE_COL = "detected_type"  # pdf or html
+TYPE_COL = "detected_type"
 
 
-# =========================
 # Helpers
-# =========================
+
+# Stores each extraction output row for the output manifest CSV
 @dataclass
 class ExtractionRow:
     ID: str
@@ -62,17 +69,20 @@ class ExtractionRow:
     error: str
 
 
+# Create an anonymously generated hashed filename so cached downloads are stable and safe
 def safe_filename_from_url(url: str) -> str:
-    """Create a stable filename from URL via hash."""
+    """Create a stable filename from URL via hashing."""
     h = hashlib.sha256(url.encode("utf-8")).hexdigest()[:16]
     return h
 
 
+# Remove repeated spaces and line breaks for canonicalisation after basic extraction method
 def normalise_whitespace(text: str) -> str:
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
 
+# Download a resource once and ensure the stored cache copy can be used in later runs
 def download_to_cache(session: requests.Session, url: str, detected_type: str) -> Tuple[bool, Optional[int], Optional[Path], str]:
     """
     Download the resource into CACHE_DIR and return:
@@ -84,11 +94,12 @@ def download_to_cache(session: requests.Session, url: str, detected_type: str) -
     fname = safe_filename_from_url(url) + ext
     path = CACHE_DIR / fname
 
-    # Cache hit
+    # Reuse an existing cached file if already available
     if path.exists() and path.stat().st_size > 0:
         return True, None, path, ""
 
     last_error = ""
+    # Retry failed requests a limited number of times
     for attempt in range(1, MAX_RETRIES + 2):
         try:
             r = session.get(url, allow_redirects=True, timeout=TIMEOUT_SECONDS, stream=True)
@@ -123,9 +134,10 @@ def download_to_cache(session: requests.Session, url: str, detected_type: str) -
     return False, None, None, last_error
 
 
-# =========================
-# Extraction: PDF
-# =========================
+
+# PDF extraction functions
+
+# Extract PDF text page by page using PyMuPDF
 def extract_pdf_pymupdf(pdf_path: Path) -> str:
     text_parts = []
     with fitz.open(pdf_path) as doc:
@@ -134,10 +146,12 @@ def extract_pdf_pymupdf(pdf_path: Path) -> str:
     return "\n".join(text_parts)
 
 
+# Fallback PDF extraction using pdfminer
 def extract_pdf_pdfminer(pdf_path: Path) -> str:
     return pdfminer_extract_text(str(pdf_path))
 
 
+# Try PDF extraction tools in order and return the first usable result
 def extract_pdf_text(pdf_path: Path) -> Tuple[bool, str, str]:
     """
     Return (ok, text, method)
@@ -165,12 +179,14 @@ def extract_pdf_text(pdf_path: Path) -> Tuple[bool, str, str]:
 # =========================
 # Extraction: HTML
 # =========================
+# Use trafilatura to capture the main readable HTML content
 def extract_html_trafilatura(html_bytes: bytes, url: str) -> str:
     downloaded = html_bytes.decode("utf-8", errors="ignore")
     extracted = trafilatura.extract(downloaded, url=url, include_comments=False, include_tables=True)
     return extracted or ""
 
 
+# Fallback HTML extraction using BeautifulSoup after removing boilerplate
 def extract_html_bs4(html_bytes: bytes) -> str:
     soup = BeautifulSoup(html_bytes, "lxml")
     # remove obvious boilerplate
@@ -180,6 +196,7 @@ def extract_html_bs4(html_bytes: bytes) -> str:
     return text
 
 
+# Try HTML extraction tools in order and return the first usable result
 def extract_html_text(html_path: Path, url: str) -> Tuple[bool, str, str]:
     """
     Return (ok, text, method)
@@ -209,6 +226,7 @@ def extract_html_text(html_path: Path, url: str) -> Tuple[bool, str, str]:
 # =========================
 # Main
 # =========================
+# Download validated resources, extract text, and save structured outputs
 def main() -> None:
     if not IN_VALIDATED.exists():
         raise FileNotFoundError(
@@ -216,21 +234,24 @@ def main() -> None:
             "Run filter_validated_resources.py first."
         )
 
+    # Create output folders before writing files
     OUT_JSONL.parent.mkdir(parents=True, exist_ok=True)
     OUT_MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     TXT_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Read all values as text to preserve original spreadsheet content
     df = pd.read_csv(IN_VALIDATED, dtype=object)
 
-    # Expected columns
+    # Check that essential columns are present before processing
     for col in [ID_COL, TITLE_COL, TYPE_COL]:
         if col not in df.columns:
             raise ValueError(f"Missing required column '{col}'. Columns: {list(df.columns)}")
 
-    # URL column handling (final_url might be empty, so fallback to Link)
+    # Prefer final_url when available, otherwise fall back to the original link
     if URL_COL not in df.columns and FALLBACK_URL_COL not in df.columns:
         raise ValueError("No URL column found. Expected 'final_url' or 'Link'.")
 
+    # Reuse one HTTP session across downloads
     session = requests.Session()
     session.headers.update(
         {
@@ -239,11 +260,13 @@ def main() -> None:
         }
     )
 
+    # Collect per-resource extraction results for the manifest
     extraction_rows = []
 
-    # Open JSONL for writing (overwrite each run)
+    # Overwrite the JSONL file on each run for consistent outputs
     with open(OUT_JSONL, "w", encoding="utf-8") as out_f:
         for _, row in tqdm(df.iterrows(), total=len(df), desc="Extracting"):
+            # Read the key values needed for this resource
             rid = str(row.get(ID_COL, "")).strip()
             title = str(row.get(TITLE_COL, "")).strip()
             detected_type = str(row.get(TYPE_COL, "")).strip().lower()
@@ -271,7 +294,7 @@ def main() -> None:
                 )
                 continue
 
-            # 1) Download / cache
+            # Download the resource locally before extraction
             download_ok, status_code, cache_path, dl_error = download_to_cache(session, url, detected_type)
 
             if not download_ok or cache_path is None:
@@ -293,7 +316,7 @@ def main() -> None:
                 )
                 continue
 
-            # 2) Extract text
+            # Choose the extraction method based on resource type
             extraction_ok = False
             text = ""
             method = ""
@@ -317,7 +340,7 @@ def main() -> None:
             text_len = len(text)
             too_short = text_len < MIN_TEXT_CHARS
 
-            # Write JSONL even if too_short (useful for debugging), but you can filter later
+            # Save every extraction result to JSONL, including short texts for review
             record = {
                 "id": rid,
                 "title": title,
@@ -330,7 +353,7 @@ def main() -> None:
             }
             out_f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
-            # Also export a human-readable .txt per resource (only if extraction succeeded and text is not too short)
+            # Export a readable text file only for successful usable extractions
             if extraction_ok and (not too_short):
                 txt_path = TXT_DIR / f"{rid}.txt"
                 txt_header = (
@@ -362,11 +385,11 @@ def main() -> None:
                 )
             )
 
-    # Save extraction manifest
+    # Save the final extraction manifest as a CSV summary
     out_df = pd.DataFrame([asdict(r) for r in extraction_rows])
     out_df.to_csv(OUT_MANIFEST, index=False)
 
-    # Print summary for your notes
+    # Print a short summary of extraction outcomes
     print("\n Extraction complete")
     print(f"JSONL saved: {OUT_JSONL}")
     print(f"Manifest saved: {OUT_MANIFEST}")

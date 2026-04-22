@@ -1,13 +1,18 @@
 {
   "taxonomy_rows": 74,
-  "text_rows": 69,
-  "unified_rows_inner_join": 69,
+  "text_rows": 64,
+  "unified_rows_inner_join": 64,
   "missing_text_ids": [
+    "1",
     "8",
     "32",
     "41",
     "53",
-    "55"
+    "55",
+    "72",
+    "91",
+    "92",
+    "99"
   ],
   "extra_text_ids": [],
   "notes": {

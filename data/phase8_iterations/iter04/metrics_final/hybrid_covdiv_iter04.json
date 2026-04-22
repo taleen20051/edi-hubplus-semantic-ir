@@ -1,0 +1,371 @@
+{
+  "k": 20,
+  "query_count": 32,
+  "macro_avg": {
+    "coverage@k": 0.9921875,
+    "diversity_entropy@k": 0.8760299895891549
+  },
+  "per_query": {
+    "q1": {
+      "query": "women in academia mentoring",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.2926829268292683,
+        "career_pathway": 0.2926829268292683,
+        "research_funding_process": 0.0975609756097561,
+        "organisational_culture": 0.3170731707317073
+      },
+      "diversity_entropy@k": 0.9453026321487742
+    },
+    "q2": {
+      "query": "research funding bias mitigation",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.2857142857142857,
+        "career_pathway": 0.2653061224489796,
+        "research_funding_process": 0.1836734693877551,
+        "organisational_culture": 0.2653061224489796
+      },
+      "diversity_entropy@k": 0.9905822017162198
+    },
+    "q3": {
+      "query": "inclusive language policy review",
+      "coverage@k": 0.75,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.23333333333333334,
+        "career_pathway": 0.16666666666666666,
+        "research_funding_process": 0.0,
+        "organisational_culture": 0.6
+      },
+      "diversity_entropy@k": 0.6814490485575649
+    },
+    "q4": {
+      "query": "neurodiversity accessible workspaces",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.2894736842105263,
+        "career_pathway": 0.18421052631578946,
+        "research_funding_process": 0.05263157894736842,
+        "organisational_culture": 0.47368421052631576
+      },
+      "diversity_entropy@k": 0.8507547792826466
+    },
+    "q5": {
+      "query": "recruitment strategies diverse leadership",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.12121212121212122,
+        "career_pathway": 0.3333333333333333,
+        "research_funding_process": 0.09090909090909091,
+        "organisational_culture": 0.45454545454545453
+      },
+      "diversity_entropy@k": 0.8644395711746584
+    },
+    "q6": {
+      "query": "mentorship programmes for women researchers",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.3409090909090909,
+        "career_pathway": 0.3181818181818182,
+        "research_funding_process": 0.11363636363636363,
+        "organisational_culture": 0.22727272727272727
+      },
+      "diversity_entropy@k": 0.948633431293141
+    },
+    "q7": {
+      "query": "sponsorship for underrepresented academics",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.2619047619047619,
+        "career_pathway": 0.30952380952380953,
+        "research_funding_process": 0.16666666666666666,
+        "organisational_culture": 0.2619047619047619
+      },
+      "diversity_entropy@k": 0.9834837542434519
+    },
+    "q8": {
+      "query": "career progression promotion equity in universities",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.20512820512820512,
+        "career_pathway": 0.358974358974359,
+        "research_funding_process": 0.1282051282051282,
+        "organisational_culture": 0.3076923076923077
+      },
+      "diversity_entropy@k": 0.9512631685093661
+    },
+    "q9": {
+      "query": "retaining diverse talent academic staff retention",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.1111111111111111,
+        "career_pathway": 0.3333333333333333,
+        "research_funding_process": 0.1111111111111111,
+        "organisational_culture": 0.4444444444444444
+      },
+      "diversity_entropy@k": 0.8763576394898523
+    },
+    "q10": {
+      "query": "inclusive leadership development training for managers",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.10714285714285714,
+        "career_pathway": 0.32142857142857145,
+        "research_funding_process": 0.07142857142857142,
+        "organisational_culture": 0.5
+      },
+      "diversity_entropy@k": 0.8217635070296818
+    },
+    "q11": {
+      "query": "age discrimination policy workplace guidance",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.23529411764705882,
+        "career_pathway": 0.23529411764705882,
+        "research_funding_process": 0.029411764705882353,
+        "organisational_culture": 0.5
+      },
+      "diversity_entropy@k": 0.8159833573714084
+    },
+    "q12": {
+      "query": "disability reasonable adjustments workplace",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.30303030303030304,
+        "career_pathway": 0.12121212121212122,
+        "research_funding_process": 0.030303030303030304,
+        "organisational_culture": 0.5454545454545454
+      },
+      "diversity_entropy@k": 0.7604102267271775
+    },
+    "q13": {
+      "query": "support for autism and ADHD staff at work",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.24242424242424243,
+        "career_pathway": 0.18181818181818182,
+        "research_funding_process": 0.030303030303030304,
+        "organisational_culture": 0.5454545454545454
+      },
+      "diversity_entropy@k": 0.7863118319475819
+    },
+    "q14": {
+      "query": "pregnancy maternity return to work support policy",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.20588235294117646,
+        "career_pathway": 0.2647058823529412,
+        "research_funding_process": 0.08823529411764706,
+        "organisational_culture": 0.4411764705882353
+      },
+      "diversity_entropy@k": 0.9034511867475918
+    },
+    "q15": {
+      "query": "LGBTQ+ inclusion and sexuality inclusion workplace",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.17647058823529413,
+        "career_pathway": 0.23529411764705882,
+        "research_funding_process": 0.058823529411764705,
+        "organisational_culture": 0.5294117647058824
+      },
+      "diversity_entropy@k": 0.8294898760621026
+    },
+    "q16": {
+      "query": "transgender inclusion gender identity support workplace",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.21212121212121213,
+        "career_pathway": 0.24242424242424243,
+        "research_funding_process": 0.030303030303030304,
+        "organisational_culture": 0.5151515151515151
+      },
+      "diversity_entropy@k": 0.8079795936843934
+    },
+    "q17": {
+      "query": "social mobility widening participation first generation academics",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.1951219512195122,
+        "career_pathway": 0.3170731707317073,
+        "research_funding_process": 0.12195121951219512,
+        "organisational_culture": 0.36585365853658536
+      },
+      "diversity_entropy@k": 0.9431819078651542
+    },
+    "q18": {
+      "query": "peer review reviewer bias equitable peer review guidance",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.29545454545454547,
+        "career_pathway": 0.25,
+        "research_funding_process": 0.11363636363636363,
+        "organisational_culture": 0.3409090909090909
+      },
+      "diversity_entropy@k": 0.9527559962571822
+    },
+    "q19": {
+      "query": "review panel diversity committee diversity funding decisions",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.16666666666666666,
+        "career_pathway": 0.2777777777777778,
+        "research_funding_process": 0.16666666666666666,
+        "organisational_culture": 0.3888888888888889
+      },
+      "diversity_entropy@k": 0.9524375025776292
+    },
+    "q20": {
+      "query": "bullying microaggressions prevention civility at work policy",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.1724137931034483,
+        "career_pathway": 0.20689655172413793,
+        "research_funding_process": 0.034482758620689655,
+        "organisational_culture": 0.5862068965517241
+      },
+      "diversity_entropy@k": 0.7633649151496564
+    },
+    "q21": {
+      "query": "age inclusion and ageism awareness workplace",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.16129032258064516,
+        "career_pathway": 0.25806451612903225,
+        "research_funding_process": 0.03225806451612903,
+        "organisational_culture": 0.5483870967741935
+      },
+      "diversity_entropy@k": 0.7819931749403315
+    },
+    "q22": {
+      "query": "religion belief accommodation workplace policy",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.16129032258064516,
+        "career_pathway": 0.22580645161290322,
+        "research_funding_process": 0.03225806451612903,
+        "organisational_culture": 0.5806451612903226
+      },
+      "diversity_entropy@k": 0.7622630752772818
+    },
+    "q23": {
+      "query": "temporary impairment support workplace adjustments",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.30303030303030304,
+        "career_pathway": 0.15151515151515152,
+        "research_funding_process": 0.030303030303030304,
+        "organisational_culture": 0.5151515151515151
+      },
+      "diversity_entropy@k": 0.7901396396100419
+    },
+    "q24": {
+      "query": "equitable promotion criteria academic staff",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.16216216216216217,
+        "career_pathway": 0.3783783783783784,
+        "research_funding_process": 0.08108108108108109,
+        "organisational_culture": 0.3783783783783784
+      },
+      "diversity_entropy@k": 0.8902591108671328
+    },
+    "q25": {
+      "query": "leadership pipeline development underrepresented groups",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.14705882352941177,
+        "career_pathway": 0.38235294117647056,
+        "research_funding_process": 0.11764705882352941,
+        "organisational_culture": 0.35294117647058826
+      },
+      "diversity_entropy@k": 0.9152769085821567
+    },
+    "q26": {
+      "query": "career sponsorship schemes women academics",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.30434782608695654,
+        "career_pathway": 0.34782608695652173,
+        "research_funding_process": 0.13043478260869565,
+        "organisational_culture": 0.21739130434782608
+      },
+      "diversity_entropy@k": 0.9570850556153867
+    },
+    "q27": {
+      "query": "grant application bias reduction strategies",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.23809523809523808,
+        "career_pathway": 0.3333333333333333,
+        "research_funding_process": 0.19047619047619047,
+        "organisational_culture": 0.23809523809523808
+      },
+      "diversity_entropy@k": 0.98495001131136
+    },
+    "q28": {
+      "query": "transparent funding allocation processes",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.2608695652173913,
+        "career_pathway": 0.32608695652173914,
+        "research_funding_process": 0.1956521739130435,
+        "organisational_culture": 0.21739130434782608
+      },
+      "diversity_entropy@k": 0.986003642108549
+    },
+    "q29": {
+      "query": "inclusive peer review training guidance",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.27906976744186046,
+        "career_pathway": 0.27906976744186046,
+        "research_funding_process": 0.11627906976744186,
+        "organisational_culture": 0.32558139534883723
+      },
+      "diversity_entropy@k": 0.9578799424609209
+    },
+    "q30": {
+      "query": "inclusive policy reform institutional change",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.13333333333333333,
+        "career_pathway": 0.26666666666666666,
+        "research_funding_process": 0.16666666666666666,
+        "organisational_culture": 0.43333333333333335
+      },
+      "diversity_entropy@k": 0.9248560176330758
+    },
+    "q31": {
+      "query": "work life balance academic staff support",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.22580645161290322,
+        "career_pathway": 0.1935483870967742,
+        "research_funding_process": 0.03225806451612903,
+        "organisational_culture": 0.5483870967741935
+      },
+      "diversity_entropy@k": 0.7892251268065679
+    },
+    "q32": {
+      "query": "data monitoring diversity metrics workplace",
+      "coverage@k": 1.0,
+      "theme_distribution@k": {
+        "individual_characteristics": 0.14285714285714285,
+        "career_pathway": 0.2857142857142857,
+        "research_funding_process": 0.08571428571428572,
+        "organisational_culture": 0.4857142857142857
+      },
+      "diversity_entropy@k": 0.8636318338049165
+    }
+  },
+  "notes": {
+    "coverage": "coverage@k = (#unique themes present in top-k)/4 using manual spreadsheet tags.",
+    "diversity": "diversity_entropy@k is normalised entropy over the theme distribution in top-k (0=single theme, 1=balanced).",
+    "theme_assignment": "a resource may contribute to multiple themes if it has tags in multiple taxonomy columns."
+  },
+  "inputs": {
+    "results": "data/phase8_iterations/iter04/runs/v2_iter04/hybrid_mpnet_a085_b015.jsonl",
+    "resources": "data/processed/resources_unified.jsonl"
+  }
+}

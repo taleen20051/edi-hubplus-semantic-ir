@@ -20,14 +20,15 @@ DEFAULT_ONTOLOGY_VERSIONS_DIR = Path("ontology/versions")
 DEFAULT_TAXONOMY_CLEAN_CSV = Path("data/processed/taxonomy_clean.csv")
 
 DEFAULT_RESOURCE_CSV_CANDIDATES = [
+    Path("data/processed/resources_unified.csv"),
     Path("data/processed/resources_included_only.csv"),
     Path("data/processed/taxonomy_raw.csv"),
     Path("data/raw/resources_full_data_full.csv"),
 ]
 
 DEFAULT_RESOURCE_TEXT_JSONL_CANDIDATES = [
-    Path("data/processed/resources_text.jsonl"),
     Path("data/processed/resources_unified.jsonl"),
+    Path("data/processed/resources_text.jsonl"),
 ]
 
 DEFAULT_RESOURCE_TEXT_CSV_CANDIDATES = [
@@ -587,13 +588,17 @@ def main(argv: List[str] | None = None) -> int:
     )
 
     resources_text: Dict[str, str] = {}
-    all_rids = set(titles.keys()) | set(texts.keys())
-    for rid in all_rids:
+    selected_rids = list(titles.keys()) if titles else list(texts.keys())
+    for rid in selected_rids:
         title = titles.get(rid, "")
         body = texts.get(rid, "")
         resources_text[rid] = (title + "\n\n" + body).strip()
 
-    taxonomy_tags = load_taxonomy_clean(args.taxonomy_csv)
+    taxonomy_tags_full = load_taxonomy_clean(args.taxonomy_csv)
+    taxonomy_tags = {rid: tags for rid, tags in taxonomy_tags_full.items() if rid in resources_text}
+
+    missing_text_ids = sorted(set(titles.keys()) - set(texts.keys()))
+    extra_text_ids = sorted(set(texts.keys()) - set(titles.keys()))
 
     if args.queries.suffix.lower() == ".jsonl":
         queries = load_queries_jsonl(args.queries)
@@ -632,6 +637,12 @@ def main(argv: List[str] | None = None) -> int:
     if getattr(args, "ontology_name", None):
         print(f"Ontology name:       {args.ontology_name}")
     print(f"Taxonomy CSV used:   {args.taxonomy_csv}")
+    print(f"Resources ranked:    {len(resources_text)}")
+    print(f"Taxonomy rows kept:  {len(taxonomy_tags)}")
+    if missing_text_ids:
+        print(f"Metadata rows without text: {len(missing_text_ids)}")
+    if extra_text_ids:
+        print(f"Text rows outside metadata set: {len(extra_text_ids)}")
     if not texts:
         print("No extracted text found (JSONL/CSV); keyword baseline used title-only.")
 

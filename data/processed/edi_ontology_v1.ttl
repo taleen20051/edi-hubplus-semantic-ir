@@ -1,0 +1,469 @@
+@prefix : <https://example.org/edi-hubplus/ontology/v1#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+:scheme a skos:ConceptScheme ;
+  dcterms:identifier "edi-hubplus-taxonomy" ;
+  dcterms:hasVersion "v1" ;
+  dcterms:created "2026-02-15T13:43:28Z" ;
+  dcterms:modified "2026-04-22T09:03:25Z" ;
+  dcterms:description "Spreadsheet-fidelity ontology derived directly from the cleaned EDI Hub+ taxonomy columns. Each distinct cleaned tag value is represented as a concept under one of four top-level categories. Alternative labels are limited to variants observed during cleaning (normalisation log)." .
+
+:individual_characteristics a skos:Concept ;
+  skos:prefLabel "Individual Characteristics"@en ;
+  skos:topConceptOf :scheme ;
+  skos:inScheme :scheme .
+
+:career_pathway a skos:Concept ;
+  skos:prefLabel "Career Pathway"@en ;
+  skos:topConceptOf :scheme ;
+  skos:inScheme :scheme .
+
+:research_funding_process a skos:Concept ;
+  skos:prefLabel "Research Funding Process"@en ;
+  skos:topConceptOf :scheme ;
+  skos:inScheme :scheme .
+
+:organisational_culture a skos:Concept ;
+  skos:prefLabel "Organisational Culture"@en ;
+  skos:topConceptOf :scheme ;
+  skos:inScheme :scheme .
+
+:individual_characteristics__abilties a skos:Concept ;
+  skos:prefLabel "Abilties"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__age a skos:Concept ;
+  skos:prefLabel "Age"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__career_stage a skos:Concept ;
+  skos:prefLabel "Career Stage"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__caring_responsiblities a skos:Concept ;
+  skos:prefLabel "Caring Responsiblities"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__disability a skos:Concept ;
+  skos:prefLabel "Disability"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__job_roles a skos:Concept ;
+  skos:prefLabel "Job Roles"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__nationality a skos:Concept ;
+  skos:prefLabel "Nationality"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__neurodiversity a skos:Concept ;
+  skos:prefLabel "Neurodiversity"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__pregnancy_and_maternity a skos:Concept ;
+  skos:prefLabel "Pregnancy And Maternity"@en ;
+  skos:altLabel "Pregnancy and Maternity"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__race a skos:Concept ;
+  skos:prefLabel "Race"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__religion_or_belief a skos:Concept ;
+  skos:prefLabel "Religion Or Belief"@en ;
+  skos:altLabel "Religion or Belief"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__sex a skos:Concept ;
+  skos:prefLabel "Sex"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__sexual_orientation a skos:Concept ;
+  skos:prefLabel "Sexual Orientation"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__socio_economic_background a skos:Concept ;
+  skos:prefLabel "Socio-Economic Background"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__temporary_impairment a skos:Concept ;
+  skos:prefLabel "Temporary Impairment"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:individual_characteristics__trans_identity a skos:Concept ;
+  skos:prefLabel "Trans Identity"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :individual_characteristics ;
+  dcterms:source "Individual Characteristics"  .
+
+:career_pathway__barrier_removal a skos:Concept ;
+  skos:prefLabel "Barrier Removal"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__career_pathway a skos:Concept ;
+  skos:prefLabel "Career Pathway"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__career_progression a skos:Concept ;
+  skos:prefLabel "Career Progression"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__career_retention a skos:Concept ;
+  skos:prefLabel "Career Retention"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__development_opportunities a skos:Concept ;
+  skos:prefLabel "Development Opportunities"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__diverse_leadership a skos:Concept ;
+  skos:prefLabel "Diverse Leadership"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__equitable_opportunities a skos:Concept ;
+  skos:prefLabel "Equitable Opportunities"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__leadership_development a skos:Concept ;
+  skos:prefLabel "Leadership Development"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__mentorship_sponsorship a skos:Concept ;
+  skos:prefLabel "Mentorship & Sponsorship"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__network_development a skos:Concept ;
+  skos:prefLabel "Network Development"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__networking_collaboration a skos:Concept ;
+  skos:prefLabel "Networking & Collaboration"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__pipeline_development a skos:Concept ;
+  skos:prefLabel "Pipeline Development"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__professional_development a skos:Concept ;
+  skos:prefLabel "Professional Development"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__recruitment_strategies a skos:Concept ;
+  skos:prefLabel "Recruitment Strategies"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__retention_strategies a skos:Concept ;
+  skos:prefLabel "Retention Strategies"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:career_pathway__visibility_recognition a skos:Concept ;
+  skos:prefLabel "Visibility & Recognition"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :career_pathway ;
+  dcterms:source "Career Pathway"  .
+
+:research_funding_process__addressing_structural_inequality a skos:Concept ;
+  skos:prefLabel "Addressing Structural Inequality"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__advertising_approach a skos:Concept ;
+  skos:prefLabel "Advertising Approach"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__application_processes a skos:Concept ;
+  skos:prefLabel "Application Processes"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__application_support a skos:Concept ;
+  skos:prefLabel "Application Support"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__bias_mitigation a skos:Concept ;
+  skos:prefLabel "Bias Mitigation"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__eligiblity_criteria a skos:Concept ;
+  skos:prefLabel "Eligiblity Criteria"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__panel_diversity a skos:Concept ;
+  skos:prefLabel "Panel Diversity"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__peer_review a skos:Concept ;
+  skos:prefLabel "Peer Review"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__research_funding_process a skos:Concept ;
+  skos:prefLabel "Research Funding Process"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__resource_allocation a skos:Concept ;
+  skos:prefLabel "Resource Allocation"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__securing_funding a skos:Concept ;
+  skos:prefLabel "Securing Funding"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__targeted_grants a skos:Concept ;
+  skos:prefLabel "Targeted Grants"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:research_funding_process__transparency_and_accessiblity_of_process a skos:Concept ;
+  skos:prefLabel "Transparency And Accessiblity Of Process"@en ;
+  skos:altLabel "Transparency and Accessiblity of Process"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :research_funding_process ;
+  dcterms:source "Research Funding Process"  .
+
+:organisational_culture__accessible_inclusive_workspaces a skos:Concept ;
+  skos:prefLabel "Accessible & Inclusive Workspaces"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__adaptive_research_enviroments a skos:Concept ;
+  skos:prefLabel "Adaptive Research Enviroments"@en ;
+  skos:altLabel "Adaptive research enviroments"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__allyship a skos:Concept ;
+  skos:prefLabel "Allyship"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__allyship_advocacy a skos:Concept ;
+  skos:prefLabel "Allyship & Advocacy"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__anti_discrimination_measures a skos:Concept ;
+  skos:prefLabel "Anti-discrimination Measures"@en ;
+  skos:altLabel "Anti-discrimination measures"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__awareness_training a skos:Concept ;
+  skos:prefLabel "Awareness Training"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__barrier_removal a skos:Concept ;
+  skos:prefLabel "Barrier Removal"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__belonging_initiatives a skos:Concept ;
+  skos:prefLabel "Belonging Initiatives"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__bias a skos:Concept ;
+  skos:prefLabel "Bias"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__bullying_and_microagression_prevention a skos:Concept ;
+  skos:prefLabel "Bullying And Microagression Prevention"@en ;
+  skos:altLabel "Bullying and Microagression Prevention"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__cultural_competency a skos:Concept ;
+  skos:prefLabel "Cultural Competency"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__data_collection_monitoring a skos:Concept ;
+  skos:prefLabel "Data Collection & Monitoring"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__disseminating_good_practice a skos:Concept ;
+  skos:prefLabel "Disseminating Good Practice"@en ;
+  skos:altLabel "Disseminating good practice"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__diverse_representation a skos:Concept ;
+  skos:prefLabel "Diverse Representation"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__employee_resource_groups a skos:Concept ;
+  skos:prefLabel "Employee Resource Groups"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__harassment a skos:Concept ;
+  skos:prefLabel "Harassment"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__inclusive_language a skos:Concept ;
+  skos:prefLabel "Inclusive Language"@en ;
+  skos:altLabel "Inclusive language"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__inclusive_leadership a skos:Concept ;
+  skos:prefLabel "Inclusive Leadership"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__inclusive_workplaces a skos:Concept ;
+  skos:prefLabel "Inclusive Workplaces"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__management_structures a skos:Concept ;
+  skos:prefLabel "Management Structures"@en ;
+  skos:altLabel "Management structures"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__monitoring_and_evaluation a skos:Concept ;
+  skos:prefLabel "Monitoring And Evaluation"@en ;
+  skos:altLabel "Monitoring and evaluation"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__organisational_culture a skos:Concept ;
+  skos:prefLabel "Organisational Culture"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__policy_review_reform a skos:Concept ;
+  skos:prefLabel "Policy Review & Reform"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__research_design a skos:Concept ;
+  skos:prefLabel "Research Design"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__systemic_change a skos:Concept ;
+  skos:prefLabel "Systemic Change"@en ;
+  skos:altLabel "Systemic change"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .
+
+:organisational_culture__work_life_balance a skos:Concept ;
+  skos:prefLabel "Work-Life Balance"@en ;
+  skos:inScheme :scheme ;
+  skos:broader :organisational_culture ;
+  dcterms:source "Organisational Culture"  .

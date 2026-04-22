@@ -1,7 +1,7 @@
 {
   "model_name": "mpnet",
   "model_id": "sentence-transformers/all-mpnet-base-v2",
-  "created_unix": 1771164826,
+  "created_unix": 1776848801,
   "counts": {
     "concepts": 71,
     "surface_forms": 71
@@ -649,5 +649,5 @@
       70
     ]
   },
-  "runtime_seconds": 3.506603956222534
+  "runtime_seconds": 6.067223072052002
 }

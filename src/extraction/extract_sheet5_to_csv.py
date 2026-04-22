@@ -6,7 +6,6 @@ import pandas as pd
 # This script extracts each resource row's data from the EDI Hub+ Excel spreadsheet 
 # and converts it into a clean CSV file for downstream processing.
 
-
 # CONFIGURATION (file paths and schema)
 
 # Excel sheet file path containing all row data.

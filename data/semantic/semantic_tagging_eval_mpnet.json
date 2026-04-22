@@ -1,75 +1,36 @@
 {
   "report": {
-    "resource_count": 69,
+    "resource_count": 64,
     "macro_avg": {
-      "precision": 0.18376466528640442,
-      "recall": 0.45164967882359186,
-      "f1": 0.24480890663755114
+      "precision": 0.19601934523809525,
+      "recall": 0.4499556433150183,
+      "f1": 0.25236015261290995
     },
     "macro_avg_by_category": {
       "individual_characteristics": {
-        "precision": 0.5942028985507246,
-        "recall": 0.6135265700483092,
-        "f1": 0.5995169082125604
+        "precision": 0.609375,
+        "recall": 0.6302083333333334,
+        "f1": 0.6151041666666667
       },
       "career_pathway": {
-        "precision": 0.3021739130434783,
-        "recall": 0.3326086956521739,
-        "f1": 0.2952726017943409
+        "precision": 0.30885416666666665,
+        "recall": 0.34296875,
+        "f1": 0.30167410714285714
       },
       "research_funding_process": {
-        "precision": 0.4589371980676329,
-        "recall": 0.4601449275362319,
-        "f1": 0.45845410628019323
+        "precision": 0.48828125,
+        "recall": 0.49609375,
+        "f1": 0.49140625
       },
       "organisational_culture": {
-        "precision": 0.16155969634230502,
-        "recall": 0.4142512077294686,
-        "f1": 0.2156784439393135
+        "precision": 0.16476934523809525,
+        "recall": 0.3919270833333333,
+        "f1": 0.21516721126096128
       }
     },
     "note": "Gold labels derived from resources_unified taxonomy columns; mapped to concept_ids via ontology pref/alt labels (case-insensitive, whitespace-normalised, and split on commas/semicolons)."
   },
   "per_resource": {
-    "1": {
-      "overall": {
-        "precision": 0.125,
-        "recall": 0.3333333333333333,
-        "f1": 0.18181818181818182,
-        "gold_count": 3,
-        "pred_count": 8
-      },
-      "by_category": {
-        "individual_characteristics": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "gold_count": 1,
-          "pred_count": 1
-        },
-        "career_pathway": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "gold_count": 1,
-          "pred_count": 2
-        },
-        "research_funding_process": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "gold_count": 0,
-          "pred_count": 0
-        },
-        "organisational_culture": {
-          "precision": 0.2,
-          "recall": 1.0,
-          "f1": 0.33333333333333337,
-          "gold_count": 1,
-          "pred_count": 5
-        }
-      }
-    },
     "5": {
       "overall": {
         "precision": 0.25,
@@ -306,11 +267,11 @@
     },
     "17": {
       "overall": {
-        "precision": 0.5,
+        "precision": 1.0,
         "recall": 0.5,
-        "f1": 0.5,
+        "f1": 0.6666666666666666,
         "gold_count": 2,
-        "pred_count": 2
+        "pred_count": 1
       },
       "by_category": {
         "individual_characteristics": {
@@ -328,11 +289,11 @@
           "pred_count": 0
         },
         "research_funding_process": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "gold_count": 0,
-          "pred_count": 1
+          "pred_count": 0
         },
         "organisational_culture": {
           "precision": 1.0,
@@ -1125,40 +1086,40 @@
     },
     "48": {
       "overall": {
-        "precision": 0.0,
-        "recall": 0.0,
-        "f1": 0.0,
+        "precision": 0.125,
+        "recall": 0.5,
+        "f1": 0.2,
         "gold_count": 2,
         "pred_count": 8
       },
       "by_category": {
         "individual_characteristics": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "gold_count": 1,
-          "pred_count": 0
+          "pred_count": 1
         },
         "career_pathway": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
           "gold_count": 1,
-          "pred_count": 2
+          "pred_count": 0
         },
         "research_funding_process": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "gold_count": 0,
-          "pred_count": 1
+          "pred_count": 0
         },
         "organisational_culture": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
           "gold_count": 0,
-          "pred_count": 5
+          "pred_count": 7
         }
       }
     },
@@ -1593,11 +1554,11 @@
     },
     "70": {
       "overall": {
-        "precision": 0.25,
+        "precision": 0.6666666666666666,
         "recall": 1.0,
-        "f1": 0.4,
+        "f1": 0.8,
         "gold_count": 2,
-        "pred_count": 8
+        "pred_count": 3
       },
       "by_category": {
         "individual_characteristics": {
@@ -1622,11 +1583,11 @@
           "pred_count": 0
         },
         "organisational_culture": {
-          "precision": 0.25,
+          "precision": 0.6666666666666666,
           "recall": 1.0,
-          "f1": 0.4,
+          "f1": 0.8,
           "gold_count": 2,
-          "pred_count": 8
+          "pred_count": 3
         }
       }
     },
@@ -1666,45 +1627,6 @@
           "f1": 0.5714285714285715,
           "gold_count": 2,
           "pred_count": 5
-        }
-      }
-    },
-    "72": {
-      "overall": {
-        "precision": 0.14285714285714285,
-        "recall": 0.2,
-        "f1": 0.16666666666666666,
-        "gold_count": 5,
-        "pred_count": 7
-      },
-      "by_category": {
-        "individual_characteristics": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "gold_count": 1,
-          "pred_count": 1
-        },
-        "career_pathway": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "gold_count": 2,
-          "pred_count": 0
-        },
-        "research_funding_process": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "gold_count": 1,
-          "pred_count": 0
-        },
-        "organisational_culture": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "gold_count": 1,
-          "pred_count": 6
         }
       }
     },
@@ -1827,11 +1749,11 @@
     },
     "80": {
       "overall": {
-        "precision": 0.2,
+        "precision": 0.16666666666666666,
         "recall": 0.25,
-        "f1": 0.22222222222222224,
+        "f1": 0.2,
         "gold_count": 4,
-        "pred_count": 5
+        "pred_count": 6
       },
       "by_category": {
         "individual_characteristics": {
@@ -1846,7 +1768,7 @@
           "recall": 0.0,
           "f1": 0.0,
           "gold_count": 1,
-          "pred_count": 1
+          "pred_count": 2
         },
         "research_funding_process": {
           "precision": 0.3333333333333333,
@@ -1866,11 +1788,11 @@
     },
     "81": {
       "overall": {
-        "precision": 0.25,
+        "precision": 0.125,
         "recall": 0.25,
-        "f1": 0.25,
+        "f1": 0.16666666666666666,
         "gold_count": 4,
-        "pred_count": 4
+        "pred_count": 8
       },
       "by_category": {
         "individual_characteristics": {
@@ -1885,21 +1807,21 @@
           "recall": 0.0,
           "f1": 0.0,
           "gold_count": 1,
-          "pred_count": 1
+          "pred_count": 3
         },
         "research_funding_process": {
-          "precision": 0.5,
+          "precision": 0.3333333333333333,
           "recall": 0.5,
-          "f1": 0.5,
+          "f1": 0.4,
           "gold_count": 2,
-          "pred_count": 2
+          "pred_count": 3
         },
         "organisational_culture": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
           "gold_count": 0,
-          "pred_count": 1
+          "pred_count": 2
         }
       }
     },
@@ -1920,11 +1842,11 @@
           "pred_count": 0
         },
         "career_pathway": {
-          "precision": 0.3333333333333333,
+          "precision": 0.25,
           "recall": 0.5,
-          "f1": 0.4,
+          "f1": 0.3333333333333333,
           "gold_count": 2,
-          "pred_count": 3
+          "pred_count": 4
         },
         "research_funding_process": {
           "precision": 1.0,
@@ -1938,7 +1860,7 @@
           "recall": 0.0,
           "f1": 0.0,
           "gold_count": 0,
-          "pred_count": 5
+          "pred_count": 4
         }
       }
     },
@@ -2176,84 +2098,6 @@
         }
       }
     },
-    "91": {
-      "overall": {
-        "precision": 0.125,
-        "recall": 1.0,
-        "f1": 0.2222222222222222,
-        "gold_count": 1,
-        "pred_count": 8
-      },
-      "by_category": {
-        "individual_characteristics": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "gold_count": 0,
-          "pred_count": 1
-        },
-        "career_pathway": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "gold_count": 0,
-          "pred_count": 1
-        },
-        "research_funding_process": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "gold_count": 0,
-          "pred_count": 1
-        },
-        "organisational_culture": {
-          "precision": 0.2,
-          "recall": 1.0,
-          "f1": 0.33333333333333337,
-          "gold_count": 1,
-          "pred_count": 5
-        }
-      }
-    },
-    "92": {
-      "overall": {
-        "precision": 0.25,
-        "recall": 0.3333333333333333,
-        "f1": 0.28571428571428575,
-        "gold_count": 6,
-        "pred_count": 8
-      },
-      "by_category": {
-        "individual_characteristics": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "gold_count": 0,
-          "pred_count": 0
-        },
-        "career_pathway": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "gold_count": 2,
-          "pred_count": 1
-        },
-        "research_funding_process": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "gold_count": 0,
-          "pred_count": 1
-        },
-        "organisational_culture": {
-          "precision": 0.3333333333333333,
-          "recall": 0.5,
-          "f1": 0.4,
-          "gold_count": 4,
-          "pred_count": 6
-        }
-      }
-    },
     "94": {
       "overall": {
         "precision": 0.0,
@@ -2449,45 +2293,6 @@
         }
       }
     },
-    "99": {
-      "overall": {
-        "precision": 0.375,
-        "recall": 1.0,
-        "f1": 0.5454545454545454,
-        "gold_count": 3,
-        "pred_count": 8
-      },
-      "by_category": {
-        "individual_characteristics": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "gold_count": 1,
-          "pred_count": 1
-        },
-        "career_pathway": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "gold_count": 0,
-          "pred_count": 0
-        },
-        "research_funding_process": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "gold_count": 0,
-          "pred_count": 0
-        },
-        "organisational_culture": {
-          "precision": 0.2857142857142857,
-          "recall": 1.0,
-          "f1": 0.4444444444444445,
-          "gold_count": 2,
-          "pred_count": 7
-        }
-      }
-    },
     "100": {
       "overall": {
         "precision": 0.125,
@@ -2590,18 +2395,18 @@
           "pred_count": 1
         },
         "research_funding_process": {
-          "precision": 0.5,
+          "precision": 0.25,
           "recall": 0.25,
-          "f1": 0.3333333333333333,
+          "f1": 0.25,
           "gold_count": 4,
-          "pred_count": 2
+          "pred_count": 4
         },
         "organisational_culture": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
           "gold_count": 0,
-          "pred_count": 5
+          "pred_count": 3
         }
       }
     },

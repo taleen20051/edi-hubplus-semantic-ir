@@ -8,6 +8,9 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple
 
+# Allow CSV readers to handle large extracted text fields in unified resource files
+csv.field_size_limit(10**7)
+
 from src.retrieval.bm25 import BM25Index
 
 
@@ -567,7 +570,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: List[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
 
-    out_dir_explicit = argv is not None and "--out-dir" in argv
+    out_dir_explicit = "--out-dir" in (argv if argv is not None else __import__("sys").argv[1:])
 
     ontology_path = resolve_ontology_path(args.ontology_json, getattr(args, "ontology_name", None))
     if not args.taxonomy_csv.exists():

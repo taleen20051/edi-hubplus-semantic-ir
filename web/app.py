@@ -265,7 +265,7 @@ def load_resources() -> Dict[str, dict]:
     rows = read_jsonl_file(JOINED_RESOURCES_PATH)
     out: Dict[str, dict] = {}
     for r in rows:
-        rid = str(r.get("ID") or r.get("rid") or "").strip()
+        rid = str(r.get("ID") or r.get("id") or r.get("rid") or "").strip()
         if rid:
             out[rid] = r
     return out

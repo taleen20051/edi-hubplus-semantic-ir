@@ -429,16 +429,83 @@ def get_category_to_labels(concepts_by_id: Dict[str, dict]) -> Dict[str, List[st
     return out
 
 
-# Check for exact word/phrase matches within one category column.
-def resource_matches_selected_label(resource: dict, selected_category: str, selected_label: str) -> bool:
+
+# --- Enhanced label surface matching for ontology-driven filtering ---
+
+def concept_surface_labels(selected_label: str, concepts_by_id: Dict[str, dict]) -> List[str]:
+    """Return the preferred and alternative labels for the selected ontology label."""
+    selected_norm = normalise_text(selected_label)
+    if not selected_norm or selected_label == "All labels":
+        return []
+
+    surfaces: List[str] = [selected_label]
+    for concept in concepts_by_id.values():
+        labels = [str(concept.get("pref_label", "") or "")]
+        labels.extend(str(x or "") for x in (concept.get("alt_labels") or []))
+
+        if any(normalise_text(label) == selected_norm for label in labels):
+            for label in labels:
+                label = label.strip()
+                if label:
+                    surfaces.append(label)
+
+    return list(dict.fromkeys(surfaces))
+
+
+def resource_matches_selected_label(
+    resource: dict,
+    selected_category: str,
+    selected_label: str,
+    concepts_by_id: Dict[str, dict],
+) -> bool:
+    """Check whether a resource belongs to the selected browse label.
+
+    The browse dropdown uses ontology labels, but the resource file stores the
+    original spreadsheet tags. To avoid false zero-result filters, this checks
+    the selected label together with its ontology preferred/alternative labels.
+    """
     vals = resource.get(selected_category, [])
     if isinstance(vals, str):
         vals = [v.strip() for v in vals.split(",") if v.strip()]
     if not isinstance(vals, list):
         return False
 
-    selected_norm = normalise_text(selected_label)
-    return any(normalise_text(str(v)) == selected_norm for v in vals)
+    accepted = {normalise_text(label) for label in concept_surface_labels(selected_label, concepts_by_id)}
+    accepted = {label for label in accepted if label}
+    return any(normalise_text(str(v)) in accepted for v in vals)
+
+
+# New function: resource_matches_browse_label
+def resource_matches_browse_label(
+    resource: dict,
+    resource_blob: str,
+    selected_category: str,
+    selected_label: str,
+    concepts_by_id: Dict[str, dict],
+    semantic_score: float,
+    semantic_cutoff: float,
+) -> bool:
+    """Apply a practical Browse label filter.
+
+    Browse labels come from the ontology, while resource tags come from the
+    original spreadsheet. Therefore, the label should not be treated only as an
+    exact spreadsheet-tag filter. A resource is kept if it matches the selected
+    label through its stored tags, direct text evidence, or semantic similarity.
+    """
+    if selected_label == "All labels":
+        return True
+
+    if resource_matches_selected_label(resource, selected_category, selected_label, concepts_by_id):
+        return True
+
+    label_norm = normalise_text(selected_label)
+    if label_norm and re.search(rf"\b{re.escape(label_norm)}\b", resource_blob):
+        return True
+
+    if token_overlap_detect(selected_label, resource_blob, min_token_len=4, min_hits=1):
+        return True
+
+    return semantic_score >= semantic_cutoff
 
 
 # Introduce a browse option for each category and label for users unfamiliar with the field terms.
@@ -453,14 +520,12 @@ def get_browse_semantic_query(selected_category: str, selected_label: str) -> st
 # Transform labels into filters for retrieval so browsing behaves similarly to manual search option.
 def get_browse_filters(selected_category: str, selected_label: str) -> Tuple[str, str]:
     """
-    The selected category stays a hard collection filter. The selected label,
-    is now dealt with as a semantic query rather than an exact tag-based filter,
-    which makes browsing behave more like manual search while preserving the
-    overall category functionality.
+    Browse mode applies both selected controls as filters. The category narrows
+    the collection first, then the selected label narrows it further. The label
+    is also used as the semantic query so the remaining resources can still be
+    ranked by similarity.
     """
-    filter_category = selected_category
-    filter_label = "All labels"
-    return filter_category, filter_label
+    return selected_category, selected_label
 
 
 # Retrieval function
@@ -515,9 +580,11 @@ def rank_and_filter_resources(
         return re.search(rf"\b{re.escape(query_norm)}\b", blob_text) is not None
 
     # Phase 3: collect retrieval terms using lexical evidence and/or semantic similarity.
+    browse_filter_active = filter_category != "All categories" or filter_label != "All labels"
+
     candidate_rids: List[str] = []
     for rid, r in resources_by_id.items():
-        if not q:
+        if not q or browse_filter_active:
             candidate_rids.append(rid)
             continue
 
@@ -544,16 +611,35 @@ def rank_and_filter_resources(
                 continue
 
         if filter_label != "All labels":
+            blob = resource_blobs.get(rid, "")
+            sem = semantic_scores_by_rid.get(rid, 0.0)
+
             if filter_category == "All categories":
                 found_any = False
                 for category_name in CATEGORY_BROWSE_OPTIONS:
-                    if resource_matches_selected_label(r, category_name, filter_label):
+                    if resource_matches_browse_label(
+                        r,
+                        blob,
+                        category_name,
+                        filter_label,
+                        concepts_by_id,
+                        sem,
+                        dyn_cutoff,
+                    ):
                         found_any = True
                         break
                 if not found_any:
                     continue
             else:
-                if not resource_matches_selected_label(r, filter_category, filter_label):
+                if not resource_matches_browse_label(
+                    r,
+                    blob,
+                    filter_category,
+                    filter_label,
+                    concepts_by_id,
+                    sem,
+                    dyn_cutoff,
+                ):
                     continue
 
         filtered.append(rid)
@@ -691,7 +777,16 @@ def apply_browse_sort(
 # UI using Streamlit
 
 # The interface introduces two complementary workflows: broad semantic search and controlled ontology browsing.
+
 st.set_page_config(page_title="EDI Hub+ Resources", layout="wide")
+# Load the custom Streamlit styling from a separate stylesheet so the app logic
+# remains focused on retrieval and interaction behaviour.
+STYLE_PATH = BASE_DIR / "web" / "styles.css"
+if STYLE_PATH.exists():
+    st.markdown(
+        f"<style>{STYLE_PATH.read_text(encoding='utf-8')}</style>",
+        unsafe_allow_html=True,
+    )
 
 # 7. App startup: replace block with warm_up_search_stack call after variables
 concepts_v2 = load_ontology_concepts(str(ONTOLOGY_FINAL_PATH))
@@ -818,8 +913,8 @@ else:
     st.markdown("### Browse")
     st.caption(
         "Use ontology-based labels to explore the collection. "
-        "Selecting a main category restricts results to resources associated with that category, "
-        "while labels are used as semantic queries to rank relevant items within that subset."
+        "Selecting a main category restricts results to that tag group, "
+        "while selecting a label narrows the results using tag evidence, text evidence, and semantic similarity."
     )
 
     c1, c2, c3 = st.columns([1, 1, 1])
@@ -897,10 +992,10 @@ else:
     # Enable enhanced explanation features in browse mode.
     if effective_browse_query:
         matched_tags_str = format_matched_tags(concept_matches)
-        st.markdown(f"**Browse semantic query:** {effective_browse_query}")
+        st.markdown(f"**Browse ranking query:** {effective_browse_query}")
         st.caption(
-            "In Browse mode, the selected label is used to rank resources based on the different retrieval similarity methods. "
-            "It is not used as an explicit tag-only restriction."
+            "In Browse mode, the selected category filters the collection first. "
+            "The selected label then narrows the results using stored tags, text evidence, and semantic similarity."
         )
         if matched_tags_str:
             st.markdown(f"**Matched ontology tags:** {matched_tags_str}")

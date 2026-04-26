@@ -1,0 +1,100 @@
+.stApp {
+    background:
+        radial-gradient(circle at top left, rgba(40,60,120,0.18), transparent 35%),
+        radial-gradient(circle at top right, rgba(0,140,255,0.10), transparent 28%);
+}
+
+header[data-testid="stHeader"] {
+    background: transparent;
+    height: 0rem;
+}
+
+div[data-testid="stToolbar"] {
+    display: none;
+}
+
+.block-container {
+    padding-top: 2.6rem;
+    padding-bottom: 3rem;
+    max-width: 1180px;
+}
+
+h1 {
+    letter-spacing: -0.04em;
+    font-size: 3rem !important;
+    margin-bottom: 0.2rem;
+}
+
+h2 {
+    letter-spacing: -0.02em;
+    margin-top: 0.8rem;
+}
+
+h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.4rem;
+}
+
+p, li, label, span {
+    line-height: 1.6;
+}
+
+div[data-testid="stForm"] {
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 1.15rem 1.15rem 0.7rem 1.15rem;
+    background: rgba(255,255,255,0.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    backdrop-filter: blur(6px);
+}
+
+div[data-testid="stInfo"],
+div[data-testid="stWarning"],
+div[data-testid="stSuccess"],
+div[data-testid="stError"] {
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+div[data-testid="stExpander"] {
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+}
+
+.stButton > button,
+.stDownloadButton > button,
+div[data-testid="stLinkButton"] a {
+    border-radius: 14px;
+    font-weight: 700;
+    min-height: 2.8rem;
+    border: 1px solid rgba(255,255,255,0.10);
+    transition: all 0.18s ease;
+}
+
+.stButton > button:hover,
+.stDownloadButton > button:hover,
+div[data-testid="stLinkButton"] a:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,0.22);
+}
+
+div[data-baseweb="input"] > div,
+div[data-baseweb="select"] > div,
+textarea {
+    border-radius: 14px !important;
+    background: rgba(255,255,255,0.02) !important;
+}
+
+div[role="radiogroup"] {
+    gap: 1rem;
+    padding-bottom: 0.35rem;
+}
+
+section[data-testid="stSidebar"] {
+    border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+hr {
+    border-color: rgba(255,255,255,0.08);
+}

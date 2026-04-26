@@ -26,8 +26,5 @@ venv/
 # Streamlit
 .streamlit/secrets.toml
 
-# Large generated files if needed
-*.npz
-
 # Optional logs
 *.log

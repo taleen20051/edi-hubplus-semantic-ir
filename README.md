@@ -1,580 +1,295 @@
 # EDI Hub+ Semantic IR
 
-Ontology-driven semantic tagging and retrieval system for Equality, Diversity and Inclusion (EDI) resources.
+### Ontology-Driven Semantic Tagging and Search for Equality, Diversity and Inclusion Resources
 
-This project builds a searchable EDI resource collection from the EDI Hub+ spreadsheet, validates and extracts text from linked resources, cleans taxonomy labels, constructs a unified dataset, generates semantic embeddings and tags, runs retrieval baselines and hybrid retrieval experiments, and provides a final Streamlit web interface for interactive search and browsing.
-
----
-
-## Repository Overview
-
-The project has five main stages:
-
-1. Spreadsheet and taxonomy preparation
-2. Link validation and text extraction
-3. Unified dataset construction
-4. Semantic tagging and retrieval experiments
-5. Interactive Streamlit application
-
-The final application uses the **final unified corpus of 64 valid resources**.
+Final Year Individual Project – University of Leeds
+Author: Taleen Abubaker
 
 ---
 
-## Tested Environment
+## Project Overview
 
-This project was developed and tested in a Python virtual environment on macOS.
+This project develops an **ontology-guided semantic information retrieval system** for Equality, Diversity and Inclusion (EDI) resources.
 
-Recommended setup:
+Traditional keyword search often fails when users use different wording from the indexed resource vocabulary.
 
-- Python 3.11+
-- pip
-- virtual environment (venv)
+Examples:
+
+- `religious support` vs `faith accommodation`
+- `bias in grants` vs `funding discrimination`
+- `neurodivergent staff support` vs `reasonable adjustments`
+
+To address this, the system combines:
+
+1. **Ontology-based retrieval** – structured EDI concepts and controlled vocabulary
+2. **Semantic retrieval** – sentence embeddings for meaning-based matching
+3. **Hybrid ranking** – combines symbolic and semantic evidence
+4. **Explainable UI** – shows why results were returned
 
 ---
 
-## Clone the Repository
+## Main Features
 
-```bash
+### Search Modes
+
+#### Manual Semantic Search
+
+- Natural language queries
+- Semantic similarity ranking
+- Ontology query expansion
+
+#### Controlled Browse Search
+
+- Browse by EDI category
+- Browse by ontology labels
+- Filtered ranked results
+
+### Explainability
+
+Each result can display:
+
+- Matched ontology concepts
+- Keyword evidence
+- Semantic relevance score
+- Why the result was retrieved
+
+### Ontology Iteration Framework
+
+Supports evaluation across ontology versions:
+
+- v1 baseline
+- v2 iterative refinements
+- Controlled comparison experiments
+
+---
+
+## System Architecture
+
+```text
+User Query
+   ↓
+Query Processing
+   ↓
+Ontology Matching + Expansion
+   ↓
+Embedding Similarity Search
+   ↓
+Hybrid Ranking
+   ↓
+Explainable Results UI
+```
+
+## **Repository Structure**
+
+edi-hubplus-semantic-ir/
+│
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   ├── semantic/
+│   └── phase8_iterations/
+│
+├── ontology/
+│   ├── versions/
+│   └── change_logs/
+│
+├── src/
+│   ├── extraction/
+│   ├── retrieval/
+│   ├── evaluation/
+│   ├── hybrid_search/
+│   └── ontology/
+│
+├── web/
+│   ├── app.py
+│   └── styles.css
+│
+├── requirements.txt
+└── README.md
+
+
+## **Installation**
+
+### **1. Clone Repository**
+
+```
 git clone https://github.com/taleen20051/edi-hubplus-semantic-ir.git
 cd edi-hubplus-semantic-ir
 ```
 
-If downloaded as a ZIP file, extract it and open the project folder in Terminal.
+### **2. Create Virtual Environment**
 
----
+#### **macOS / Linux**
 
-## Create and Activate Virtual Environment
-
-### macOS / Linux
-
-```bash
+```
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### Windows
+#### **Windows**
 
-```bash
+```
 python -m venv .venv
 .venv\Scripts\activate
 ```
 
----
+### **3. Install Dependencies**
 
-## Install Dependencies
-
-```bash
+```
 pip install -r requirements.txt
 ```
 
-If any package is missing:
+## **Run Web Application**
 
-```bash
-pip install openpyxl trafilatura streamlit watchdog
+```
+streamlit run web/app.py
 ```
 
-### Dependency Notes
+Then open: http://localhost:8501
 
-- `openpyxl` = Excel reading
-- `trafilatura` = HTML extraction
-- `streamlit` = Web app
-- `watchdog` = optional Streamlit speed improvement
+## **Core Technologies**
 
----
+| **Component** | **Tool**              |
+| ------------------- | --------------------------- |
+| Language            | Python                      |
+| UI                  | Streamlit                   |
+| Semantic Embeddings | SentenceTransformers        |
+| Parsing             | BeautifulSoup / Trafilatura |
+| PDF Extraction      | PyMuPDF / pdfminer          |
+| Data Handling       | Pandas / NumPy              |
+| Evaluation          | Custom IR Metrics           |
 
-## Important Notes Before Running
+## **Retrieval Models Implemented**
 
-### Semantic Tagging Scripts Must Be Run As Modules
+### **1. BM25 Baseline**
 
-Correct:
+Traditional lexical ranking using exact term overlap.
 
-```bash
-python -m src.semantic_tagging.build_concept_index
-```
+### **2. Ontology-Only Retrieval**
 
-Incorrect:
+Uses structured EDI concepts and label matching.
 
-```bash
-python src/semantic_tagging/build_concept_index.py
-```
+### **3. Hybrid Retrieval**
 
-### First Embedding Run
+Combines: Final Score =
+α × Semantic Similarity + β × Ontology Match Score
 
-The first run may download Hugging Face models:
+## **Evaluation Metrics**
 
-- `sentence-transformers/all-MiniLM-L6-v2`
-- `sentence-transformers/all-mpnet-base-v2`
+The system was evaluated using:
 
-This is normal.
+* Precision@k
+* Recall@k
+* F1@k
+* MAP
+* nDCG
+* Coverage@k
+* Diversity Entropy
 
-### Harmless Warnings
+## **Final Dissertation Findings**
 
-You may see:
+The final controlled experiments found:
 
-- openpyxl warnings
-- `UNEXPECTED embeddings.position_ids`
-- `datetime.utcnow()` warnings
+* **Ontology-only retrieval achieved strongest top-ranked relevance**
+* **Hybrid retrieval improved thematic breadth**
+* Structured vocabularies were highly effective in domain-specific EDI search
 
-These do not prevent execution.
+This demonstrates that more complex AI models do not always outperform carefully designed symbolic systems.
 
----
+## **Example Queries**
 
-# FULL PIPELINE
+* trans identity support
+* religion accommodations
+* bullying microaggressions
+* women leadership pipeline
+* grant bias reduction
+* inclusive policy reform
 
----
+## **Data Source**
 
-## Input File Required
+The project uses a curated institutional EDI Hub+ spreadsheet of publicly accessible resources including:
 
-```text
-data/raw/Resource centre taxonomy and resources_wd_macros.xlsm
-```
+* PDFs
+* HTML webpages
+* Guidance documents
+* Toolkits
+* Policies
+* Academic materials
 
----
+## **Reproducibility**
 
-# STEP 1 — Extract Spreadsheet To CSV
+All experiments use fixed:
 
-**Script:** `src/extraction/extract_sheet5_to_csv.py`
+* Corpus
+* Query set
+* Embedding model
+* Evaluation metrics
 
-### Purpose
+This ensures controlled comparison between ontology versions and retrieval methods.
 
-- Reads workbook
-- Extracts sheet `5_Resources_full_data`
-- Saves CSV
+## **Notes for Assessors / Markers**
 
-### Run
+To run the final prototype:
+
+`pip install -r requirements.txt
+streamlit run web/app.py`
+
+The interface demonstrates:
+
+* Semantic search
+* Ontology browsing
+* Explainability
+* Final refined ontology system
+
+## **Future Improvements**
+
+* Learned hybrid ranking
+* Larger corpus
+* User studies
+* Adaptive weighting
+* Expanded ontology coverage
+* Deployment as live web platform
+
+## **Academic Context**
+
+This repository was developed as a Final Year Individual Project in Computer Science at the University of Leeds.
+
+## **Author**
+
+**Taleen Abubaker**
+
+## **License**
+
+Academic / Educational Use Only
+
+
+## Full Experimental Reproduction Pipeline (Optional)
+
+These commands reproduce the full dissertation pipeline from raw data to final evaluation outputs.
+
+### Build Unified Dataset
 
 ```bash
 python src/extraction/extract_sheet5_to_csv.py
-```
-
-### Output
-
-```text
-data/raw/resources_full_data_full.csv
-```
-
-### Example Result
-
-- Rows exported: 104
-
----
-
-# STEP 2 — Filter Included Resources
-
-**Script:** `src/extraction/filter_included_resources.py`
-
-### Purpose
-
-- Removes excluded rows
-- Keeps included resources
-
-### Run
-
-```bash
 python src/extraction/filter_included_resources.py
-```
-
-### Output
-
-```text
-data/processed/resources_included_only.csv
-```
-
-### Example Result
-
-- Raw rows: 104
-- Included rows: 74
-
----
-
-# STEP 3 — Extract Taxonomy Dataset
-
-**Script:** `src/extraction/extract_taxonomy_from_included.py`
-
-### Run
-
-```bash
-python src/extraction/extract_taxonomy_from_included.py
-```
-
-### Output
-
-```text
-data/processed/taxonomy_raw.csv
-```
-
----
-
-# STEP 4 — Clean Taxonomy Labels
-
-**Script:** `src/taxonomy/clean_taxonomy_labels.py`
-
-### Run
-
-```bash
-python src/taxonomy/clean_taxonomy_labels.py
-```
-
-### Outputs
-
-```text
-data/processed/taxonomy_clean.csv
-data/processed/normalisation_log.csv
-data/processed/taxonomy_stats.json
-```
-
----
-
-# STEP 5 — Validate Links
-
-**Script:** `src/extraction/validate_links.py`
-
-### Run
-
-```bash
 python src/extraction/validate_links.py
-```
-
-### Outputs
-
-```text
-data/processed/resource_manifest.csv
-data/processed/link_validation_log.csv
-```
-
----
-
-# STEP 6 — Filter Validated Extraction Set
-
-**Script:** `src/extraction/filter_validated_resources.py`
-
-### Run
-
-```bash
-python src/extraction/filter_validated_resources.py
-```
-
-### Output
-
-```text
-data/processed/resources_validated_for_extraction.csv
-```
-
----
-
-# STEP 7 — Extract Text From Resources
-
-**Script:** `src/extraction/extract_text_from_validated.py`
-
-### Run
-
-```bash
 python src/extraction/extract_text_from_validated.py
-```
-
-### Outputs
-
-```text
-data/processed/resources_text.jsonl
-data/processed/extraction_manifest.csv
-data/processed/text_by_id/
-data/cache/
-```
-
-### Example Result
-
-- Successful extractions: 64
-
----
-
-# STEP 8 — Build Final Unified Dataset
-
-**Script:** `src/dataset/build_unified_dataset.py`
-
-### Run
-
-```bash
 python src/dataset/build_unified_dataset.py
 ```
 
-### Outputs
+### **Generate Embeddings**
 
-```text
-data/processed/resources_unified.csv
-data/processed/resources_unified.jsonl
-data/processed/unified_join_report.json
-```
+`python -m src.semantic_tagging.embed_resources`
 
-### Final Corpus Size
+### **Run Baselines**
 
-**64 resources**
+`python -m src.retrieval.run_baselines`
 
----
+### **Run Hybrid Retrieval**
 
-# STEP 9 — Validate Ontology v1
+`python -m src.hybrid_search.hybrid_retrieval`
 
-```bash
-python src/ontology/validate_ontology_v1.py
-```
+### **Evaluate Results**
 
-### Output
-
-```text
-data/processed/edi_ontology_v1_validation.json
-```
-
----
-
-# STEP 10 — Export Ontology To Turtle
-
-```bash
-python src/ontology/export_ontology_v1_to_ttl.py
-```
-
-### Output
-
-```text
-data/processed/edi_ontology_v1.ttl
-```
-
----
-
-# STEP 11 — Build Concept Index
-
-```bash
-python -m src.semantic_tagging.build_concept_index
-```
-
----
-
-# STEP 12 — Build Resource Embeddings
-
-```bash
-python -m src.semantic_tagging.embed_resources
-```
-
-### Outputs
-
-```text
-data/semantic/resource_embeddings_minilm.npz
-data/semantic/resource_embeddings_mpnet.npz
-```
-
----
-
-# STEP 13 — Run Semantic Tagging
-
-```bash
-python -m src.semantic_tagging.run_semantic_tagging
-```
-
-### Outputs
-
-```text
-data/semantic/semantic_tags_minilm.jsonl
-data/semantic/semantic_tags_mpnet.jsonl
-```
-
----
-
-# STEP 14 — Evaluate Semantic Tags
-
-```bash
-python -m src.semantic_tagging.evaluate_semantic_tags
-```
-
----
-
-# STEP 15 — Threshold Experiments
-
-```bash
-python -m src.semantic_tagging.threshold_experiments
-```
-
----
-
-# STEP 16 — Category Analysis
-
-```bash
-python -m src.semantic_tagging.category_analysis
-```
-
----
-
-# STEP 17 — Concept Frequency Analysis
-
-```bash
-python -m src.semantic_tagging.concept_frequency
-```
-
----
-
-# STEP 18 — Run Final Baselines
-
-```bash
-python -m src.retrieval.run_baselines \
---ontology-name v2_iter04 \
---taxonomy-csv data/processed/taxonomy_clean.csv \
---queries data/phase8_iterations/iter04/inputs/queries_v2_iter04_32.jsonl \
---out-dir data/phase8_iterations/iter04/runs/v2_iter04/edi_ontology_v2_iter04 \
---top-k 20
-```
-
-### Produces
-
-- BM25 baseline
-- Ontology-only baseline
-- Ontology-text baseline
-
----
-
-# STEP 19 — Run Final Hybrid Retrieval
-
-```bash
-python -m src.hybrid_search.hybrid_retrieval \
---ontology ontology/versions/v2_iter04/edi_ontology_v2_iter04.json \
---embeddings data/semantic/resource_embeddings_mpnet.npz \
---semantic_tags data/semantic/semantic_tags_mpnet.jsonl \
---queries data/phase8_iterations/iter04/inputs/queries_v2_iter04_32.jsonl \
---out_run data/phase8_iterations/iter04/runs/v2_iter04/hybrid_mpnet_a085_b015.jsonl \
---model_id sentence-transformers/all-mpnet-base-v2 \
---top_n 20 \
---alpha 0.85 \
---beta 0.15
-```
-
----
-
-# STEP 20 — Evaluate Hybrid Metrics
-
-```bash
-python -m src.evaluation.evaluate_hybrid \
---qrels data/phase8_iterations/iter04/qrels/qrels_iter04.json \
---run data/phase8_iterations/iter04/runs/v2_iter04/hybrid_mpnet_a085_b015.jsonl \
---out data/phase8_iterations/iter04/metrics_final/hybrid_metrics_iter04_recomputed.json \
---k 20
-```
-
-### Example Metrics
-
-- P@20 = 0.154
-- R@20 = 0.625
-- F1@20 = 0.218
-- MAP@20 = 0.293
-- nDCG@20 = 0.469
-
----
-
-# STEP 21 — Evaluate Coverage & Diversity
-
-```bash
-python -m src.evaluation.evaluate_coverage_diversity \
---results data/phase8_iterations/iter04/runs/v2_iter04/hybrid_mpnet_a085_b015.jsonl \
---resources data/processed/resources_unified.jsonl \
---k 20 \
---out data/phase8_iterations/iter04/metrics_final/hybrid_covdiv_iter04.json
-```
-
-### Example Metrics
-
-- coverage@20 = 0.9921875
-- diversity_entropy@20 = 0.8760
-
----
-
-# STEP 22 — Run Final Web Application
-
-```bash
-streamlit run web/app.py
-```
-
-### Opens At
-
-```text
-http://localhost:8501
-```
-
-### Uses Final Assets
-
-```text
-ontology/versions/v2_iter04/edi_ontology_v2_iter04.json
-data/processed/resources_unified.jsonl
-data/semantic/resource_embeddings_minilm.npz
-```
-
----
-
-# Quick Start For Assessors
-
-```bash
-git clone <YOUR_GITHUB_REPO_URL>
-cd edi-hubplus-semantic-ir
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-pip install openpyxl trafilatura streamlit watchdog
-streamlit run web/app.py
-```
-
----
-
-# Final Dataset Summary
-
-- Raw spreadsheet rows: 104
-- Included resources: 74
-- Validated for extraction: 70
-- Successful text extractions: 64
-- Final searchable corpus: **64**
-
----
-
-# Troubleshooting
-
-## Relative Import Error
-
-Use:
-
-```bash
-python -m src.semantic_tagging.build_concept_index
-```
-
-not direct file execution.
-
-## Missing Packages
-
-```bash
-pip install openpyxl trafilatura streamlit watchdog
-```
-
-## JSONDecodeError in Coverage Script
-
-Use:
-
-```bash
---resources data/processed/resources_unified.jsonl
-```
-
-not CSV.
-
-## Streamlit Performance
-
-```bash
-pip install watchdog
-```
-
----
-
-# Notes For Assessors
-
-- Final UI: `web/app.py`
-- Final ontology: `v2_iter04`
-- Final corpus: 64 resources
-- Final hybrid weights: alpha=0.85 beta=0.15
-
----
-
-# Author
-
-Taleen Abubaker
-Final Year Individual Project
-University of Leeds
+`python -m src.evaluation.evaluate_hybrid
+python -m src.evaluation.evaluate_coverage_diversity`

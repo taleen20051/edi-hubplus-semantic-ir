@@ -288,8 +288,7 @@ python src/dataset/build_unified_dataset.py
 
 ### **Evaluate Results**
 
-`python -m src.evaluation.evaluate_hybrid
-python -m src.evaluation.evaluate_coverage_diversity`
+`python -m src.evaluation.evaluate_hybrid python -m src.evaluation.evaluate_coverage_diversity`
 
 # Notes for output files
 
@@ -298,3 +297,5 @@ python -m src.evaluation.evaluate_coverage_diversity`
 - The folder `data/phase7_evaluation/` contains intermediate evaluation artefacts from the earlier 5-query and 20-query development stages. These files are retained to show the progression of the evaluation design. Final reported dissertation results are based on the 32-query benchmark under `data/phase8_iterations/iter04/`.
 - The folder `data/phase7_evaluation/hybrid_outputs/` contains archived Phase 7 hybrid retrieval experiments combining semantic similarity and ontology-based boosting. Filenames encode weighting configurations (e.g., alpha=0.70, beta=0.30).
 - `data/phase8_iterations/iter03/` and `iter03b/` contain intermediate ontology-iteration run outputs. These iterations were exploratory and are retained as development evidence; final evaluated results are reported from `iter04`.
+- data/processed/text_by_id/ contains one plain-text file per resource, generated during extraction. Each file includes metadata and cleaned extracted text for manual inspection, quality assurance, and reproducibility.
+- `data/semantic/` contains precomputed resource embeddings, concept-surface embeddings, semantic tag predictions, and semantic tagging evaluation summaries. These files allow the Streamlit app and retrieval experiments to run without recomputing embeddings.

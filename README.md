@@ -107,7 +107,6 @@ edi-hubplus-semantic-ir/
 ├── requirements.txt
 └── README.md
 
-
 ## **Installation**
 
 ### **1. Clone Repository**
@@ -231,8 +230,7 @@ This ensures controlled comparison between ontology versions and retrieval metho
 
 To run the final prototype:
 
-`pip install -r requirements.txt
-streamlit run web/app.py`
+`pip install -r requirements.txt streamlit run web/app.py`
 
 The interface demonstrates:
 
@@ -261,7 +259,6 @@ This repository was developed as a Final Year Individual Project in Computer Sci
 ## **License**
 
 Academic / Educational Use Only
-
 
 ## Full Experimental Reproduction Pipeline (Optional)
 

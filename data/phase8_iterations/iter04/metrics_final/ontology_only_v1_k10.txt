@@ -1,0 +1,9 @@
+Macro average (over judged queries)
+{
+  "P@10": 0.476,
+  "R@10": 0.310,
+  "F1@10": 0.359,
+  "MAP@10": 0.292,
+  "nDCG@10": 0.344,
+  "num_queries_used": 24
+}

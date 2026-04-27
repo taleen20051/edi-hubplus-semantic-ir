@@ -9,27 +9,27 @@ import pandas as pd
 import requests
 
 
-# =========================
-# CONFIG
-# =========================
+# Input file containing resources that were marked as included in the spreadsheet.
 IN_CSV = Path("data/processed/resources_included_only.csv")
+# Summary output recording the final validation decision for each resource.
 OUT_MANIFEST = Path("data/processed/resource_manifest.csv")
+# Detailed log of each HTTP attempt made during validation.
 OUT_LOG = Path("data/processed/link_validation_log.csv")
 
 ID_COL = "ID"
 TITLE_COL = "Title"
 URL_COL = "Link"
 
-# Network behaviour (methodology-relevant)
+# Network settings used for reproducible and controlled validation.
 TIMEOUT_SECONDS = 15
 MAX_RETRIES = 2
 SLEEP_BETWEEN_RETRIES_SECONDS = 1.0
 
-# Treat these as “accessible enough to try extraction”
-# (Many sites block HEAD but allow GET, so we fallback anyway)
+# HTTP statuses treated as accessible enough to attempt later extraction.
+# Some servers block HEAD requests, so GET fallback is still used where needed.
 ALLOWED_STATUS_FOR_TRY = {200, 201, 202, 203, 204, 206, 301, 302, 303, 307, 308}
 
-# If content-type is missing/incorrect, we also use URL heuristics
+# Used when the server content-type is missing or unreliable.
 PDF_EXTENSIONS = (".pdf", ".PDF")
 
 
@@ -48,24 +48,24 @@ class ValidationLog:
 
 
 def normalise_url(url: str) -> str:
-    """Basic URL cleanup without being too aggressive."""
+    """Clean simple spreadsheet URL artefacts without changing the URL meaning."""
     u = str(url).strip()
-    # Common Excel issues: trailing spaces, line breaks
+    # Remove line breaks that can appear when links are copied from Excel.
     u = u.replace("\n", "").replace("\r", "")
     return u
 
 
 def detect_type(url: str, content_type: Optional[str]) -> str:
-    """Return: 'pdf', 'html', or 'unknown'."""
+    """Classify a resource as 'pdf', 'html', or 'unknown'."""
     ct = (content_type or "").lower().strip()
 
-    # Strong signals from content-type
+    # Prefer server-provided content-type when available.
     if "application/pdf" in ct:
         return "pdf"
     if "text/html" in ct:
         return "html"
 
-    # Weaker signals / fallbacks
+    # Fall back to URL extension and general text content types.
     if url.endswith(PDF_EXTENSIONS):
         return "pdf"
     if ct.startswith("text/"):
@@ -81,12 +81,12 @@ def request_with_fallback(
     resource_id: str,
 ) -> Tuple[bool, Optional[int], Optional[str], Optional[str], Optional[int]]:
     """
-    Try HEAD first, then GET if needed.
+    Validate a URL using HEAD first, then GET if HEAD is blocked or incomplete.
     Returns: (ok, status_code, final_url, content_type, content_length)
     """
     last_error = ""
-    for attempt in range(1, MAX_RETRIES + 2):  # e.g. MAX_RETRIES=2 => attempts 1..3
-        # ---- HEAD
+    for attempt in range(1, MAX_RETRIES + 2):  # e.g. MAX_RETRIES=2 gives 3 attempts.
+        # First try HEAD to inspect the resource without downloading the body.
         try:
             r = session.head(
                 url,
@@ -103,20 +103,17 @@ def request_with_fallback(
                 ValidationLog(resource_id, url, attempt, "HEAD", ok, status, "")
             )
 
-            # Some servers refuse HEAD or give useless headers.
-            # If ok and content-type looks informative, we can accept.
-            # Otherwise fallback to GET.
+            # Accept HEAD only when it succeeds and gives useful type information.
             if ok and ct:
                 return True, status, r.url, ct, content_length
 
-            # If HEAD not ok, try GET anyway (many sites block HEAD)
         except Exception as e:
             last_error = str(e)
             logs.append(
                 ValidationLog(resource_id, url, attempt, "HEAD", False, None, last_error)
             )
 
-        # ---- GET (stream=True so we don't download full PDFs; we only need headers)
+        # Fall back to GET because many websites block or mishandle HEAD requests.
         try:
             r = session.get(
                 url,
@@ -134,7 +131,7 @@ def request_with_fallback(
                 ValidationLog(resource_id, url, attempt, "GET", ok, status, "")
             )
 
-            # Close the connection quickly
+            # Close streamed response after reading headers.
             try:
                 r.close()
             except Exception:
@@ -149,6 +146,7 @@ def request_with_fallback(
                 ValidationLog(resource_id, url, attempt, "GET", False, None, last_error)
             )
 
+        # Brief pause before retrying to avoid aggressive repeated requests.
         time.sleep(SLEEP_BETWEEN_RETRIES_SECONDS)
 
     return False, None, None, None, None
@@ -156,39 +154,40 @@ def request_with_fallback(
 
 def decide(ok: bool, detected_type: str, url: str) -> Tuple[str, str]:
     """
-    Decide whether we should attempt extraction later.
+    Decide whether a validated resource should be passed to text extraction.
     Returns: (final_decision, skip_reason)
     """
     if not ok:
         return "skip", "unreachable_or_error"
 
-    # If we can't classify, we can still choose to extract later,
-    # but keeping a strict policy improves defensibility.
+    # Keep extraction strict by only passing clearly supported resource types.
     if detected_type == "unknown":
-        # You can relax this later if needed:
         return "skip", "unknown_content_type"
 
-    # Otherwise we extract
     return "extract", ""
 
 
 def main() -> None:
+    # This stage depends on the included-only dataset from the filtering step.
     if not IN_CSV.exists():
         raise FileNotFoundError(
             f"Input not found: {IN_CSV}\n"
             "Make sure you created resources_included_only.csv first."
         )
 
+    # Create output directories if they do not already exist.
     OUT_MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     OUT_LOG.parent.mkdir(parents=True, exist_ok=True)
 
+    # Read the included resources while preserving spreadsheet values.
     df = pd.read_csv(IN_CSV, dtype=object)
 
+    # Validate the minimum schema needed for URL checking.
     for col in [ID_COL, TITLE_COL, URL_COL]:
         if col not in df.columns:
             raise ValueError(f"Missing required column '{col}'. Columns: {list(df.columns)}")
 
-    # Build HTTP session
+    # Reuse a session for efficiency and identify the request purpose politely.
     session = requests.Session()
     session.headers.update(
         {
@@ -207,7 +206,7 @@ def main() -> None:
 
         url = normalise_url(url_raw)
 
-        # Empty URL => skip
+        # Record missing URLs explicitly so they remain visible in the manifest.
         if not url:
             manifest_rows.append(
                 {
@@ -226,6 +225,7 @@ def main() -> None:
             )
             continue
 
+        # Validate the URL and collect final redirected URL/type metadata.
         ok, status_code, final_url, content_type, content_length = request_with_fallback(
             session=session,
             url=url,
@@ -238,6 +238,7 @@ def main() -> None:
 
         url_status = "ok" if ok else "error"
 
+        # Store one manifest row per input resource for traceability.
         manifest_rows.append(
             {
                 "ID": rid,
@@ -254,14 +255,14 @@ def main() -> None:
             }
         )
 
-    # Write outputs
+    # Save the summary manifest and detailed request log.
     manifest_df = pd.DataFrame(manifest_rows)
     manifest_df.to_csv(OUT_MANIFEST, index=False)
 
     log_df = pd.DataFrame([asdict(l) for l in logs])
     log_df.to_csv(OUT_LOG, index=False)
 
-    # Summary prints (helpful for you + methodology)
+    # Print a concise summary for reproducibility notes and report checks.
     print(" Link validation complete")
     print(f"Input rows: {len(df)}")
     print(f"Manifest saved: {OUT_MANIFEST}")

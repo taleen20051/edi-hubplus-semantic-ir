@@ -1,3 +1,11 @@
+"""
+Build an ontology v2 iteration by applying a controlled patch to ontology v1.
+
+This script supports reproducible ontology refinement. Instead of editing the
+baseline ontology directly, a patch file describes the exact changes to apply.
+The script then writes both the new ontology version and a change log.
+"""
+
 from __future__ import annotations
 
 import argparse
@@ -7,34 +15,35 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
 
-# -----------------------------
-# Project root + defaults
-# -----------------------------
+# Resolve paths from the repository root so the script works from different terminals.
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_V1_PATH = PROJECT_ROOT / "ontology" / "edi_ontology_v1.json"
 
 
-# -----------------------------
-# Helpers
-# -----------------------------
+# Helper functions for file I/O, normalisation, and concept indexing
 def read_json(path: Path) -> dict:
+    """Read a JSON file into a dictionary."""
     return json.loads(path.read_text(encoding="utf-8"))
 
 
 def write_json(path: Path, obj: dict) -> None:
+    """Write a dictionary as formatted JSON, creating parent folders if required."""
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def norm(s: str) -> str:
+    """Normalise labels for duplicate checking and comparison."""
     return " ".join((s or "").strip().lower().split())
 
 
 def now_utc_iso() -> str:
+    """Return the current UTC timestamp in ISO-like format."""
     return datetime.utcnow().isoformat() + "Z"
 
 
 def ensure_list(x: Any) -> List[str]:
+    """Convert a patch value into a clean list of strings."""
     if x is None:
         return []
     if isinstance(x, list):
@@ -43,14 +52,14 @@ def ensure_list(x: Any) -> List[str]:
 
 
 def index_concepts_by_id(ontology: dict) -> Dict[str, dict]:
+    """Create a lookup from concept id to concept object."""
     concepts = ontology.get("concepts", []) or []
     return {c["id"]: c for c in concepts if "id" in c}
 
 
-# -----------------------------
-# Patch operations
-# -----------------------------
+# Patch functionality
 def add_alt_labels(concept: dict, labels: List[str]) -> Dict[str, Any]:
+    """Add new alternative labels to a concept without duplicating existing labels."""
     before = ensure_list(concept.get("alt_labels"))
     before_norm = {norm(x) for x in before}
 
@@ -69,6 +78,7 @@ def add_alt_labels(concept: dict, labels: List[str]) -> Dict[str, Any]:
 
 
 def remove_alt_labels(concept: dict, labels: List[str]) -> Dict[str, Any]:
+    """Remove selected alternative labels from a concept."""
     before = ensure_list(concept.get("alt_labels"))
     remove_set = {norm(x) for x in labels if str(x).strip()}
 
@@ -85,22 +95,26 @@ def remove_alt_labels(concept: dict, labels: List[str]) -> Dict[str, Any]:
 
 
 def set_broader(concept: dict, broader: str) -> Dict[str, Any]:
+    """Set or replace an optional broader-concept relation."""
     prev = concept.get("broader")
     concept["broader"] = broader
     return {"previous": prev, "new": broader}
 
 
 def add_new_concept(ontology: dict, new_c: dict) -> None:
+    """Append a new concept object to the ontology."""
     ontology.setdefault("concepts", [])
     ontology["concepts"].append(new_c)
 
 
-# -----------------------------
 # Core patch application
-# -----------------------------
 def apply_patch(v1: dict, patch: dict) -> Tuple[dict, dict]:
     """
-    Applies controlled patch changes and returns (v2_ontology, change_log).
+    Apply controlled patch changes to ontology v1.
+
+    Returns:
+      - v2 ontology dictionary
+      - change log dictionary recording all applied changes and warnings
     """
     log: Dict[str, Any] = {
         "timestamp_utc": now_utc_iso(),
@@ -118,10 +132,10 @@ def apply_patch(v1: dict, patch: dict) -> Tuple[dict, dict]:
         "notes": "This log records exactly what was changed to construct v2 from v1."
     }
 
-    # Deep copy v1
+    # Deep copy v1 so the original dictionary is not modified in memory.
     out = json.loads(json.dumps(v1))
 
-    # Update metadata
+    # Update version metadata for the derived ontology.
     out["version"] = patch.get("version", "v2")
     out["created_utc"] = now_utc_iso()
     out["description"] = (
@@ -132,7 +146,7 @@ def apply_patch(v1: dict, patch: dict) -> Tuple[dict, dict]:
     idx = index_concepts_by_id(out)
     changes = patch.get("changes", {}) or {}
 
-    # 1) Add alt labels
+    # 1) Add alternative labels to existing concepts.
     for row in changes.get("add_alt_labels", []) or []:
         cid = str(row.get("concept_id", "")).strip()
         labels = ensure_list(row.get("alt_labels_to_add", []))
@@ -142,7 +156,7 @@ def apply_patch(v1: dict, patch: dict) -> Tuple[dict, dict]:
         res = add_alt_labels(idx[cid], labels)
         log["changes_applied"]["add_alt_labels"].append({"concept_id": cid, **res})
 
-    # 2) Remove alt labels
+    # 2) Remove alternative labels from existing concepts.
     for row in changes.get("remove_alt_labels", []) or []:
         cid = str(row.get("concept_id", "")).strip()
         labels = ensure_list(row.get("alt_labels_to_remove", []))
@@ -152,7 +166,7 @@ def apply_patch(v1: dict, patch: dict) -> Tuple[dict, dict]:
         res = remove_alt_labels(idx[cid], labels)
         log["changes_applied"]["remove_alt_labels"].append({"concept_id": cid, **res})
 
-    # 3) Set broader relations (optional in iter01; more useful iter03)
+    # 3) Add optional broader relations where required by a refinement iteration.
     for row in changes.get("set_broader", []) or []:
         cid = str(row.get("concept_id", "")).strip()
         broader = str(row.get("broader", "")).strip()
@@ -165,7 +179,7 @@ def apply_patch(v1: dict, patch: dict) -> Tuple[dict, dict]:
         res = set_broader(idx[cid], broader)
         log["changes_applied"]["set_broader"].append({"concept_id": cid, **res})
 
-    # 4) Add new concepts (optional; if used must match schema: category_id)
+    # 4) Add new concepts if a patch explicitly introduces them.
     for new_c in changes.get("add_new_concepts", []) or []:
         new_id = str(new_c.get("id", "")).strip()
         if not new_id:
@@ -185,6 +199,7 @@ def apply_patch(v1: dict, patch: dict) -> Tuple[dict, dict]:
         if new_c.get("broader"):
             concept_obj["broader"] = str(new_c["broader"]).strip()
 
+        # Record schema issues as warnings while still writing a traceable output.
         if not concept_obj["pref_label"]:
             log["warnings"].append(f"add_new_concepts: missing pref_label for {new_id}")
         if not concept_obj["category_id"]:
@@ -197,10 +212,8 @@ def apply_patch(v1: dict, patch: dict) -> Tuple[dict, dict]:
     return out, log
 
 
-# -----------------------------
-# CLI
-# -----------------------------
 def parse_args() -> argparse.Namespace:
+    """Define command-line arguments for building an ontology iteration."""
     p = argparse.ArgumentParser(description="Build ontology v2 iteration by applying a controlled patch to v1.")
     p.add_argument("--v1", type=str, default=str(DEFAULT_V1_PATH), help="Path to ontology v1 JSON.")
     p.add_argument("--iter", type=str, required=True, help="Iteration id, e.g. v2_iter01")
@@ -209,6 +222,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    """Load v1 and patch files, apply the patch, and write versioned outputs."""
     args = parse_args()
     v1_path = Path(args.v1)
     patch_path = Path(args.patch)
@@ -224,7 +238,7 @@ def main() -> None:
 
     v2, change_log = apply_patch(v1, patch)
 
-    # Iteration-scoped output paths
+    # Store outputs in versioned ontology and change-log folders.
     out_dir = PROJECT_ROOT / "ontology" / "versions" / iteration_id
     log_dir = PROJECT_ROOT / "ontology" / "change_logs"
 

@@ -1,25 +1,3 @@
-# src/ontology/validate_ontology_v1.py
-"""
-Validate Ontology v1 (spreadsheet-fidelity) for structural integrity.
-
-Checks:
-- No duplicate concept.id
-- Every category_id is one of the 4 allowed
-- pref_label is non-empty
-- alt_labels does not contain pref_label
-- No placeholder labels like "Not Specified" were included as concepts
-- Counts match edi_ontology_v1_stats.json (total + per category)
-- Optional: writes a validation report JSON
-
-Inputs:
-- data/processed/edi_ontology_v1.json
-- data/processed/edi_ontology_v1_stats.json
-
-Output:
-- Console PASS/FAIL with details
-- Optional JSON report: data/processed/edi_ontology_v1_validation.json
-"""
-
 from __future__ import annotations
 
 import json
@@ -30,10 +8,14 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
 
+# Ontology and stats file produced by build_ontology_v1.py.
 IN_ONTOLOGY = Path("ontology/edi_ontology_v1.json")
 IN_STATS = Path("data/processed/edi_ontology_v1_stats.json")
+
+# Validation report written for reproducibility and dissertation evidence.
 OUT_REPORT = Path("data/processed/edi_ontology_v1_validation.json")
 
+# The only valid top-level category IDs in the four-column EDI taxonomy.
 ALLOWED_CATEGORY_IDS = {
     "individual_characteristics",
     "career_pathway",
@@ -41,7 +23,7 @@ ALLOWED_CATEGORY_IDS = {
     "organisational_culture",
 }
 
-# Things we should never allow to become concepts in v1
+# Placeholder values should not become ontology concepts.
 FORBIDDEN_LABELS_CASEFOLD = {
     "not specified",
     "n/a",
@@ -53,12 +35,14 @@ FORBIDDEN_LABELS_CASEFOLD = {
 
 
 def _load_json(path: Path) -> Dict[str, Any]:
+    """Load a required JSON file."""
     if not path.exists():
         raise FileNotFoundError(f"Missing required file: {path}")
     return json.loads(path.read_text(encoding="utf-8"))
 
 
 def _casefold(s: str) -> str:
+    """Normalise text for case-insensitive placeholder checks."""
     return (s or "").strip().casefold()
 
 
@@ -68,13 +52,14 @@ def _norm_space(s: str) -> str:
 
 
 def main() -> None:
+    """Run ontology validation checks and write a JSON report."""
     ontology = _load_json(IN_ONTOLOGY)
     stats = _load_json(IN_STATS)
 
     errors: List[str] = []
     warnings: List[str] = []
 
-    # Basic shape checks
+    # Check the expected top-level ontology structure.
     if "concepts" not in ontology or not isinstance(ontology["concepts"], list):
         errors.append("Ontology missing 'concepts' list.")
         concepts: List[Dict[str, Any]] = []
@@ -84,14 +69,14 @@ def main() -> None:
     if "categories" not in ontology or not isinstance(ontology["categories"], list):
         warnings.append("Ontology missing 'categories' list (not fatal, but unexpected).")
 
-    # Check: no duplicate ids
+    # Concept identifiers must be unique.
     ids = [c.get("id") for c in concepts]
     id_counts = Counter(ids)
     dup_ids = [cid for cid, ct in id_counts.items() if cid is not None and ct > 1]
     if dup_ids:
         errors.append(f"Duplicate concept.id found: {dup_ids[:10]}{'...' if len(dup_ids) > 10 else ''}")
 
-    # Per-category counts (actual)
+    # Counters used for validation summaries and final report output.
     actual_counts = Counter()
     n_empty_pref = 0
     n_bad_category = 0
@@ -103,41 +88,39 @@ def main() -> None:
     alt_contains_pref_examples: List[str] = []
     empty_pref_examples: List[str] = []
 
-    # Check each concept fields
+    # Validate each concept object.
     for c in concepts:
         cid = c.get("id", "<missing id>")
         pref = c.get("pref_label")
         category_id = c.get("category_id")
         alt_labels = c.get("alt_labels", [])
 
-        # pref_label non-empty
+        # Preferred labels must be present and non-empty.
         if pref is None or not str(pref).strip():
             n_empty_pref += 1
             empty_pref_examples.append(str(cid))
         else:
             pref_cf = _casefold(str(pref))
-            # Forbidden label check
             if pref_cf in FORBIDDEN_LABELS_CASEFOLD:
                 n_forbidden_labels += 1
                 forbidden_label_examples.append(f"{cid} -> '{pref}'")
 
-        # category_id allowed
+        # Category IDs must belong to the four accepted taxonomy dimensions.
         if category_id not in ALLOWED_CATEGORY_IDS:
             n_bad_category += 1
             bad_category_examples.append((str(cid), category_id))
         else:
             actual_counts[category_id] += 1
 
-        # alt_labels sanity
+        # Alternative labels should be stored as a list.
         if alt_labels is None:
             alt_labels = []
         if not isinstance(alt_labels, list):
             errors.append(f"{cid}: alt_labels is not a list (found {type(alt_labels).__name__}).")
             alt_labels = []
 
-        # alt_labels must not include pref_label as an exact duplicate.
-        # NOTE: In Ontology v1 we *allow* casing-only variants (e.g., "Pregnancy and Maternity")
-        # because they are observed spreadsheet variants. We only reject true duplicates.
+        # alt_labels must not include the preferred label as an exact duplicate.
+        # Casing-only variants are allowed because they may be observed spreadsheet variants.
         if pref is not None and str(pref).strip():
             pref_norm = _norm_space(str(pref))
             for a in alt_labels:
@@ -146,6 +129,7 @@ def main() -> None:
                     alt_contains_pref_examples.append(f"{cid} pref='{pref}' alt='{a}'")
                     break
 
+    # Convert accumulated validation failures into readable error messages.
     if n_empty_pref > 0:
         errors.append(
             f"{n_empty_pref} concepts have empty pref_label. Examples: {empty_pref_examples[:5]}"
@@ -168,7 +152,7 @@ def main() -> None:
             f"Examples: {alt_contains_pref_examples[:5]}"
         )
 
-    # Check: counts match stats file
+    # Check that ontology counts match the statistics file produced during construction.
     expected_total = stats.get("n_concepts_total")
     if isinstance(expected_total, int):
         if len(concepts) != expected_total:
@@ -180,7 +164,6 @@ def main() -> None:
 
     expected_per_category = stats.get("concepts_per_category")
     if isinstance(expected_per_category, dict):
-        # Compare each allowed category id
         for cat in sorted(ALLOWED_CATEGORY_IDS):
             expected = expected_per_category.get(cat)
             actual = actual_counts.get(cat, 0)
@@ -194,7 +177,7 @@ def main() -> None:
     else:
         warnings.append("Stats file missing dict 'concepts_per_category'.")
 
-    # Summary report
+    # Write a structured validation report whether validation passes or fails.
     passed = len(errors) == 0
     report = {
         "validated_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
@@ -222,11 +205,10 @@ def main() -> None:
         "warnings": warnings,
     }
 
-    # Write report JSON (always, so you can cite it in the dissertation)
     OUT_REPORT.parent.mkdir(parents=True, exist_ok=True)
     OUT_REPORT.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    # Console output
+    # Console summary for quick terminal inspection.
     if passed:
         print(" Ontology v1 validation: PASS")
         print(f"Report written to: {OUT_REPORT}")

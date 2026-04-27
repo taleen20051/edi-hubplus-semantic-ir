@@ -9,11 +9,10 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 
-# -----------------------------
-# Small data containers
-# -----------------------------
+# Small data containers and helper functions for the hybrid retrieval pipeline.
 @dataclass
 class HybridHit:
+    """One ranked retrieval result with score components kept for explanation."""
     rid: str
     score: float
     semantic_score: float
@@ -22,9 +21,8 @@ class HybridHit:
     matched_predicted_tags: List[Dict[str, Any]]
 
 
-# -----------------------------
-# Lightweight model cache
-# -----------------------------
+
+# Lightweight model cache to avoid reloading the embedding model for every query in a run.
 _MODEL_CACHE: Dict[str, SentenceTransformer] = {}
 
 
@@ -35,15 +33,15 @@ def _get_model(model_id: str) -> SentenceTransformer:
     return _MODEL_CACHE[model_id]
 
 
-# -----------------------------
 # JSON helpers
-# -----------------------------
 def _read_json(path: Path) -> dict:
+    """Read a JSON file into a dictionary."""
     return json.loads(path.read_text(encoding="utf-8"))
 
 
 
 def _read_jsonl(path: Path) -> List[dict]:
+    """Read a JSONL file, skipping blank lines."""
     rows: List[dict] = []
     with path.open("r", encoding="utf-8") as f:
         for line in f:
@@ -56,14 +54,15 @@ def _read_jsonl(path: Path) -> List[dict]:
 
 
 def _norm(s: str) -> str:
+    """Normalise text for simple lexical matching."""
     return " ".join((s or "").strip().lower().split())
 
 
-# -----------------------------
 # Loading ontology + matching concepts
-# -----------------------------
 def load_ontology(ontology_path: Path) -> Tuple[Dict[str, dict], Dict[str, str]]:
     """
+    Load ontology concepts and build a surface-label lookup.
+
     Returns:
       - concepts_by_id: concept_id -> concept object
       - label_to_id: normalised label -> concept_id (pref_label + alt_labels)
@@ -91,7 +90,7 @@ def load_ontology(ontology_path: Path) -> Tuple[Dict[str, dict], Dict[str, str]]
 
 def find_matching_concepts(query: str, concepts_by_id: Dict[str, dict]) -> List[Tuple[str, str]]:
     """
-    Lexical matching between query and ontology concept surfaces.
+    Match query text against ontology preferred labels and alternative labels.
 
     Policy:
     - multi-word phrases must appear directly in the query
@@ -103,6 +102,7 @@ def find_matching_concepts(query: str, concepts_by_id: Dict[str, dict]) -> List[
 
     q_tokens = set(q_norm.split())
 
+    # Restrict single-token matching to avoid broad tags causing false positives.
     single_token_allowlist = {
         "ageism",
         "microaggressions",
@@ -131,7 +131,7 @@ def find_matching_concepts(query: str, concepts_by_id: Dict[str, dict]) -> List[
             if not surface_norm:
                 continue
 
-            # Multi-word phrase match
+            # Multi-word labels are matched as full phrases.
             if " " in surface_norm:
                 if surface_norm in q_norm:
                     if cid not in seen:
@@ -139,7 +139,7 @@ def find_matching_concepts(query: str, concepts_by_id: Dict[str, dict]) -> List[
                         seen.add(cid)
                     break
 
-            # Single-word match (high-signal only)
+            # Single-word labels are matched only when they are high-signal terms.
             elif surface_norm in single_token_allowlist and surface_norm in q_tokens:
                 if cid not in seen:
                     matches.append((cid, surface))
@@ -158,8 +158,10 @@ def build_expanded_query_text(
     include_alt_labels: bool = True,
 ) -> str:
     """
-    Ontology-driven query expansion:
-      query + matched concept surfaces (+ alt labels if requested)
+    Build the query text that will be embedded.
+
+    The expanded query contains the original query plus matched ontology surfaces,
+    and optionally the alternative labels belonging to matched concepts.
     """
     parts: List[str] = [query.strip()]
 
@@ -174,7 +176,7 @@ def build_expanded_query_text(
                 if alt_text:
                     parts.append(alt_text)
 
-    # De-duplicate while keeping order
+    # De-duplicate expansion terms while preserving their original order.
     seen = set()
     deduped: List[str] = []
     for part in parts:
@@ -187,11 +189,11 @@ def build_expanded_query_text(
     return " ".join(deduped).strip()
 
 
-# -----------------------------
 # Loading resource embeddings and predicted tags
-# -----------------------------
 def load_resource_embeddings_npz(npz_path: Path) -> Tuple[np.ndarray, List[str]]:
     """
+    Load precomputed resource embeddings and their aligned resource IDs.
+
     Expects `embeddings` and `resource_ids` arrays in the NPZ file.
     """
     z = np.load(npz_path, allow_pickle=True)
@@ -205,6 +207,7 @@ def load_resource_embeddings_npz(npz_path: Path) -> Tuple[np.ndarray, List[str]]
     embeddings = np.asarray(z["embeddings"], dtype=np.float32)
     resource_ids = [str(x).strip() for x in z["resource_ids"].tolist()]
 
+    # Validate that the embedding matrix has one row per resource.
     if embeddings.ndim != 2:
         raise ValueError(f"Embeddings array must be 2D, got shape {embeddings.shape} from {npz_path}")
 
@@ -220,6 +223,8 @@ def load_resource_embeddings_npz(npz_path: Path) -> Tuple[np.ndarray, List[str]]
 
 def load_semantic_tags_jsonl(tags_path: Path) -> Dict[str, List[dict]]:
     """
+    Load predicted semantic concept tags for each resource.
+
     Returns:
       rid -> [{"concept_id": "...", "score": float}, ...]
     """
@@ -234,11 +239,9 @@ def load_semantic_tags_jsonl(tags_path: Path) -> Dict[str, List[dict]]:
     return out
 
 
-# -----------------------------
 # Core hybrid search
-# -----------------------------
 def _ensure_unit(vec: np.ndarray) -> np.ndarray:
-    """If not already unit-normalised, normalise it."""
+    """Normalise a vector so dot product behaves as cosine similarity."""
     denom = float(np.linalg.norm(vec) + 1e-12)
     return vec / denom
 
@@ -259,6 +262,8 @@ def hybrid_search(
     include_alt_labels_in_expansion: bool = True,
 ) -> Tuple[List[HybridHit], List[Tuple[str, str]], str]:
     """
+    Run hybrid retrieval for one query.
+
     Returns:
       - hits: ranked HybridHit list
       - matched_concepts: (concept_id, matched_surface) list
@@ -274,11 +279,11 @@ def hybrid_search(
             f"Got {resource_embeddings.shape[0]} embeddings and {len(resource_ids)} IDs."
         )
 
-    # 1) Ontology concept match (for explainability + expansion)
+    # 1) Match ontology concepts for explainability and optional query expansion.
     matched_concepts = find_matching_concepts(query, concepts_by_id)
     matched_cids = {cid for cid, _ in matched_concepts}
 
-    # 2) Query expansion text
+    # 2) Build the query text used by the embedding model.
     expanded_query = build_expanded_query_text(
         query=query,
         matched_concepts=matched_concepts,
@@ -286,19 +291,18 @@ def hybrid_search(
         include_alt_labels=include_alt_labels_in_expansion,
     )
 
-    # 3) Embed expanded query (same embedding space as resources)
+    # 3) Embed the expanded query in the same vector space as the resources.
     model = _get_model(model_id)
     q_vec = model.encode([expanded_query], normalize_embeddings=True)
     q_vec = np.asarray(q_vec[0], dtype=np.float32)
     q_vec = _ensure_unit(q_vec)
 
-    # 4) Semantic similarity against all resources
-    # If resource embeddings were saved with normalize_embeddings=True,
-    # cosine similarity equals the dot product.
+    # 4) Compute semantic similarity against all resources.
+    # Resource embeddings are normalised, so cosine similarity equals dot product.
     sims = resource_embeddings @ q_vec
     sims = np.asarray(sims, dtype=np.float32)
 
-    # 5) Apply ontology/tag overlap boost (hybrid)
+    # 5) Add ontology/tag overlap as a transparent concept-based boost.
     hits: List[HybridHit] = []
     for i, rid in enumerate(resource_ids):
         semantic_score = float(sims[i])
@@ -307,6 +311,7 @@ def hybrid_search(
         overlap_items: List[Dict[str, Any]] = []
         overlap_count = 0
 
+        # Count overlap between query-matched concepts and resource predicted tags.
         if matched_cids:
             for item in pred_items:
                 cid = item.get("concept_id")
@@ -318,6 +323,7 @@ def hybrid_search(
         if overlap_count > 0:
             concept_boost = boost_per_overlap * float(overlap_count)
 
+        # Weighted hybrid score used for final ranking.
         score = alpha_semantic * semantic_score + beta_concept_boost * concept_boost
 
         hits.append(
@@ -335,16 +341,15 @@ def hybrid_search(
     return hits[:top_n], matched_concepts, expanded_query
 
 
-# -----------------------------
 # CLI: generate a hybrid run file (JSONL)
-# -----------------------------
 def _load_queries_jsonl(path: Path) -> List[dict]:
-    """Reads queries in JSONL format: {"qid": "q1", "query": "..."}."""
+    """Read queries in JSONL format: {"qid": "q1", "query": "..."}."""
     return _read_jsonl(path)
 
 
 
 def _write_run_jsonl(path: Path, rows: List[dict]) -> None:
+    """Write retrieval run rows to JSONL for later evaluation."""
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         for row in rows:
@@ -365,7 +370,8 @@ def run_hybrid_over_queries(
     beta: float,
     include_alt_labels: bool,
 ) -> None:
-    # Load inputs
+    """Run hybrid retrieval over a fixed query set and save the ranked outputs."""
+    # Load all reusable artefacts required by the hybrid retrieval run.
     concepts_by_id, _ = load_ontology(ontology_path)
     resource_embeddings, resource_ids = load_resource_embeddings_npz(embeddings_npz)
     predicted_tags_by_rid = load_semantic_tags_jsonl(semantic_tags_jsonl)
@@ -392,6 +398,7 @@ def run_hybrid_over_queries(
             include_alt_labels_in_expansion=include_alt_labels,
         )
 
+        # Store enough detail to evaluate the ranking and inspect explanations.
         out_rows.append(
             {
                 "qid": qid,
@@ -420,6 +427,7 @@ def run_hybrid_over_queries(
 
 
 def _build_arg_parser():
+    """Create the command-line interface for reproducible hybrid runs."""
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -444,6 +452,7 @@ def _build_arg_parser():
 
 
 def main() -> None:
+    """Parse CLI arguments and run the hybrid retrieval experiment."""
     args = _build_arg_parser().parse_args()
 
     run_hybrid_over_queries(

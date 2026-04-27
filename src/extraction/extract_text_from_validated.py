@@ -176,9 +176,7 @@ def extract_pdf_text(pdf_path: Path) -> Tuple[bool, str, str]:
         return False, "", f"pdfminer_error:{e}"
 
 
-# =========================
 # Extraction: HTML
-# =========================
 # Use trafilatura to capture the main readable HTML content
 def extract_html_trafilatura(html_bytes: bytes, url: str) -> str:
     downloaded = html_bytes.decode("utf-8", errors="ignore")
@@ -223,9 +221,7 @@ def extract_html_text(html_path: Path, url: str) -> Tuple[bool, str, str]:
         return False, "", f"beautifulsoup_error:{e}"
 
 
-# =========================
 # Main
-# =========================
 # Download validated resources, extract text, and save structured outputs
 def main() -> None:
     if not IN_VALIDATED.exists():

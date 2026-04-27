@@ -1,20 +1,12 @@
 from __future__ import annotations
 
-from typing import Dict, List, Set, Tuple
 import re
+from typing import Dict, List, Set
 
 from .io_utils import write_json
 
 
-# IMPORTANT:
-# Your resources_unified.jsonl uses these exact taxonomy column names (case + spaces):
-# - "Individual Characteristics"
-# - "Career Pathway"
-# - "Research Funding Process"
-# - "Organisational Culture"
-#
-# We evaluate by mapping these manual labels to concept_ids using ontology pref/alt labels,
-# then comparing to the predicted concept_ids from semantic_tags_*.jsonl.
+# Taxonomy columns used as gold labels from the unified dataset.
 TAXONOMY_KEYS = [
     "Individual Characteristics",
     "Career Pathway",
@@ -23,30 +15,27 @@ TAXONOMY_KEYS = [
 ]
 
 
-# Helper: concept_id prefix -> category_id
-# e.g. "organisational_culture__inclusive_language" -> "organisational_culture"
+# Normalisation helpers
 def _concept_category(concept_id: str) -> str:
+    """Extract the top-level category prefix from a concept ID."""
     return (concept_id or "").split("__", 1)[0].strip()
 
 
 def _norm_label(x: str) -> str:
-    """Lowercase + strip + collapse whitespace for robust matching."""
+    """Lowercase, strip, and collapse whitespace for robust label matching."""
     s = (x or "").strip().lower()
     s = " ".join(s.split())
     return s
 
 
-# Many spreadsheet cells are exported as a list of strings, but one element can still contain:
-# "Inclusive Language, Allyship, Cultural Competency"
-# We split on commas and semicolons. (You can extend this if needed.)
+# Some spreadsheet cells contain multiple labels in one string, such as:
+# "Inclusive Language, Allyship, Cultural Competency".
+# This regex splits those cells into individual labels.
 _SPLIT_RE = re.compile(r"\s*[,;]\s*")
 
 
 def _split_multi_label(s: str) -> List[str]:
-    """
-    Split a single string that may contain multiple labels separated by commas/semicolons.
-    Returns list of atomic labels.
-    """
+    """Split a taxonomy cell into individual labels."""
     s = (s or "").strip()
     if not s:
         return []
@@ -54,23 +43,28 @@ def _split_multi_label(s: str) -> List[str]:
     return [p.strip() for p in parts if p and p.strip()]
 
 
+# Ontology and gold-label mapping
 def build_label_to_concept_id(ontology: dict) -> Dict[str, str]:
     """
-    Build mapping: surface label (pref/alt) -> concept_id.
-    Matching is case-insensitive and whitespace-normalised.
+    Build a lookup from ontology labels to concept IDs.
+
+    Both preferred labels and alternative labels are included so that manual
+    taxonomy labels can be matched consistently to ontology concepts.
     """
     m: Dict[str, str] = {}
+
     for c in ontology.get("concepts", []):
         cid = c["id"]
 
+        # Preferred label for the concept.
         pref = _norm_label(c.get("pref_label") or "")
         if pref:
             m[pref] = cid
 
+        # Alternative labels are added only if the label is not already mapped.
         for alt in c.get("alt_labels") or []:
             alt_norm = _norm_label(alt or "")
             if alt_norm:
-                # keep first mapping if duplicates exist
                 m.setdefault(alt_norm, cid)
 
     return m
@@ -81,16 +75,7 @@ def resource_gold_concepts_by_category(
     label_to_cid: Dict[str, str],
 ) -> Dict[str, Set[str]]:
     """
-    Convert the resource's manual taxonomy labels into concept_ids,
-    grouped by category_id.
-
-    Returns:
-      {
-        "individual_characteristics": {...},
-        "career_pathway": {...},
-        "research_funding_process": {...},
-        "organisational_culture": {...}
-      }
+    Convert a resource's manual taxonomy labels into ontology concept IDs.
     """
     gold_by_cat: Dict[str, Set[str]] = {
         "individual_characteristics": set(),
@@ -102,7 +87,7 @@ def resource_gold_concepts_by_category(
     for k in TAXONOMY_KEYS:
         raw_vals = resource.get(k)
 
-        # Defensive: in your export it's normally a list, but handle other cases.
+        # Taxonomy values may be missing, a list, or a single string.
         if raw_vals is None:
             vals: List[str] = []
         elif isinstance(raw_vals, list):
@@ -110,11 +95,13 @@ def resource_gold_concepts_by_category(
         else:
             vals = [str(raw_vals)]
 
+        # Split multi-label cells and map each label to an ontology concept ID.
         for v in vals:
             for atom in _split_multi_label(v):
                 key = _norm_label(atom)
                 if not key:
                     continue
+
                 cid = label_to_cid.get(key)
                 if cid:
                     cat = _concept_category(cid)
@@ -126,8 +113,8 @@ def resource_gold_concepts_by_category(
 
 def preds_by_category(pred_items: List[dict]) -> Dict[str, Set[str]]:
     """
-    Take predicted items [{"concept_id": ..., "score": ...}, ...]
-    and group concept_ids by category_id.
+    Group predicted concept IDs by top-level ontology category.
+    The input is the top_k prediction list produced by semantic tagging.
     """
     pred_by_cat: Dict[str, Set[str]] = {
         "individual_characteristics": set(),
@@ -140,6 +127,7 @@ def preds_by_category(pred_items: List[dict]) -> Dict[str, Set[str]]:
         cid = it.get("concept_id")
         if not cid:
             continue
+
         cat = _concept_category(cid)
         if cat in pred_by_cat:
             pred_by_cat[cat].add(cid)
@@ -147,26 +135,29 @@ def preds_by_category(pred_items: List[dict]) -> Dict[str, Set[str]]:
     return pred_by_cat
 
 
+# Metric helpers
 def precision_recall_f1(pred: Set[str], gold: Set[str]) -> Dict[str, float]:
-    """
-    Standard set-based precision/recall/F1 on concept_id sets.
-    """
+    """Calculate set-based precision, recall, and F1 for concept IDs."""
     if not pred and not gold:
-        # No gold + no predictions => "perfect" for that case
+        # If both are empty, the prediction is treated as correct for that case.
         return {"precision": 1.0, "recall": 1.0, "f1": 1.0}
+
     if not pred:
         return {"precision": 0.0, "recall": 0.0, "f1": 0.0}
 
-    tp = len(pred & gold)
-    p = tp / max(1, len(pred))
-    r = tp / max(1, len(gold))
-    f1 = 0.0 if (p + r) == 0 else (2 * p * r) / (p + r)
-    return {"precision": p, "recall": r, "f1": f1}
+    true_positive = len(pred & gold)
+    precision = true_positive / max(1, len(pred))
+    recall = true_positive / max(1, len(gold))
+    f1 = 0.0 if (precision + recall) == 0 else (2 * precision * recall) / (precision + recall)
+
+    return {"precision": precision, "recall": recall, "f1": f1}
 
 
 def _macro_avg(metrics: List[Dict[str, float]]) -> Dict[str, float]:
+    """Average precision, recall, and F1 across resources or categories."""
     if not metrics:
         return {"precision": 0.0, "recall": 0.0, "f1": 0.0}
+
     return {
         "precision": sum(m["precision"] for m in metrics) / len(metrics),
         "recall": sum(m["recall"] for m in metrics) / len(metrics),
@@ -174,6 +165,7 @@ def _macro_avg(metrics: List[Dict[str, float]]) -> Dict[str, float]:
     }
 
 
+# Main evaluation function
 def evaluate_semantic_tagging(
     resources: List[dict],
     ontology: dict,
@@ -181,20 +173,23 @@ def evaluate_semantic_tagging(
     out_path,
 ) -> Dict:
     """
-    Evaluate predicted semantic tags (concept_ids) against gold manual tags
-    stored in resources_unified.jsonl taxonomy columns.
+    Evaluate predicted semantic tags against manual taxonomy labels.
 
-    Outputs:
-      - overall macro precision/recall/F1
-      - per-category macro precision/recall/F1
-      - per-resource breakdown (overall + per-category)
+    Gold labels are taken from resources_unified.jsonl taxonomy columns and
+    mapped to ontology concept IDs. Predicted labels are the semantic tagging
+    outputs. The function writes both summary metrics and per-resource results.
     """
+    # Map ontology labels to concept IDs so spreadsheet labels can be compared
+    # with predicted semantic tag concept IDs.
     label_to_cid = build_label_to_concept_id(ontology)
+
+    # Convert semantic tag rows into a resource_id -> predictions lookup.
     tags_by_rid = {str(r["rid"]).strip(): r.get("top_k", []) for r in semantic_tags}
 
-    # Accumulators for macro averages
+    # Accumulators for overall macro averages.
     overall_metrics: List[Dict[str, float]] = []
 
+    # Accumulators for category-level macro averages.
     per_cat_metrics: Dict[str, List[Dict[str, float]]] = {
         "individual_characteristics": [],
         "career_pathway": [],
@@ -211,20 +206,23 @@ def evaluate_semantic_tagging(
                 f"Missing 'ID' field in resources_unified.jsonl at row index {idx}. "
                 f"Available keys: {list(r.keys())}"
             )
+
         rid = str(rid_raw).strip()
 
+        # Build gold and predicted concept sets for the current resource.
         gold_by_cat = resource_gold_concepts_by_category(r, label_to_cid)
         pred_items = tags_by_rid.get(rid, [])
         pred_by_cat = preds_by_category(pred_items)
 
-        # Overall sets = union across categories
+        # Overall sets are the union of all four category-specific sets.
         gold_all: Set[str] = set().union(*gold_by_cat.values())
         pred_all: Set[str] = set().union(*pred_by_cat.values())
 
+        # Overall resource-level metrics.
         m_all = precision_recall_f1(pred_all, gold_all)
         overall_metrics.append(m_all)
 
-        # Per-category
+        # Category-level metrics for this resource.
         per_cat_row = {}
         for cat in per_cat_metrics.keys():
             m_cat = precision_recall_f1(pred_by_cat[cat], gold_by_cat[cat])
@@ -237,6 +235,7 @@ def evaluate_semantic_tagging(
                 "pred_count": len(pred_by_cat[cat]),
             }
 
+        # Store detailed breakdown for later inspection.
         per_resource[rid] = {
             "overall": {
                 "precision": m_all["precision"],
@@ -248,6 +247,7 @@ def evaluate_semantic_tagging(
             "by_category": per_cat_row,
         }
 
+    # Summary report used in dissertation evaluation/analysis.
     report = {
         "resource_count": len(resources),
         "macro_avg": _macro_avg(overall_metrics),

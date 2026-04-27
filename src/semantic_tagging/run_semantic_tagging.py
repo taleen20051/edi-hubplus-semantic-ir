@@ -7,32 +7,45 @@ from .paths import (
     SEMANTIC_DIR,
 )
 from .models import MODEL_SPECS
-from .io_utils import read_json, read_jsonl, write_jsonl, read_json, write_json
+from .io_utils import read_json, read_jsonl, write_jsonl, write_json
 from .build_concept_index import build_and_save_concept_index
-from .embed_resources import load_resources, embed_resources, save_resource_embeddings
+from .embed_resources import embed_resources, save_resource_embeddings
 from .semantic_tagging import run_semantic_tagging
 from .evaluate_semantic_tags import evaluate_semantic_tagging
 
-
+# Load an embedding matrix from a compressed NPZ file.
 def load_npz_embeddings(npz_path):
     z = np.load(npz_path, allow_pickle=True)
     return z["embeddings"]
 
 
+# Run the complete semantic tagging pipeline for each configured model.
 def main():
+    """
+    For each model, the script:
+    1. builds concept-surface embeddings
+    2. builds resource embeddings
+    3. predicts semantic ontology tags for each resource
+    4. evaluates predictions against manual taxonomy labels
+    5. writes a summary of all runs
+    """
+    # Load fixed project inputs: ontology and final unified resource corpus.
     ontology = read_json(ONTOLOGY_V1_JSON)
     resources = list(read_jsonl(RESOURCES_UNIFIED_JSONL))
 
+    # Store a compact summary for all model runs.
     summary = {"runs": []}
 
+    # Run the same semantic tagging workflow for each model in models.py.
     for short_name, model_id in MODEL_SPECS.items():
         print(f"\n=== Semantic tagging with model: {short_name} ({model_id}) ===")
         t0 = time.time()
 
+        # Output paths for concept label embeddings.
         concept_index_json = SEMANTIC_DIR / f"concept_index_{short_name}.json"
         concept_emb_npz = SEMANTIC_DIR / f"concept_surface_embeddings_{short_name}.npz"
 
-        # 1) Concept embeddings
+        # 1) Embed ontology concept labels and alternative labels.
         concept_index = build_and_save_concept_index(
             ontology_json_path=ONTOLOGY_V1_JSON,
             model_name=short_name,
@@ -42,17 +55,23 @@ def main():
             batch_size=64,
         )
 
+        # Metadata links each embedded surface form back to its concept ID.
         surface_meta = concept_index["surface_meta"]
         surface_embeddings = load_npz_embeddings(concept_emb_npz)
 
-        # 2) Resource embeddings (cache)
+        # 2) Embed resources using title + extracted text.
         res_emb_npz = SEMANTIC_DIR / f"resource_embeddings_{short_name}.npz"
         res_meta_json = SEMANTIC_DIR / f"resource_embeddings_{short_name}_meta.json"
 
-        emb, ids, meta = embed_resources(resources, model_id=model_id, batch_size=16, max_chars=8000)
+        emb, ids, meta = embed_resources(
+            resources,
+            model_id=model_id,
+            batch_size=16,
+            max_chars=8000,
+        )
         save_resource_embeddings(res_emb_npz, res_meta_json, emb, ids, meta)
 
-        # 3) Similarity tagging
+        # 3) Compare each resource embedding with concept-surface embeddings.
         tags = run_semantic_tagging(
             resource_embeddings=emb,
             resource_ids=ids,
@@ -62,13 +81,15 @@ def main():
             min_score=0.30,
         )
 
+        # Save predicted semantic tags for this model.
         out_tags = SEMANTIC_DIR / f"semantic_tags_{short_name}.jsonl"
         write_jsonl(out_tags, tags)
 
-        # 4) Evaluate vs manual tags in resources_unified
+        # 4) Evaluate predicted tags against manual spreadsheet taxonomy labels.
         out_eval = SEMANTIC_DIR / f"semantic_tagging_eval_{short_name}.json"
         report = evaluate_semantic_tagging(resources, ontology, tags, out_eval)
 
+        # Record output paths and evaluation summary for reproducibility.
         dt = time.time() - t0
         run_row = {
             "model": short_name,
@@ -89,7 +110,7 @@ def main():
         print(f"Saved eval: {out_eval}")
         print(f"Done in {dt:.1f}s")
 
-    # Overall summary
+    # Write one summary JSON covering all model runs.
     summary_path = SEMANTIC_DIR / "semantic_tagging_summary.json"
     write_json(summary_path, summary)
     print(f"\nAll done. Summary: {summary_path}")

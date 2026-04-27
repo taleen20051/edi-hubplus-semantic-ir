@@ -293,3 +293,11 @@ python src/dataset/build_unified_dataset.py
 
 `python -m src.evaluation.evaluate_hybrid
 python -m src.evaluation.evaluate_coverage_diversity`
+
+# Notes for output files
+
+- data/baselines/ contains early baseline run outputs using 5 queries. Final evaluated runs are stored under data/phase8_iterations/iter04/.
+- The folder `data/phase3_baselines_5queries/` contains early pilot baseline experiments conducted on an initial 5-query evaluation set during system development. These files are retained for transparency and to demonstrate iterative methodology progression. Final reported dissertation results are based on the later 32-query benchmark set.
+- The folder `data/phase7_evaluation/` contains intermediate evaluation artefacts from the earlier 5-query and 20-query development stages. These files are retained to show the progression of the evaluation design. Final reported dissertation results are based on the 32-query benchmark under `data/phase8_iterations/iter04/`.
+- The folder `data/phase7_evaluation/hybrid_outputs/` contains archived Phase 7 hybrid retrieval experiments combining semantic similarity and ontology-based boosting. Filenames encode weighting configurations (e.g., alpha=0.70, beta=0.30).
+- `data/phase8_iterations/iter03/` and `iter03b/` contain intermediate ontology-iteration run outputs. These iterations were exploratory and are retained as development evidence; final evaluated results are reported from `iter04`.

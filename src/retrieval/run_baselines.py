@@ -1,3 +1,11 @@
+"""
+Run baseline retrieval experiments for the EDI Hub+ corpus.
+
+This script produces three baseline run files:
+- keyword_bm25.jsonl: lexical BM25 retrieval over extracted resource text
+- ontology_only.jsonl: concept matching using taxonomy labels and ontology labels
+- ontology_text.jsonl: ontology label matching directly against document text
+"""
 from __future__ import annotations
 
 import argparse
@@ -8,20 +16,20 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple
 
-# Allow CSV readers to handle large extracted text fields in unified resource files
+
+# CSV module field limit is increased to avoid parser errors.
 csv.field_size_limit(10**7)
 
 from src.retrieval.bm25 import BM25Index
 
 
-# ----------------------------
-# Defaults (match your repo)
-# ----------------------------
+# Default project paths
 DEFAULT_ONTOLOGY_JSON = Path("ontology/edi_ontology_v1.json")
 DEFAULT_ONTOLOGY_NAME = "v1"
 DEFAULT_ONTOLOGY_VERSIONS_DIR = Path("ontology/versions")
 DEFAULT_TAXONOMY_CLEAN_CSV = Path("data/processed/taxonomy_clean.csv")
 
+# Prefer the unified corpus when available, then fall back to earlier pipeline outputs.
 DEFAULT_RESOURCE_CSV_CANDIDATES = [
     Path("data/processed/resources_unified.csv"),
     Path("data/processed/resources_included_only.csv"),
@@ -29,6 +37,7 @@ DEFAULT_RESOURCE_CSV_CANDIDATES = [
     Path("data/raw/resources_full_data_full.csv"),
 ]
 
+# Text is loaded from JSONL first because this is the main format used downstream.
 DEFAULT_RESOURCE_TEXT_JSONL_CANDIDATES = [
     Path("data/processed/resources_unified.jsonl"),
     Path("data/processed/resources_text.jsonl"),
@@ -43,14 +52,14 @@ DEFAULT_QUERIES_JSON = Path("data/evaluation/queries.json")
 DEFAULT_OUT_DIR = Path("data/baselines")
 
 
-# ----------------------------
 # Helpers
-# ----------------------------
 def norm(s: str) -> str:
+    """Lowercase and collapse whitespace for stable matching."""
     return " ".join((s or "").strip().lower().split())
 
 
 def tokenize(s: str) -> List[str]:
+    """Tokenise text for simple lexical overlap scoring."""
     s = norm(s)
     if not s:
         return []
@@ -58,6 +67,7 @@ def tokenize(s: str) -> List[str]:
 
 
 def split_title_body(text: str) -> Tuple[str, str]:
+    """Split combined resource text into title and body when possible."""
     text = text or ""
     parts = text.split("\n\n", 1)
     if len(parts) == 2:
@@ -66,6 +76,7 @@ def split_title_body(text: str) -> Tuple[str, str]:
 
 
 def split_tags(cell: Any) -> List[str]:
+    """Split comma-separated taxonomy labels from a spreadsheet cell."""
     if cell is None:
         return []
     s = str(cell).strip()
@@ -75,6 +86,7 @@ def split_tags(cell: Any) -> List[str]:
 
 
 def load_ontology_label_map(ontology_path: Path) -> Dict[str, str]:
+    """Map every preferred/alternative ontology label to its concept ID."""
     data = json.loads(ontology_path.read_text(encoding="utf-8"))
     label_to_concept: Dict[str, str] = {}
     for c in data.get("concepts", []):
@@ -89,6 +101,7 @@ def load_ontology_label_map(ontology_path: Path) -> Dict[str, str]:
 
 
 def build_concept_to_labels(label_to_concept: Dict[str, str]) -> Dict[str, Set[str]]:
+    """Invert the label-to-concept map for concept-level document matching."""
     concept_to_labels: Dict[str, Set[str]] = defaultdict(set)
     for label, cid in label_to_concept.items():
         if label:
@@ -97,6 +110,7 @@ def build_concept_to_labels(label_to_concept: Dict[str, str]) -> Dict[str, Set[s
 
 
 def text_contains_label(text: str, label: str) -> bool:
+    """Return True when a normalised label appears as a full phrase in text."""
     tn = norm(text)
     lab = norm(label)
     if not tn or not lab:
@@ -107,8 +121,9 @@ def text_contains_label(text: str, label: str) -> bool:
 
 def token_overlap_score(text: str, label: str) -> float:
     """
-    Fallback soft match for multi-word ontology labels.
-    Returns a score in [0,1] based on token coverage.
+    Compute soft token coverage for multi-word ontology labels.
+
+    Single-token labels remain strict to reduce noisy matches from broad words.
     """
     text_tokens = set(tokenize(text))
     label_tokens = tokenize(label)
@@ -126,9 +141,10 @@ def token_overlap_score(text: str, label: str) -> float:
 
 def concept_match_strength(title: str, body: str, labels: Set[str]) -> Tuple[float, List[str]]:
     """
-    Returns:
-      best score for this concept in this document
-      evidence labels that matched
+    Score how strongly one ontology concept matches a document.
+
+    Title matches are weighted more strongly than body matches because titles
+    usually provide concise evidence of the document topic.
     """
     best = 0.0
     evidence: List[str] = []
@@ -165,6 +181,7 @@ def concept_match_strength(title: str, body: str, labels: Set[str]) -> Tuple[flo
 
 
 def find_resource_csv(candidates: List[Path]) -> Path:
+    """Return the first available resource metadata CSV from known candidates."""
     for p in candidates:
         if p.exists():
             return p
@@ -176,6 +193,7 @@ def find_resource_csv(candidates: List[Path]) -> Path:
 
 
 def load_resources_title(resource_csv: Path) -> Dict[str, str]:
+    """Load resource IDs and titles from the selected metadata CSV."""
     with resource_csv.open("r", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         cols = reader.fieldnames or []
@@ -203,6 +221,7 @@ def load_resource_text(
     jsonl_candidates: List[Path],
     csv_candidates: List[Path],
 ) -> Dict[str, str]:
+    """Load extracted document text from JSONL or fallback CSV files."""
     for p in jsonl_candidates:
         if not p.exists():
             continue
@@ -256,6 +275,7 @@ def load_resource_text(
 
 
 def load_taxonomy_clean(taxonomy_csv: Path) -> Dict[str, Set[str]]:
+    """Load cleaned taxonomy tags for each resource ID."""
     with taxonomy_csv.open("r", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         cols = reader.fieldnames or []
@@ -284,6 +304,7 @@ def load_taxonomy_clean(taxonomy_csv: Path) -> Dict[str, Set[str]]:
 
 
 def load_queries_json(path: Path) -> List[Dict[str, str]]:
+    """Load evaluation queries from a JSON list file."""
     data = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(data, list):
         raise ValueError("queries.json must be a list of {qid, query} objects.")
@@ -294,6 +315,7 @@ def load_queries_json(path: Path) -> List[Dict[str, str]]:
 
 
 def load_queries_jsonl(path: Path) -> List[Dict[str, str]]:
+    """Load evaluation queries from a JSONL file."""
     out: List[Dict[str, str]] = []
     with path.open("r", encoding="utf-8") as f:
         for line_no, line in enumerate(f, start=1):
@@ -311,6 +333,7 @@ def load_queries_jsonl(path: Path) -> List[Dict[str, str]]:
 
 
 def available_ontology_names() -> List[str]:
+    """List ontology version folders available under ontology/versions."""
     if not DEFAULT_ONTOLOGY_VERSIONS_DIR.exists():
         return []
     names: List[str] = []
@@ -321,6 +344,7 @@ def available_ontology_names() -> List[str]:
 
 
 def resolve_ontology_path(ontology_json: Path | None, ontology_name: str | None) -> Path:
+    """Resolve an ontology from either an explicit path or a version name."""
     if ontology_json is not None:
         if ontology_json.exists():
             return ontology_json
@@ -364,14 +388,13 @@ def resolve_ontology_path(ontology_json: Path | None, ontology_name: str | None)
     raise FileNotFoundError(f"Missing ontology file: {ontology_json}." + hint)
 
 
-# ----------------------------
-# Baselines
-# ----------------------------
+# Retrieval baselines
 def run_keyword_bm25(
     resources_text: Dict[str, str],
     queries: List[Dict[str, str]],
     top_k: int = 20,
 ) -> List[Dict[str, Any]]:
+    """Run lexical BM25 retrieval over the resource text collection."""
     docs = [(rid, text) for rid, text in resources_text.items()]
     index = BM25Index.build(docs)
 
@@ -385,6 +408,7 @@ def run_keyword_bm25(
 
 
 def match_query_to_concepts(query: str, label_to_concept: Dict[str, str]) -> Set[str]:
+    """Find ontology concepts whose labels appear in the query text."""
     qn = norm(query)
     matched: Set[str] = set()
 
@@ -406,6 +430,7 @@ def run_ontology_only(
     label_to_concept: Dict[str, str],
     top_k: int = 20,
 ) -> List[Dict[str, Any]]:
+    """Rank resources by overlap between query concepts and taxonomy tags."""
     results: List[Dict[str, Any]] = []
     for q in queries:
         matched_concepts = match_query_to_concepts(q["query"], label_to_concept)
@@ -443,11 +468,10 @@ def run_ontology_text(
     top_k: int = 20,
 ) -> List[Dict[str, Any]]:
     """
-    Improved ontology-text baseline:
-    - exact phrase matches
-    - token-overlap fallback
-    - title bonus
-    - concept-level scoring
+    Run an ontology-text baseline using ontology labels against document text.
+
+    This baseline is separate from ontology-tag retrieval: it checks whether
+    query-matched concept labels appear in the extracted resource text itself.
     """
     concept_to_labels = build_concept_to_labels(label_to_concept)
     results: List[Dict[str, Any]] = []
@@ -474,8 +498,7 @@ def run_ontology_text(
                 matched_concept_count = len(concept_scores)
                 total_strength = sum(concept_scores)
 
-                # Main ranking logic:
-                # prioritize number of matched concepts, then match strength
+                # Prioritise documents matching more concepts, then stronger textual evidence.
                 score = (2.5 * matched_concept_count) + total_strength
                 scores.append((rid, float(score)))
 
@@ -495,16 +518,16 @@ def run_ontology_text(
 
 
 def write_jsonl(path: Path, rows: List[Dict[str, Any]]) -> None:
+    """Write run rows as JSONL for downstream evaluation scripts."""
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
 
-# ----------------------------
-# CLI
-# ----------------------------
+# Command-line interface
 def build_parser() -> argparse.ArgumentParser:
+    """Build command-line arguments for reproducible baseline runs."""
     p = argparse.ArgumentParser(
         prog="python -m src.retrieval.run_baselines",
         description=(
@@ -568,6 +591,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: List[str] | None = None) -> int:
+    """Load inputs, run all baselines, and write output run files."""
     args = build_parser().parse_args(argv)
 
     out_dir_explicit = "--out-dir" in (argv if argv is not None else __import__("sys").argv[1:])
@@ -591,6 +615,7 @@ def main(argv: List[str] | None = None) -> int:
     )
 
     resources_text: Dict[str, str] = {}
+    # Use metadata IDs as the controlled resource universe when metadata is available.
     selected_rids = list(titles.keys()) if titles else list(texts.keys())
     for rid in selected_rids:
         title = titles.get(rid, "")
@@ -598,11 +623,13 @@ def main(argv: List[str] | None = None) -> int:
         resources_text[rid] = (title + "\n\n" + body).strip()
 
     taxonomy_tags_full = load_taxonomy_clean(args.taxonomy_csv)
+    # Keep taxonomy rows aligned with the resources that are actually ranked.
     taxonomy_tags = {rid: tags for rid, tags in taxonomy_tags_full.items() if rid in resources_text}
 
     missing_text_ids = sorted(set(titles.keys()) - set(texts.keys()))
     extra_text_ids = sorted(set(texts.keys()) - set(titles.keys()))
 
+    # Support both the original JSON query format and newer JSONL iteration files.
     if args.queries.suffix.lower() == ".jsonl":
         queries = load_queries_jsonl(args.queries)
     else:
@@ -611,6 +638,7 @@ def main(argv: List[str] | None = None) -> int:
     label_to_concept = load_ontology_label_map(ontology_path)
 
     out_dir = args.out_dir
+    # If no explicit output directory is provided, separate outputs by ontology version.
     if not out_dir_explicit:
         name = getattr(args, "ontology_name", None)
         if name and name != "v1":

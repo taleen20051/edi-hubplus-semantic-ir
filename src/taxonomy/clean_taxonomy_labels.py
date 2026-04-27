@@ -1,22 +1,5 @@
 """
-Clean + normalise the four taxonomy columns extracted from taxonomy_raw.csv.
-
-Input:
-- data/processed/taxonomy_raw.csv   (Included-only, raw values, no cleaning)
-
-Outputs:
-- data/processed/taxonomy_clean.csv         (cleaned tags, readable CSV)
-- data/processed/normalisation_log.csv      (every change we made + why)
-- data/processed/taxonomy_stats.json        (counts for methodology write-up)
-
-Cleaning policy (deterministic, spreadsheet-faithful):
-- Split comma-separated multi-select cells into tag lists
-- Trim whitespace; collapse repeated spaces
-- Standardise casing (Title Case, preserves acronyms like EDI/UKRI)
-- Remove placeholders like "Not Specified", "", NA
-- Deduplicate tags within a cell (case-insensitive)
-- Apply minimal, obvious typo fixes (logged), e.g. Microagression -> Microaggression
-- DO NOT invent synonyms or merge concepts semantically (that’s Phase 2/8)
+Clean and normalise the four taxonomy columns extracted from taxonomy_raw.csv.
 """
 
 from __future__ import annotations
@@ -26,21 +9,18 @@ import re
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import List, Dict, Any, Optional
+from typing import Any, Dict, List
 
 import pandas as pd
 
 
-# =====================
-# CONFIG
-# =====================
 IN_RAW = Path("data/processed/taxonomy_raw.csv")
 
 OUT_CLEAN = Path("data/processed/taxonomy_clean.csv")
 OUT_LOG = Path("data/processed/normalisation_log.csv")
 OUT_STATS = Path("data/processed/taxonomy_stats.json")
 
-# Must match your taxonomy_raw.csv headers
+# Required identifier and taxonomy columns from taxonomy_raw.csv.
 ID_COL = "ID"
 TAXONOMY_COLS = [
     "Individual Characteristics",
@@ -49,11 +29,10 @@ TAXONOMY_COLS = [
     "Organisational Culture",
 ]
 
-# Your chosen quality threshold earlier was for text;
-# here we don't drop rows based on short tags.
+# Values that should not become real ontology labels.
 PLACEHOLDERS = {"not specified", "n/a", "na", "none", ""}
 
-# Minimal typo fixes we can defend (add only if you are 100% sure)
+# Conservative typo whitelist.
 TYPO_FIXES = {
     "microagression": "microaggression",
     "accessiblity": "accessibility",
@@ -61,9 +40,11 @@ TYPO_FIXES = {
 }
 
 
-# Logging
+# Logging structure
 @dataclass
 class NormLogRow:
+    """One recorded taxonomy-normalisation change."""
+
     resource_id: str
     column: str
     stage: str
@@ -74,38 +55,34 @@ class NormLogRow:
 
 # Normalisation helpers
 def collapse_spaces(s: str) -> str:
+    """Trim text and replace repeated whitespace with a single space."""
     return re.sub(r"\s+", " ", s).strip()
 
 
+# Standardise label casing while preserving meaningful tokens.
 def title_case_preserve_acronyms(s: str) -> str:
-    """
-    Title-case words while preserving:
-    - ALLCAPS tokens (UKRI, EDI, STEM)
-    - tokens that contain digits or symbols commonly used in labels (LGBT+, 16-19)
-    """
     tokens = s.split(" ")
     out = []
-    for t in tokens:
-        if not t:
+
+    for token in tokens:
+        if not token:
             continue
-        if t.isupper():
-            out.append(t)
-        elif any(ch.isdigit() for ch in t):
-            out.append(t)
-        elif "+" in t or "-" in t or "&" in t or "/" in t:
-            # keep as-is but normalise first letter if it's all lower
-            out.append(t[:1].upper() + t[1:] if t[:1].islower() else t)
+
+        if token.isupper():
+            out.append(token)
+        elif any(ch.isdigit() for ch in token):
+            out.append(token)
+        elif "+" in token or "-" in token or "&" in token or "/" in token:
+            # Preserve symbolic labels, but capitalise the first letter if needed.
+            out.append(token[:1].upper() + token[1:] if token[:1].islower() else token)
         else:
-            out.append(t[:1].upper() + t[1:].lower())
+            out.append(token[:1].upper() + token[1:].lower())
+
     return " ".join(out)
 
 
+# Apply minimal typo fixes using an explicit whitelist only.
 def apply_typo_fixes(s: str) -> str:
-    """
-    Apply minimal typo fixes in a conservative way:
-    - only exact token-level matches (case-insensitive)
-    - does not do fuzzy corrections
-    """
     key = s.lower()
     if key in TYPO_FIXES:
         fixed = TYPO_FIXES[key]
@@ -114,20 +91,19 @@ def apply_typo_fixes(s: str) -> str:
 
 
 def is_placeholder(s: str) -> bool:
+    """Return True if the label is a placeholder rather than a real tag."""
     return collapse_spaces(s).lower() in PLACEHOLDERS
 
 
+# Split a spreadsheet multi-select cell into raw tag tokens.
 def split_multiselect_cell(value: Any) -> List[str]:
-    """
-    Spreadsheet uses comma-separated multi-select.
-    Returns raw tokens (trimmed, not yet canonicalised).
-    """
     if value is None or (isinstance(value, float) and pd.isna(value)):
         return []
-    raw = str(value)
-    raw = raw.strip()
+
+    raw = str(value).strip()
     if raw == "":
         return []
+
     parts = [p.strip() for p in raw.split(",")]
     return [p for p in parts if p.strip() != ""]
 
@@ -139,11 +115,11 @@ def clean_cell_tags(
     logs: List[NormLogRow],
 ) -> List[str]:
     """
-    Convert one cell into a list of cleaned tags, logging every change.
+    Clean one taxonomy cell into a list of final labels.
     """
     raw_parts = split_multiselect_cell(cell_value)
 
-    # Log split if original had commas (multi-select)
+    # Record when a multi-select cell has been split into separate labels.
     if cell_value is not None and isinstance(cell_value, str) and "," in cell_value:
         logs.append(
             NormLogRow(
@@ -162,7 +138,7 @@ def clean_cell_tags(
     for p in raw_parts:
         orig = p
 
-        # 1) remove placeholders
+        # 1) Remove placeholder labels.
         if is_placeholder(p):
             logs.append(
                 NormLogRow(
@@ -176,7 +152,7 @@ def clean_cell_tags(
             )
             continue
 
-        # 2) whitespace collapse
+        # 2) Collapse whitespace.
         p2 = collapse_spaces(p)
         if p2 != p:
             logs.append(
@@ -191,7 +167,7 @@ def clean_cell_tags(
             )
         p = p2
 
-        # 3) typo fix (token-level)
+        # 3) Apply conservative typo fixes.
         p3 = apply_typo_fixes(p)
         if p3 != p:
             logs.append(
@@ -206,7 +182,7 @@ def clean_cell_tags(
             )
         p = p3
 
-        # 4) casing
+        # 4) Standardise casing.
         p4 = title_case_preserve_acronyms(p)
         if p4 != p:
             logs.append(
@@ -221,7 +197,7 @@ def clean_cell_tags(
             )
         p = p4
 
-        # 5) dedupe within cell (case-insensitive)
+        # 5) Remove duplicate labels within the same cell.
         key = p.lower()
         if key in seen_lower:
             logs.append(
@@ -242,9 +218,9 @@ def clean_cell_tags(
     return cleaned
 
 
-
-# Main
+# Main pipeline
 def main() -> None:
+    """Run taxonomy cleaning and write clean CSV, log CSV, and stats JSON."""
     if not IN_RAW.exists():
         raise FileNotFoundError(
             f"Missing input: {IN_RAW}\n"
@@ -257,7 +233,7 @@ def main() -> None:
 
     df = pd.read_csv(IN_RAW, dtype=object)
 
-    # Validate required columns
+    # Confirm that all required columns are present before processing.
     missing = [c for c in [ID_COL, *TAXONOMY_COLS] if c not in df.columns]
     if missing:
         raise ValueError(
@@ -266,9 +242,9 @@ def main() -> None:
         )
 
     logs: List[NormLogRow] = []
-
-    # Clean per row
     clean_rows: List[Dict[str, Any]] = []
+
+    # Clean each taxonomy column for each resource row.
     for _, row in df.iterrows():
         rid = str(row[ID_COL]).strip()
         out_row: Dict[str, Any] = {ID_COL: rid}
@@ -280,20 +256,22 @@ def main() -> None:
                 cell_value=row.get(col, None),
                 logs=logs,
             )
-            # Store as readable comma-separated string in CSV
+
+            # Store cleaned labels as a readable comma-separated string.
             out_row[col] = ", ".join(tags)
 
         clean_rows.append(out_row)
 
+    # Write cleaned taxonomy dataset.
     clean_df = pd.DataFrame(clean_rows)
     clean_df.to_csv(OUT_CLEAN, index=False, encoding="utf-8")
 
-    # Write log
+    # Write a full log of all normalisation actions.
     log_df = pd.DataFrame([vars(x) for x in logs])
     log_df.to_csv(OUT_LOG, index=False, encoding="utf-8")
 
-    # Stats for methodology
     def unique_tags_from_col(series: pd.Series) -> int:
+        """Count unique cleaned labels in one taxonomy column."""
         tags = set()
         for cell in series.fillna("").astype(str).tolist():
             cell = cell.strip()
@@ -304,6 +282,7 @@ def main() -> None:
                     tags.add(t.lower())
         return len(tags)
 
+    # Write summary statistics for methodology and reporting.
     stats = {
         "created_utc": datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
         "input": str(IN_RAW),

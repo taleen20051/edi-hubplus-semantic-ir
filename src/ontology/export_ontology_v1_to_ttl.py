@@ -1,21 +1,34 @@
-# src/ontology/export_ontology_v1_to_ttl.py
+"""
+Export ontology v1 from JSON to Turtle (TTL) format.
+
+The JSON ontology is the main format used by the Python retrieval pipeline.
+This script creates a SKOS-style Turtle representation so the ontology can also
+be inspected as a lightweight web artefact.
+"""
+
 from __future__ import annotations
 
 import json
 from pathlib import Path
 from datetime import datetime, timezone
 
-IN_JSON = Path("ontology/edi_ontology_v1.json")  # <-- matches your VS Code file path
+
+# Input ontology JSON built from the cleaned taxonomy.
+IN_JSON = Path("ontology/edi_ontology_v1.json")
+# Output TTL file used as an RDF/SKOS-compatible ontology export.
 OUT_TTL = Path("data/processed/edi_ontology_v1.ttl")
 
-# Choose a base IRI for your ontology namespace (doesn't need to resolve yet).
+# Base IRI for the ontology namespace. It is used to create local concept IRIs.
 BASE = "https://example.org/edi-hubplus/ontology/v1#"
 
+
 def esc(s: str) -> str:
-    # Turtle string escape (minimal)
+    """Escape text so it can be safely written inside Turtle string literals."""
     return s.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
 
+
 def main() -> None:
+    """Read ontology JSON and write an equivalent SKOS-style Turtle file."""
     data = json.loads(IN_JSON.read_text(encoding="utf-8"))
 
     ontology_id = data.get("ontology_id", "edi-hubplus-taxonomy")
@@ -28,7 +41,7 @@ def main() -> None:
 
     lines = []
 
-    # Prefixes
+    # Standard RDF/SKOS prefixes used in the TTL export.
     lines += [
         "@prefix : <" + BASE + "> .",
         "@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .",
@@ -38,7 +51,7 @@ def main() -> None:
         "",
     ]
 
-    # Concept scheme (the ontology as a SKOS scheme)
+    # Represent the ontology as one SKOS concept scheme.
     scheme_iri = ":scheme"
     now_utc = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
@@ -52,8 +65,7 @@ def main() -> None:
         "",
     ]
 
-    # Categories as top concepts
-    # We make each category a skos:Concept and link it to the scheme.
+    # Export the four taxonomy dimensions as top-level SKOS concepts.
     for cat in categories:
         cat_id = cat["id"]
         cat_label = cat.get("label", cat_id)
@@ -66,7 +78,7 @@ def main() -> None:
             "",
         ]
 
-    # Concepts
+    # Export each ontology concept with preferred labels, alt labels, and category link.
     for c in concepts:
         cid = c["id"]
         pref = c.get("pref_label", "").strip()
@@ -78,22 +90,22 @@ def main() -> None:
         if pref:
             lines.append(f'  skos:prefLabel "{esc(pref)}"@en ;')
 
-        # alt labels (variants observed)
+        # Alternative labels preserve observed variants from the cleaning process.
         for a in alts:
             a = str(a).strip()
             if a:
                 lines.append(f'  skos:altLabel "{esc(a)}"@en ;')
 
-        # link into scheme + category
+        # Link each concept to the scheme and, where available, its top-level category.
         lines.append(f"  skos:inScheme {scheme_iri} ;")
         if cat_id:
             lines.append(f"  skos:broader :{cat_id} ;")
 
-        # provenance-like note (optional but useful)
+        # Keep the source taxonomy column as lightweight provenance.
         if source_col:
             lines.append(f'  dcterms:source "{esc(source_col)}" ;')
 
-        # end statement (replace last ; with .)
+        # End the Turtle statement by replacing the final semicolon with a full stop.
         if lines[-1].endswith(";"):
             lines[-1] = lines[-1][:-1] + " ."
         else:
@@ -107,6 +119,7 @@ def main() -> None:
     print(" Export complete")
     print(f"Input:  {IN_JSON}")
     print(f"Output: {OUT_TTL}")
+
 
 if __name__ == "__main__":
     main()
